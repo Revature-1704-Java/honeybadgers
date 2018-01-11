@@ -22,8 +22,10 @@ post {
       sh 'mvn clean'
     }
     post {
-      slackSend baseUrl: 'https://honeybadgerscave.slack.com/services/hooks/jenkins-ci/', channel: 'build', color: 'Red', message: 'Maven Clean Failure', token: 'vZgaSxqVFuprS2RIO5AOnSBf'
-      sh 'exit 1'
+      failure {
+        slackSend baseUrl: 'https://honeybadgerscave.slack.com/services/hooks/jenkins-ci/', channel: 'build', color: 'Red', message: 'Maven Clean Failure', token: 'vZgaSxqVFuprS2RIO5AOnSBf'
+        sh 'exit 1'
+      }
     }
   }
   stage('package') {
@@ -31,8 +33,10 @@ post {
       sh 'mvn package'
     }
     post {
-      slackSend baseUrl: 'https://honeybadgerscave.slack.com/services/hooks/jenkins-ci/', channel: 'build', color: 'Red', message: 'Maven Package Failure', token: 'vZgaSxqVFuprS2RIO5AOnSBf'
-      sh 'exit 1'
+      failure {
+        slackSend baseUrl: 'https://honeybadgerscave.slack.com/services/hooks/jenkins-ci/', channel: 'build', color: 'Red', message: 'Maven Package Failure', token: 'vZgaSxqVFuprS2RIO5AOnSBf'
+        sh 'exit 1'
+      }
     }
   }
   stage('deploy') {
@@ -40,8 +44,10 @@ post {
       sh 'mvn tomcat7:redeploy'
     }
     post {
-      slackSend baseUrl: 'https://honeybadgerscave.slack.com/services/hooks/jenkins-ci/', channel: 'build', color: 'Red', message: 'Maven Deployment Failure', token: 'vZgaSxqVFuprS2RIO5AOnSBf'
-      sh 'exit 1'
+      failure {
+        slackSend baseUrl: 'https://honeybadgerscave.slack.com/services/hooks/jenkins-ci/', channel: 'build', color: 'Red', message: 'Maven Deployment Failure', token: 'vZgaSxqVFuprS2RIO5AOnSBf'
+        sh 'exit 1'
+      }
     }
   }
   stage('success') {
