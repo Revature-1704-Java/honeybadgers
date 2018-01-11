@@ -73,12 +73,12 @@ pipeline {
     }
     stage('deploy') {
       steps{
-        sh 'mvn tomcat7:deploy -Dmaven.tomcat.path=/mvnAngular/danny'
+        sh 'mvn tomcat7:deploy -Dmaven.tomcat.path=/mvnAngular'
       }
     }
     stage('redeploy') {
       steps{
-        sh 'mvn tomcat7:redeploy -Dmaven.tomcat.path=/mvnAngular/danny'
+        sh 'mvn tomcat7:redeploy -Dmaven.tomcat.path=/mvnAngular'
       }
       post {
         failure {
