@@ -1,3 +1,4 @@
 *.sh
 target
+Jenkinsfile
 pom.xml
