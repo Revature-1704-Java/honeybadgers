@@ -49,6 +49,9 @@ post {
     }
   }
   stage('deploy') {
+    when {
+      branch: 'master'
+    }
     steps{
       sh 'mvn tomcat7:redeploy'
     }
