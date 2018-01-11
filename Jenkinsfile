@@ -34,7 +34,7 @@ pipeline {
         }
       }
     }
-    stage('NPM Install') {
+    /*stage('NPM Install') {
       steps{
         dir('src/main/ngapp') {
           sh 'npm install'
@@ -59,7 +59,7 @@ pipeline {
           sh 'exit 1'
         }
       }
-    }
+    }*/
     stage('package') {
       steps{
         sh 'mvn package'
