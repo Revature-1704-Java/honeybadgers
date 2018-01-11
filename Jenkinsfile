@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     stages {
   stage('import') {
     steps{ 
@@ -49,23 +48,19 @@ post {
     }
   }
   stage('deploy') {
-    when {
-      branch: 'master'
-    }
     steps{
-      sh 'mvn tomcat7:redeploy'
+      sh 'mvn tomcat7:deploy -path "/mvnAngular'
+    }
+  }
+  stage('redeploy') {
+    steps{
+      sh 'mvn tomcat7:redeploy -path "/mvnAngular'
     }
     post {
       failure {
         slackSend baseUrl: 'https://honeybadgerscave.slack.com/services/hooks/jenkins-ci/', channel: 'build', color: 'Red', message: 'Maven Deployment Failure', token: 'vZgaSxqVFuprS2RIO5AOnSBf'
-        sh 'exit 1'
       }
     }
   }
-  stage('success') {
-    steps{
-      slackSend baseUrl: 'https://honeybadgerscave.slack.com/services/hooks/jenkins-ci/', channel: 'build', color: 'Green', message: 'Build Success', token: 'vZgaSxqVFuprS2RIO5AOnSBf'
-    }
   }
-}
 }
