@@ -1,0 +1,14 @@
+<div>
+  <div *ngFor="let q of questions">
+    <mat-card>
+      <mat-card-content>
+          {{q.question}}
+          <mat-radio-group>
+            <div *ngFor="let a of q.answers; let i = index">
+              <mat-radio-button [value]="i">{{a.text}}</mat-radio-button>
+            </div>
+          </mat-radio-group>  
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
