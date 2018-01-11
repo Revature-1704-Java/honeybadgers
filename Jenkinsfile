@@ -49,12 +49,12 @@ post {
   }
   stage('deploy') {
     steps{
-      sh 'mvn tomcat7:deploy -path "/mvnAngular'
+      sh 'mvn tomcat7:deploy -path "/mvnAngular"'
     }
   }
   stage('redeploy') {
     steps{
-      sh 'mvn tomcat7:redeploy -path "/mvnAngular'
+      sh 'mvn tomcat7:redeploy -path "/mvnAngular"'
     }
     post {
       failure {
