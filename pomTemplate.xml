@@ -77,7 +77,7 @@
                 <goals>
                     <goal>exec</goal>
                 </goals>
-              </execution>-->
+              </execution>
         </executions>
     </plugin>
 </plugins>
