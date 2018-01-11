@@ -72,11 +72,17 @@ pipeline {
       }
     }
     stage('deploy') {
+      when {
+        branch 'master'
+      }
       steps{
         sh 'mvn tomcat7:deploy -Dmaven.tomcat.path=/mvnAngular'
       }
     }
     stage('redeploy') {
+      when {
+        branch 'master'
+      }
       steps{
         sh 'mvn tomcat7:redeploy -Dmaven.tomcat.path=/mvnAngular'
       }
