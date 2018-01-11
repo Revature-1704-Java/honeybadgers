@@ -61,8 +61,8 @@
                 <goals>
                     <goal>exec</goal>
                 </goals>
-            </execution>-->
-<!--            <execution>
+            </execution>
+            <execution>
                 <id>exec-npm-ng-build</id>
                 <phase>generate-sources</phase>
                 <configuration>
@@ -70,8 +70,8 @@
                     <executable>ng</executable>
                     <arguments>
                         <argument>build</argument>
-                        <argument>-/-prod</argument>
-                        <argument>-/-base-href=/mvnAngular/ng</argument>
+                        <argument>- -prod</argument>
+                        <argument>- -base-href=/mvnAngular/ng</argument>
                     </arguments>
                 </configuration>
                 <goals>
