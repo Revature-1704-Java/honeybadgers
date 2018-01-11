@@ -47,10 +47,10 @@ pipeline {
         }
       }
     }
-    stage('NPM Build') {
+    stage('NG Build') {
       steps{
         dir('src/main/ngapp') {
-          sh 'npm build --prod --base-href=/mvnAngular/ng'
+          sh 'ng build --prod --base-href=/mvnAngular/ng'
         }
       }
       post {
