@@ -6,8 +6,7 @@ pipeline {
     steps{ 
         git 'https://github.com/Revature-1704-Java/honeybadgers.git'
     }
-  }
-  post {
+post {
     success {
     }
     failure {
@@ -15,6 +14,8 @@ pipeline {
       sh 'exit 1'
     }
   }
+  }
+  
 
   stage('clean') {
     steps{
