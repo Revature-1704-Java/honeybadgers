@@ -50,12 +50,12 @@ pipeline {
     stage('NG Build') {
       steps{
         dir('src/main/ngapp') {
-          sh 'ng build --prod --base-href=/mvnAngular/ng'
+          sh 'ng build --aot --base-href=/mvnAngular/ng'
         }
       }
       post {
         failure {
-          slackSend baseUrl: 'https://honeybadgerscave.slack.com/services/hooks/jenkins-ci/', channel: 'build', color: 'Red', message: 'NPM Build Failure', token: 'vZgaSxqVFuprS2RIO5AOnSBf'
+          slackSend baseUrl: 'https://honeybadgerscave.slack.com/services/hooks/jenkins-ci/', channel: 'build', color: 'Red', message: 'NG Build Failure', token: 'vZgaSxqVFuprS2RIO5AOnSBf'
           sh 'exit 1'
         }
       }
