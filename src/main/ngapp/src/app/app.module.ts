@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MatButtonModule, MatIconModule, MatListModule} from '@angular/material';
+import { AppMaterialModule } from './app-material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
@@ -9,14 +11,20 @@ import { QuizFormService } from './services/quiz-form.service';
 import { QuizContainerComponent } from './components/quiz-container/quiz-container.component';
 import { QuizCardComponent } from './components/quiz-card/quiz-card.component';
 import { QuestionListComponent } from './components/question-list/question-list.component';
-
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     QuizContainerComponent,
     QuizCardComponent,
-    QuestionListComponent
+    QuestionListComponent,
+    NavbarComponent,
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     MatButtonModule,
@@ -24,9 +32,12 @@ import { QuestionListComponent } from './components/question-list/question-list.
     MatListModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserModule
+    BrowserModule,
+    AppMaterialModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  entryComponents: [LoginComponent, SignupComponent],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
