@@ -114,7 +114,6 @@
                     <arguments>
                         <argument>build</argument>
                         <argument>- -aot</argument>
-                        <argument>- -base-href=/mvnAngular/ng</argument>
                     </arguments>
                 </configuration>
                 <goals>
