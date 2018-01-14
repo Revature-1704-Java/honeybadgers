@@ -1,5 +1,5 @@
 import { Component, OnInit,  Input} from '@angular/core';
-import { Question } from '../../class/question';
+import { Question } from '../../interfaces/question';
 import { Observable } from 'rxjs/Observable';
 import { FormGroup } from '@angular/forms';
 
