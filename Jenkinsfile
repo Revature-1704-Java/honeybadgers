@@ -47,19 +47,6 @@ pipeline {
         }
       }
     }
-    stage('NG Build') {
-      steps{
-        dir('src/main/ngapp') {
-          sh 'ng build'
-        }
-      }
-      post {
-        failure {
-          slackSend baseUrl: 'https://honeybadgerscave.slack.com/services/hooks/jenkins-ci/', channel: 'build', color: 'Red', message: 'NG Build Failure', token: 'vZgaSxqVFuprS2RIO5AOnSBf'
-          sh 'exit 1'
-        }
-      }
-    }
     stage('package') {
       steps{
         sh 'mvn package'
