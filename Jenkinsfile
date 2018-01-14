@@ -50,7 +50,7 @@ pipeline {
     stage('NG Build') {
       steps{
         dir('src/main/ngapp') {
-          sh 'ng build --aot'
+          sh 'ng build'
         }
       }
       post {
