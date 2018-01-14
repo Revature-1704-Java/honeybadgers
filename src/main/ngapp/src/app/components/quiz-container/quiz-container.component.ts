@@ -3,11 +3,11 @@ import {
   OnInit,
   OnDestroy
 } from '@angular/core';
-import { QuestionService } from '../../service/question.service';
-import { Question } from '../../class/question';
-import { QuizFormService } from '../../service/quiz-form.service';
+import { QuestionService } from '../../services/question.service';
+import { Question } from '../../interfaces/question';
+import { QuizFormService } from '../../services/quiz-form.service';
 import { FormBuilder, FormArray, FormGroup} from '@angular/forms';
-import {QuizAnswer } from '../../class/quiz-answer';
+import {QuizAnswer } from '../../interfaces/quiz-answer';
 import { ISubscription } from 'rxjs/Subscription';
 
 @Component({
