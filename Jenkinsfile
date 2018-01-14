@@ -50,7 +50,7 @@ pipeline {
     stage('NG Build') {
       steps{
         dir('src/main/ngapp') {
-          sh 'ng build --aot --base-href=/mvnAngular/ng'
+          sh 'ng build --aot'
         }
       }
       post {
