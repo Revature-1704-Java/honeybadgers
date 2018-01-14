@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import {QuizAnswer} from '../class/quiz-answer';
+import {QuizAnswer} from '../interfaces/quiz-answer';
 @Injectable()
 export class QuizFormService {
   userAnswer: QuizAnswer[] = [];
