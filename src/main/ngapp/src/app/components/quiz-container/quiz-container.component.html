@@ -1,0 +1,29 @@
+<div class="quiz-container">
+  <div class="topbar">
+    top bar place holder
+  </div>
+  <div class="content">
+    <div class="list-container">
+      <app-question-list *ngIf="questions" [answers]="quizForm.get('answers').value" [(currentQ)]="currentQ"></app-question-list>
+    </div>
+    <div class="card-container">
+      <app-quiz-card *ngIf="questions" [parent]="quizForm" [question]="questions[currentQ]" [index]="currentQ">
+      </app-quiz-card>
+    </div>
+  </div>
+  <div class="bottombar">
+    <div class="bottombar-right">
+      <div>
+        <button class="button" mat-raised-button color="primary" [disabled]="!(questions && currentQ > 0)" (click)="prevQ($event)">Previous</button>
+      </div>
+      <div>
+        <button class="button" mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+      </div>
+      <div>
+        <button class="button" mat-raised-button color="primary" [disabled]=" questions && currentQ == questions.length-1" (click)="nextQ($event)">
+            Next
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
