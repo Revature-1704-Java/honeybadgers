@@ -1,14 +1,13 @@
-<div>
-  <div *ngFor="let q of questions">
-    <mat-card>
-      <mat-card-content>
-          {{q.question}}
-          <mat-radio-group>
-            <div *ngFor="let a of q.answers; let i = index">
-              <mat-radio-button [value]="i">{{a.text}}</mat-radio-button>
-            </div>
-          </mat-radio-group>  
-      </mat-card-content>
-    </mat-card>
+<div class="card" [formGroup]="parent">
+  <div class="form-container" formArrayName="answers">
+    <div class="form" [formGroupName]="index">
+      <div class="question">
+        {{question.question}}
+      </div>
+      <div class="answer" *ngFor="let a of question.answers; let i = index">
+        <input formControlName="answer" type="radio" [value]="i" id="{{i}}"> 
+        <label for="{{i}}">{{a.text}}</label>
+      </div>
+    </div>
   </div>
 </div>

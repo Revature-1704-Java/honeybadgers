@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import {Quiz} from '../class/quiz';
+import {QuizAnswer} from '../class/quiz-answer';
 @Injectable()
 export class QuizFormService {
-  userAnswer: Quiz[] = [];
+  userAnswer: QuizAnswer[] = [];
   constructor() { }
-  upadte(userAnswer: Quiz[]) {
+  upadte(userAnswer: QuizAnswer[]): void {
     this.userAnswer = userAnswer;
+  }
+  get(): QuizAnswer[] {
+    return this.userAnswer;
   }
 }

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { QuestionService } from '../../service/question.service';
+import { Component, OnInit,  Input} from '@angular/core';
 import { Question } from '../../class/question';
-import { QuizFormService } from '../../service/quiz-form.service';
+import { Observable } from 'rxjs/Observable';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-quiz-card',
@@ -9,15 +9,12 @@ import { QuizFormService } from '../../service/quiz-form.service';
   styleUrls: ['./quiz-card.component.css']
 })
 export class QuizCardComponent implements OnInit {
-  questions: Question[];
-  constructor(private qs: QuestionService, private qfs: QuizFormService) { }
+  @Input() question: Question;
+  @Input() index: number;
+  @Input() parent: FormGroup;
+  constructor() { }
 
   ngOnInit() {
-    this.qs.getQuestions().subscribe(
-      res => {
-        this.questions = res;
-      }
-    );
   }
 
 }
