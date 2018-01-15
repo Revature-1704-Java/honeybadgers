@@ -17,6 +17,10 @@ import { SignupComponent } from './components/signup/signup.component';
 import { AuthService } from './services/auth.service';
 import { QuizResultsComponent } from './components/quiz-results/quiz-results.component';
 import { AppRoutingModule } from './app-routing.module';
+import { TagService } from './services/tag.service';
+import { TagListComponent } from './components/tag-list/tag-list.component';
+import { TagItemComponent } from './components/tag-item/tag-item.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,9 @@ import { AppRoutingModule } from './app-routing.module';
     NavbarComponent,
     SignupComponent,
     LoginComponent,
-    QuizResultsComponent
+    QuizResultsComponent,
+    TagListComponent,
+    TagItemComponent
   ],
   imports: [
     MatButtonModule,
@@ -38,10 +44,11 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     AppMaterialModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   entryComponents: [LoginComponent, SignupComponent],
-  providers: [AuthService, QuestionService, QuizFormService],
+  providers: [AuthService, QuestionService, QuizFormService, TagService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
