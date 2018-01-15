@@ -37,7 +37,7 @@ public class UserController {
   }
 
   @RequestMapping(value="/{username}", method=RequestMethod.PUT)
-  public ResponseEntity putUser(@RequestBody Users input, @PathVariable String username) {
+  public ResponseEntity updateUser(@RequestBody Users input, @PathVariable String username) {
     Users user = input;
     UsersDao usersDao = new UsersDao();
     Users currentUser = usersDao.getUser(username);
