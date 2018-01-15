@@ -1,7 +1,4 @@
 <div class="quiz-container">
-  <div class="topbar">
-    top bar place holder
-  </div>
   <div class="content">
     <div class="list-container">
       <app-question-list *ngIf="questions" [answers]="quizForm.get('answers').value" [(currentQ)]="currentQ"></app-question-list>
