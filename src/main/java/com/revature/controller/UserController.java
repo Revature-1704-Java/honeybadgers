@@ -19,11 +19,14 @@ import org.springframework.http.HttpStatus;
 @RequestMapping("/user")
 public class UserController {
 	
-  @GetMapping
-  public ResponseEntity getUser() {
+  @RequestMapping(value="/{username}", method=RequestMethod.GET)
+  public ResponseEntity getUser(@PathVariable String username) {
     UsersDao usersDao = new UsersDao();
-    Users user = usersDao.getUser("username");
+    Users user = usersDao.getUser(username);
     HttpHeaders responseHeaders = new HttpHeaders();
+    if(user == null) {
+      return new ResponseEntity(user, responseHeaders, HttpStatus.NOT_FOUND);
+    }
     return new ResponseEntity(user, responseHeaders, HttpStatus.ACCEPTED);
   }
 
