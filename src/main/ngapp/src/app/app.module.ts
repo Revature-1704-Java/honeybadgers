@@ -23,6 +23,7 @@ import { TagItemComponent } from './components/tag-item/tag-item.component';
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileQuestionListComponent } from './components/profile-question-list/profile-question-list.component';
+import { AddQformComponent } from './components/add-qform/add-qform.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { ProfileQuestionListComponent } from './components/profile-question-list
     TagListComponent,
     TagItemComponent,
     ProfileComponent,
-    ProfileQuestionListComponent
+    ProfileQuestionListComponent,
+    AddQformComponent
   ],
   imports: [
     MatButtonModule,
