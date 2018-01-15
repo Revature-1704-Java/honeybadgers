@@ -11,8 +11,8 @@ import com.revature.util.HibernateUtil;
 
 public class ResponsesDao {
 	//save a response based on responseString and question Object
-	public void saveResponse(String response, Questions quest) {
-		Responses savRep = new Responses(quest, response);
+	public void saveResponse(String response, Questions quest, boolean correct) {
+		Responses savRep = new Responses(quest, response, correct);
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
 		session.save(savRep);

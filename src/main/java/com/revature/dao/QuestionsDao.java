@@ -13,10 +13,10 @@ import com.revature.util.HibernateUtil;
 public class QuestionsDao {
 	
 	//Save a question based on question answer and tag strings
-	public void saveQuestion(String question, String answer, String tag) {
+	public void saveQuestion(String question, String tag) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		Questions q = new Questions(question, answer, tag);
+		Questions q = new Questions(question, tag);
 		session.save(q);
 		tx.commit();
 		session.close();

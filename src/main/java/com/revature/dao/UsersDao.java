@@ -65,7 +65,7 @@ public class UsersDao {
 	}
 	
     // update password
-    public void updateUser(Users updatetUser){
+    public void updateUser(Users updateUser){
 	Session session = HibernateUtil.getSessionFactory().openSession();
 	Transaction tx = session.beginTransaction();
 	session.update(updateUser);
