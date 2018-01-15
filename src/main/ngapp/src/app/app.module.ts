@@ -15,6 +15,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AuthService } from './services/auth.service';
+import { QuizResultsComponent } from './components/quiz-results/quiz-results.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { AuthService } from './services/auth.service';
     QuestionListComponent,
     NavbarComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    QuizResultsComponent
   ],
   imports: [
     MatButtonModule,
@@ -34,10 +37,11 @@ import { AuthService } from './services/auth.service';
     HttpClientModule,
     BrowserModule,
     AppMaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppRoutingModule
   ],
   entryComponents: [LoginComponent, SignupComponent],
-  providers: [AuthService],
+  providers: [AuthService, QuestionService, QuizFormService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
