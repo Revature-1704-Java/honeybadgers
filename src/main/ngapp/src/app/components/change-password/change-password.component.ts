@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-change-password',
@@ -13,7 +14,7 @@ export class ChangePasswordComponent implements OnInit {
   public updatePasswordError: string;
   private correctPassword: string;
 
-  constructor(private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   ngOnInit() {
     this.authService.isLoggedIn().subscribe((user) => {
@@ -29,6 +30,19 @@ export class ChangePasswordComponent implements OnInit {
     } else if(this.newPassword === this.confirmNewPassword) {
       this.updatePasswordError = "";
       // make asynchronous call here
+      this.http.put("http://192.168.0.2:8181/user/notAdmin",
+        { 
+          "password" : this.newPassword 
+        },
+        {
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      ).subscribe((response) => {
+        console.log(response);
+      });
+
     } else {
       this.updatePasswordError = "Passwords don't match.";
     }
