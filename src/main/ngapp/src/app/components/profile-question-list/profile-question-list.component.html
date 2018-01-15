@@ -1,0 +1,6 @@
+<div *ngFor="let q of questions" class="question">
+  <p>{{ q.question }}</p>
+  <ul>
+    <li *ngFor="let a of q.answers">{{ a.text }}</li>
+  </ul>
+</div>
