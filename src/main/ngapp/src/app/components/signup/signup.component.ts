@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../../interfaces/user';
+import { FormControl } from '@angular/forms/src/model';
 
 @Component({
   selector: 'app-signup',
@@ -41,8 +42,14 @@ export class SignupComponent implements OnInit {
     );
   }
 
+  passwordMatched(field1: string, field2: string) {
+    return  (this.form.get(field1).value !== this.form.get(field2).value) &&
+            (this.form.get(field1).valid && this.form.get(field1).touched) && 
+            (this.form.get(field2).valid && this.form.get(field2).touched);
+  }
+
   onSubmit() {
-    if (this.form.valid) {
+    if (this.form.valid && (this.form.get('password').value === this.form.get('confirm').value)) {
       this.authService.signup(this.form.value);
     }
     
