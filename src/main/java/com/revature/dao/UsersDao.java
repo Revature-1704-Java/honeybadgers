@@ -3,7 +3,7 @@ package com.revature.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
+import java.util.*;
 import com.revature.beans.Users;
 import com.revature.util.HibernateUtil;
 
@@ -25,8 +25,15 @@ public class UsersDao {
 	public Users getUser(String username) {
 		//return (Users) HibernateUtil.getSessionFactory().	openSession().get(Users.class, user.getUid());
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		Users retUser = (Users) session.createQuery("from Users where username = :namevar").
-				setString("namevar", username).list().get(0); 
+		List<Users> retUserList = session.createQuery("from Users where username = :namevar").
+				setString("namevar", username).list(); 
+    Users retUser;
+    if(retUserList.size() > 0) {
+      retUser = retUserList.get(0);
+    }
+    else {
+      retUser = null;
+    }
 		session.close();
 		return retUser;
 	}

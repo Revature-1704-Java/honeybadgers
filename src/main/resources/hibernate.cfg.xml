@@ -21,16 +21,16 @@
 		<property name="hibernate.show_sql">
 			true
 		</property>
-<!--		<property name="hibernate.hbm2ddl.auto">
-			create-drop
+	<property name="hibernate.hbm2ddl.auto">
+			update
 		</property>
 		 
-		<property name="hibernate.cache.provider_class">
+    <!--<property name="hibernate.cache.provider_class">
 			org.hibernate.cache.EhCacheProvider
 		</property> -->
 		<mapping class="com.revature.beans.Users"></mapping>
-		<mapping class="com.revature.Questions"></mapping>
-		<mapping class="com.revature.AnsweredQuestions"></mapping>
+		<mapping class="com.revature.beans.Questions"></mapping>
+		<mapping class="com.revature.beans.AnsweredQuestions"></mapping>
 		<mapping class="com.revature.beans.Responses"></mapping>
 		
 	</session-factory>

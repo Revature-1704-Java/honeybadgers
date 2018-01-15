@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.FetchType;
 
 @Entity
 @Table(name="Users")
@@ -44,7 +45,7 @@ public class Users {
 	private boolean admin;
 	
 //	@OneToMany(mappedBy="uid")
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	List<AnsweredQuestions> aedq;
 	
 	public List<AnsweredQuestions> getAedq() {
