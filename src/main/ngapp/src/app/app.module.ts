@@ -21,6 +21,9 @@ import { TagService } from './services/tag.service';
 import { TagListComponent } from './components/tag-list/tag-list.component';
 import { TagItemComponent } from './components/tag-item/tag-item.component';
 import { FormsModule } from '@angular/forms';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileQuestionListComponent } from './components/profile-question-list/profile-question-list.component';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +36,9 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     QuizResultsComponent,
     TagListComponent,
-    TagItemComponent
+    TagItemComponent,
+    ProfileComponent,
+    ProfileQuestionListComponent
   ],
   imports: [
     MatButtonModule,
