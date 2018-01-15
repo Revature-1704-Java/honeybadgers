@@ -9,6 +9,7 @@ import { QuizFormService } from '../../services/quiz-form.service';
 import { FormBuilder, FormArray, FormGroup} from '@angular/forms';
 import {QuizAnswer } from '../../interfaces/quiz-answer';
 import { ISubscription } from 'rxjs/Subscription';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz-container',
@@ -24,7 +25,7 @@ export class QuizContainerComponent implements OnInit, OnDestroy {
     return <FormArray > this.quizForm.get('answers');
   }
   constructor(private qs: QuestionService, private qfs: QuizFormService,
-    private fb: FormBuilder) {}
+    private fb: FormBuilder, private router: Router) {}
 
   ngOnInit() {
     this.quizForm = this.fb.group({
@@ -70,6 +71,7 @@ export class QuizContainerComponent implements OnInit, OnDestroy {
       });
     this.qfs.upadte(Ans);
     console.log(this.qfs.get());
+    
+    this.router.navigate(['results']);
   }
-
 }
