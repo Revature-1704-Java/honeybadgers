@@ -1,0 +1,20 @@
+<mat-grid-list cols="4" rowHeight="100px">
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile colspan="2">
+    <form>
+      <mat-form-field>
+        <input matInput [(ngModel)]="tagFilter" placeholder="Filter Quizzes" type="text" id="tag-filter" name="tag-filter" (keypress)="updateTagList($event)" />
+      </mat-form-field>
+      <mat-form-field>
+          <mat-select [(ngModel)]="searchMode" name="search-mode" placeholder="Search By">
+            <mat-option value="1">Tag Name</mat-option>
+            <mat-option value="2">Creator</mat-option>
+          </mat-select>
+      </mat-form-field>
+    </form>
+  </mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile *ngFor="let tag of filteredTags" rowspan="3">
+    <app-tag-item [tag]="tag"></app-tag-item>
+  </mat-grid-tile>
+</mat-grid-list>
