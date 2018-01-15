@@ -28,10 +28,10 @@
 		<property name="hibernate.cache.provider_class">
 			org.hibernate.cache.EhCacheProvider
 		</property> -->
-		<mapping class="com.HoneyBadgers.hibernate.beans.Users"></mapping>
-		<mapping class="com.HoneyBadgers.hibernate.beans.Questions"></mapping>
-		<mapping class="com.HoneyBadgers.hibernate.beans.AnsweredQuestions"></mapping>
-		<mapping class="com.HoneyBadgers.hibernate.beans.Responses"></mapping>
+		<mapping class="com.revature.beans.Users"></mapping>
+		<mapping class="com.revature.Questions"></mapping>
+		<mapping class="com.revature.AnsweredQuestions"></mapping>
+		<mapping class="com.revature.beans.Responses"></mapping>
 		
 	</session-factory>
 
