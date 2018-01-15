@@ -13,64 +13,66 @@ import { Answer } from '../../interfaces/answer';
 })
 export class QuizResultsComponent implements AfterViewInit {
 
-  questions: Question[];
-  userAnswers: QuizAnswer[];
-  correctAnswers: Answer[];
-  correctCount: number = 0;
+  public questions: Question[];
+  public userAnswers: QuizAnswer[];
+  public correctAnswers: Answer[];
+  public totalCount: number = 0;
+  public correctCount: number = 0;
 
   constructor(private qs: QuestionService, private qfs: QuizFormService) {
-    this.questions = this.testQuestions();
-    this.userAnswers = this.testAnswers();
-    this.correctAnswers = this.findCorrect();
-    console.log(this.correctCount);
+    // this.questions = this.testQuestions();
+    // this.userAnswers = this.testAnswers();
+    // this.correctAnswers = this.findCorrect();
+    // console.log(this.correctCount);
   }
-
-  /*ngAfterViewInit() {
-    this.qs.getQuestions().subscribe(res => this.questions = res);
-    this.userAnswers = this.qfs.get();
-    this.correctAnswers = this.findCorrect();
-  }*/
 
   ngAfterViewInit() {
+    
+    this.qs.getQuestions().subscribe(res => {
+      this.questions = res;
+      this.correctAnswers = this.findCorrect();
+    });
 
+    this.userAnswers = this.qfs.get();
   }
 
-  testQuestions(): Question[] {
-    let questions: Question[] = [];
+  // testQuestions(): Question[] {
+  //   let questions: Question[] = [];
 
-    for (let i = 0; i < 4; i++){
-      let q: Question = {q_id: i, question: 'what?', answers: []};
-      q.q_id = i;
-      q.question = `Question ${i}`;
-      let answers: Answer[] = []
-      for (let j = 0; j < 4; j++){
-        let a: Answer = { text: `Answer ${j} of Question ${i}`, correct: false };
-        a.correct = (j == 2) ? true: false;
-        answers.push(a);
-      }
-      q.answers = answers;
-      questions.push(q);
-    }
+  //   for (let i = 0; i < 4; i++){
+  //     let q: Question = {q_id: i, question: 'what?', answers: []};
+  //     q.q_id = i;
+  //     q.question = `Question ${i}`;
+  //     let answers: Answer[] = []
+  //     for (let j = 0; j < 4; j++){
+  //       let a: Answer = { text: `Answer ${j} of Question ${i}`, correct: false };
+  //       a.correct = (j == 2) ? true: false;
+  //       answers.push(a);
+  //     }
+  //     q.answers = answers;
+  //     questions.push(q);
+  //   }
 
-    return questions;
-  }
+  //   return questions;
+  // }
 
-  testAnswers(): QuizAnswer[] {
-    let quizAnswers: QuizAnswer[] = [];
+  // testAnswers(): QuizAnswer[] {
+  //   let quizAnswers: QuizAnswer[] = [];
 
-    for (let i = 0; i < 4; i++){
-      let qa: QuizAnswer = { q_id: i, answer: i};
-      qa.q_id = i;
-      qa.answer = i;
-      quizAnswers.push(qa);
-    }
+  //   for (let i = 0; i < 4; i++){
+  //     let qa: QuizAnswer = { q_id: i, answer: i};
+  //     qa.q_id = i;
+  //     qa.answer = i;
+  //     quizAnswers.push(qa);
+  //   }
 
-    return quizAnswers;
-  }
+  //   return quizAnswers;
+  // }
 
   findCorrect(): Answer[] {
     let answers: Answer[] = [];
-
+    
+    this.totalCount = this.questions.length;
     for (let i = 0; i < this.questions.length; i++){
       for (let j = 0; j < this.questions[i].answers.length; j++){
         let answer = this.questions[i].answers[j];
@@ -85,6 +87,21 @@ export class QuizResultsComponent implements AfterViewInit {
     }
 
     return answers;
+  }
+
+  correctAnswerCheck(index: number): boolean {
+    if (this.userAnswerExist(index)) {
+      if (this.questions[index].answers[this.userAnswers[index].answer].correct)
+        return true;
+      else
+        return false;
+    }
+    
+    return false;
+  }
+
+  userAnswerExist(index: number) {
+    return this.userAnswers[index].answer != null;
   }
 }
 

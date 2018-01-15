@@ -5,6 +5,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { QuizResultsComponent } from './components/quiz-results/quiz-results.component';
 import { ProfileQuestionListComponent } from './components/profile-question-list/profile-question-list.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { AuthGuard } from './guards/auth.guard';
+import { QuizContainerComponent } from './components/quiz-container/quiz-container.component';
 
 const routes: Routes = [
   {
@@ -12,11 +14,8 @@ const routes: Routes = [
     component: TagListComponent
   },
   {
-    path: 'tag-filter',
-    component: TagListComponent
-  },
-  {
     path: 'profile',
+    canActivate: [AuthGuard],
     component: ProfileComponent,
     children: [
       {
@@ -36,6 +35,14 @@ const routes: Routes = [
         component: ChangePasswordComponent
       }
     ]
+  },
+  {
+    path: 'quiz/:tagId', 
+    component: QuizContainerComponent
+  },
+  {
+    path: 'results',
+    component: QuizResultsComponent
   }
 ];
 
