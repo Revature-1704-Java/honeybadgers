@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/user")
 public class UserController {
 	
@@ -38,7 +40,7 @@ public class UserController {
     HttpHeaders responseHeaders = new HttpHeaders();
     return new ResponseEntity("User created", responseHeaders, HttpStatus.ACCEPTED);
   }
-
+  //@CrossOrigin(origins = "http://localhost:8181")
   @RequestMapping(value="/{username}", method=RequestMethod.PUT)
   public ResponseEntity updateUser(@RequestBody Users input, @PathVariable String username) {
     Users user = input;
