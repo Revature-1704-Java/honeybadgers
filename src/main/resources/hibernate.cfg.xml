@@ -32,6 +32,8 @@
 		<mapping class="com.revature.beans.Questions"></mapping>
 		<mapping class="com.revature.beans.AnsweredQuestions"></mapping>
 		<mapping class="com.revature.beans.Responses"></mapping>
+		<mapping class="com.revature.beans.Tags"></mapping>
+
 		
 	</session-factory>
 
