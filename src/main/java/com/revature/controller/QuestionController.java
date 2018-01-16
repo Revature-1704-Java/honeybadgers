@@ -33,10 +33,33 @@ public class QuestionController {
   @PostMapping
   public ResponseEntity postQuestion(@RequestBody Questions input) {
     Questions question = input;
+    if(question == null) {
+      System.out.println(question + "is null" );
+      System.exit(0);
+    }
     QuestionsDao questionsDao = new QuestionsDao();
+    List<Responses> responses = question.getAnswers();
+    if(responses == null) {
+      System.out.println("responses null before setting questino");
+      System.exit(0);
+    }
+    for(Responses response : responses) {
+      response.setQid(question);
+    }
+    question.setAnswers(responses);
+    
+    if(question.getAnswers() == null) {
+      System.out.println("responses null after setting questino");
+      System.exit(0);
+    }
+     /*for(int i = 0; i < question.getResponses().size(); i++) {
+      question.getResponses().get(i).setQid(question);
+     }
+    */ 
     questionsDao.saveQuestion(question);
     Questions dbQuestion = questionsDao.getQuestion(question.getQuestion());
+
     HttpHeaders responseHeaders = new HttpHeaders();
-    return new ResponseEntity(dbQuestion, responseHeaders, HttpStatus.ACCEPTED);
+    return new ResponseEntity(question, responseHeaders, HttpStatus.ACCEPTED);
   }
 }

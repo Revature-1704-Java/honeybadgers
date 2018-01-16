@@ -12,6 +12,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 @Table(name="Questions")
 public class Questions {
@@ -30,32 +33,32 @@ public class Questions {
 	@Column(name="total")
 	private int total;
 	
-	@Column(name="tag")
-	private String tag;
+	@OneToMany
+	List<Tags> tags;
 	
 //	@OneToMany(mappedBy="qid", fetch=FetchType.LAZY)
 	@OneToMany(fetch=FetchType.EAGER)
 	List<AnsweredQuestions> qaed;
 	
 //	@OneToMany(mappedBy="qid", fetch=FetchType.LAZY)
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="qid")
+	@Cascade(CascadeType.SAVE_UPDATE)
 	List<Responses> answers;
 	
-	public Questions(String question, String tag) {
+	public Questions(String question) {
 		this.question = question;
-		this.tag = tag;
 		this.successes = 0;
 		this.total = 0;
 	}
 	
 	
-	public Questions(int qid, String question, int successes, int total, String tag) {
+	public Questions(int qid, String question, int successes, int total) {
 		super();
 		this.q_id = qid;
 		this.question = question;
 		this.successes = successes;
 		this.total = total;
-		this.tag = tag;
+
 	}
 
 	public Questions() {}
@@ -63,7 +66,7 @@ public class Questions {
 	@Override
 	public String toString() {
 		return "Questions [qid=" + q_id + ", question=" + question + ", successes=" + successes
-				+ ", total=" + total + ", tag=" + tag + ", qaed=" + qaed + ", answers=" + answers + "]";
+				+ ", total=" + total + ", tag=" + tags + ", qaed=" + qaed + ", answers=" + answers + "]";
 	}
 	
 	public List<AnsweredQuestions> getQaed() {
@@ -76,12 +79,12 @@ public class Questions {
 	}
 
 
-	public List<Responses> getResponses() {
+	public List<Responses> getAnswers() {
 		return answers;
 	}
 
 
-	public void setResponses(List<Responses> answers) {
+	public void setAnswers(List<Responses> answers) {
 		this.answers = answers;
 	}
 
@@ -111,12 +114,7 @@ public class Questions {
 	public void setTotal(int total) {
 		this.total = total;
 	}
-	public String getTag() {
-		return tag;
-	}
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
+	
 	
 	
 }
