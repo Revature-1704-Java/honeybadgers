@@ -43,6 +43,7 @@ public class QuestionController {
      * for(int i = 0; i < question.getResponses().size(); i++) {
      *  question.getResponses().get(i).setQid(question);
      * }
+     */
     questionsDao.saveQuestion(question);
     Questions dbQuestion = questionsDao.getQuestion(question.getQuestion());
 

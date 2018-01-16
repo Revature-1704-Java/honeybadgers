@@ -24,7 +24,7 @@ public class Responses {
 	@JoinColumn(name="qid")
 	Questions qid;
 	
-	@Column(name="response")
+	@Column(name="text")
 	private String text;
 	
 	@Column(name="correct")
@@ -32,9 +32,9 @@ public class Responses {
 	
 	public Responses() {}
 	
-	public Responses(Questions qid, String response, boolean correct) {
+	public Responses(Questions qid, String text, boolean correct) {
 		this.qid = qid;
-		this.text = response;
+		this.text = text;
 		this.correct = correct;
 	}
 
@@ -66,13 +66,13 @@ public class Responses {
 		return text;
 	}
 
-	public void setText(String response) {
-		this.text = response;
+	public void setText(String text) {
+		this.text = text;
 	}
 
 	@Override
 	public String toString() {
-		return "Responses [rid=" + rid +", response=" + text + ", correct=" + correct +"]";
+		return "Responses [rid=" + rid +", text=" + text + ", correct=" + correct +"]";
 	}
 	
 	
