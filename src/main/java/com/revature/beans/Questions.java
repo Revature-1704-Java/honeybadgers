@@ -12,6 +12,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 @Table(name="Questions")
 public class Questions {
@@ -39,6 +42,7 @@ public class Questions {
 	
 //	@OneToMany(mappedBy="qid", fetch=FetchType.LAZY)
 	@OneToMany(fetch=FetchType.EAGER)
+	@Cascade({CascadeType.SAVE_UPDATE})
 	List<Responses> answers;
 	
 	public Questions(String question, String tag) {
