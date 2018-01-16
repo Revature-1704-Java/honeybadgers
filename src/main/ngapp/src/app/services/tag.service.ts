@@ -1,53 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Tag } from '../interfaces/tag';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class TagService {
+  private tags: Observable<Tag[]>;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getTags(): Tag[] {
-    return tags;
-  }
-
-  getTagById(tagId: number): Tag {
-    return tags.find((tag) => (tag.tagId === tagId));
-  }
-
-  getTagsByName(tagName: string): Tag[] {
-    return tags.filter((tag) => tag.tagName === tagName);
-  }
-
-  getTagsByCreator(creator: string): Tag[] {
-    return tags.filter((tag) => tag.creator === creator);
+  getTags(): Observable<Tag[]> {
+    this.tags = this.http.get<Tag[]>('../assets/mocktags.json');
+    return this.tags;
   }
 
 }
-
-const tags: Tag[] = [
-  {
-    tagId: 1,
-    tagName: 'Java',
-    creator: 'Kei'
-  },
-  {
-    tagId: 2,
-    tagName: 'Hibernate',
-    creator: 'Jack'
-  },
-  {
-    tagId: 3,
-    tagName: 'Angular',
-    creator: 'Tzu'
-  },
-  {
-    tagId: 4,
-    tagName: 'DevOps',
-    creator: 'Danny'
-  },
-  {
-    tagId:5,
-    tagName: 'SQL',
-    creator: 'Jonathan'
-  }
-];

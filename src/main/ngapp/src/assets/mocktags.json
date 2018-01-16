@@ -1,0 +1,27 @@
+[
+  {
+    "tagId": 1,
+    "tagName": "Java",
+    "creator": "Kei"
+  },
+  {
+    "tagId": 2,
+    "tagName": "Hibernate",
+    "creator": "Jack"
+  },
+  {
+    "tagId": 3,
+    "tagName": "Angular",
+    "creator": "Tzu"
+  },
+  {
+    "tagId": 4,
+    "tagName": "DevOps",
+    "creator": "Danny"
+  },
+  {
+    "tagId":5,
+    "tagName": "SQL",
+    "creator": "Jonathan"
+  }
+]

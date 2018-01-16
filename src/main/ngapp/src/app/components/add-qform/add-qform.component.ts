@@ -14,7 +14,10 @@ export class AddQformComponent implements OnInit {
   constructor(private fb: FormBuilder, private ts: TagService) { }
   tagList: Tag[];
   ngOnInit() {
-    this.tagList = this.ts.getTags();
+    this.ts.getTags().subscribe(res => {
+      this.tagList = res;
+      console.log(res);
+    });
     this.QForm = this.fb.group(
       {
         Question: ['', Validators.required],

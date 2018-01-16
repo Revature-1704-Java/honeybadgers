@@ -1,19 +1,21 @@
-<div>
-  <form [formGroup]="QForm">
+<div class="AddQFormContainer">
+  <form class="AddForm" [formGroup]="QForm">
     <mat-form-field>
       <textarea matInput formControlName="Question" placeholder="Question"></textarea>
     </mat-form-field>
-    <mat-form-field>
-        <mat-select placeholder="Tag">
-          <mat-option *ngFor="let t of tagList" [value]="t.tagName">
-            {{t.tagName}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+    <mat-form-field *ngIf="tagList">
+      <mat-select placeholder="Tag">
+        <mat-option *ngFor="let t of tagList" [value]="t.tagName">
+          {{t.tagName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <div formArrayName="Answers">
-      <button (click)="addAnswers()">Add Answer</button>
-      <div *ngFor="let a of Answers.controls; let i=index" [formGroupName]="i">
-        <mat-form-field>
+      <span>
+        <button (click)="addAnswers()" mat-mini-fab color="primary">+</button>
+        Add Answer</span>
+      <div class="AnswerFields" *ngFor="let a of Answers.controls; let i=index" [formGroupName]="i">
+        <mat-form-field class="Ans">
           <textarea matInput formControlName="text" placeholder="Answer {{i+1}}"></textarea>
         </mat-form-field>
         <mat-slide-toggle formControlName="correct">Correct Answer</mat-slide-toggle>
