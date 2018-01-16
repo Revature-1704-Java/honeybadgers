@@ -13,10 +13,9 @@ import com.revature.util.HibernateUtil;
 public class QuestionsDao {
 	
 	//Save a question based on question answer and tag strings
-	public void saveQuestion(String question, String answer, String tag) {
+	public void saveQuestion(Questions q) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		Questions q = new Questions(question, answer, tag);
 		session.save(q);
 		tx.commit();
 		session.close();
@@ -35,14 +34,17 @@ public class QuestionsDao {
 	// question objects do not have the responses in them
 	@SuppressWarnings("unchecked")
 	public List<Questions> getTenQuestion(String tag){
+		ResponsesDao rdao = new ResponsesDao();
 		List<Questions> quest = new ArrayList<>();
 		List<Questions> retquest = new ArrayList<>();
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		quest =	session.	createQuery("from Questions where tag = :namevar").
 				setString("namevar", tag).list();
+		if(quest.size() == 0) {
 		for(int i = 0; i <10; i++) {
 			int rand = (int) (Math.random() * quest.size());
-			retquest.add(quest.get(rand));
+			retquest.add(rdao.getResponses(quest.get(rand)));
+		}
 		}
 		session.close();
 		return retquest;
