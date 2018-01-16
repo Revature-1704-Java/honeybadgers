@@ -10,6 +10,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="Responses")
 public class Responses {
@@ -22,6 +25,7 @@ public class Responses {
 	
 	@ManyToOne
 	@JoinColumn(name="qid")
+	@JsonIgnore
 	Questions qid;
 	
 	@Column(name="text")
@@ -32,24 +36,18 @@ public class Responses {
 	
 	public Responses() {}
 	
-	public Responses(Questions qid, String text, boolean correct) {
-		this.qid = qid;
-		this.text = text;
-		this.correct = correct;
-	}
-
   public Responses(String text, boolean correct) {
     this.text = text;
     this.correct = correct;
   }
 
-	public Responses(int rid, Questions qid, String text, boolean correct) {
-		super();
-		this.rid = rid;
-		this.qid = qid;
-		this.text = text;
-		this.correct = correct;
-	}
+	//public Responses(int rid, Questions qid, String text, boolean correct) {
+		//super();
+		//this.rid = rid;
+		//this.qid = qid;
+		//this.text = text;
+		//this.correct = correct;
+	//}
 
 	public int getRid() {
 		return rid;
