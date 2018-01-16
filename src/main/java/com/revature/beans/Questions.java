@@ -43,7 +43,7 @@ public class Questions {
 //	@OneToMany(mappedBy="qid", fetch=FetchType.LAZY)
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="qid")
 	@Cascade(CascadeType.SAVE_UPDATE)
-	List<Responses> responses;
+	List<Responses> answers;
 	
 	public Questions(String question) {
 		this.question = question;
@@ -66,7 +66,7 @@ public class Questions {
 	@Override
 	public String toString() {
 		return "Questions [qid=" + q_id + ", question=" + question + ", successes=" + successes
-				+ ", total=" + total + ", tag=" + tags + ", qaed=" + qaed + ", responses=" + responses + "]";
+				+ ", total=" + total + ", tag=" + tags + ", qaed=" + qaed + ", answers=" + answers + "]";
 	}
 	
 	public List<AnsweredQuestions> getQaed() {
@@ -79,13 +79,13 @@ public class Questions {
 	}
 
 
-	public List<Responses> getResponses() {
-		return responses;
+	public List<Responses> getAnswers() {
+		return answers;
 	}
 
 
-	public void setResponses(List<Responses> responses) {
-		this.responses = responses;
+	public void setAnswers(List<Responses> answers) {
+		this.answers = answers;
 	}
 
 

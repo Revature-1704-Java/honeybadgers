@@ -38,6 +38,11 @@ public class Responses {
 		this.correct = correct;
 	}
 
+  public Responses(String text, boolean correct) {
+    this.text = text;
+    this.correct = correct;
+  }
+
 	public Responses(int rid, Questions qid, String text, boolean correct) {
 		super();
 		this.rid = rid;
