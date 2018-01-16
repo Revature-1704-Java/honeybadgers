@@ -26,6 +26,7 @@ import { ProfileQuestionListComponent } from './components/profile-question-list
 import { AuthGuard } from './guards/auth.guard';
 import { QuizResultsGuard } from './guards/quiz-results.guard';
 
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { QuizResultsGuard } from './guards/quiz-results.guard';
     TagListComponent,
     TagItemComponent,
     ProfileComponent,
-    ProfileQuestionListComponent
+    ProfileQuestionListComponent,
+    ChangePasswordComponent
   ],
   imports: [
     MatButtonModule,

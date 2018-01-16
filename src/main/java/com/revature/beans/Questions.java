@@ -19,13 +19,10 @@ public class Questions {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="questSeq")
 	@SequenceGenerator(allocationSize=1, name="questSeq", sequenceName="QUEST_SEQ")	
 	@Column(name="qid")
-	private int qid;
+	private int q_id;
 
 	@Column(name="question", unique=true)
 	private String question;
-	
-	@Column(name="answer")
-	private String answer;
 	
 	@Column(name="successes")
 	private int successes;
@@ -42,22 +39,20 @@ public class Questions {
 	
 //	@OneToMany(mappedBy="qid", fetch=FetchType.LAZY)
 	@OneToMany(fetch=FetchType.EAGER)
-	List<Responses> responses;
+	List<Responses> answers;
 	
-	public Questions(String question, String answer, String tag) {
+	public Questions(String question, String tag) {
 		this.question = question;
-		this.answer = answer;
 		this.tag = tag;
 		this.successes = 0;
 		this.total = 0;
 	}
 	
 	
-	public Questions(int qid, String question, String answer, int successes, int total, String tag) {
+	public Questions(int qid, String question, int successes, int total, String tag) {
 		super();
-		this.qid = qid;
+		this.q_id = qid;
 		this.question = question;
-		this.answer = answer;
 		this.successes = successes;
 		this.total = total;
 		this.tag = tag;
@@ -67,8 +62,8 @@ public class Questions {
 
 	@Override
 	public String toString() {
-		return "Questions [qid=" + qid + ", question=" + question + ", answer=" + answer + ", successes=" + successes
-				+ ", total=" + total + ", tag=" + tag + ", qaed=" + qaed + ", responses=" + responses + "]";
+		return "Questions [qid=" + q_id + ", question=" + question + ", successes=" + successes
+				+ ", total=" + total + ", tag=" + tag + ", qaed=" + qaed + ", responses=" + answers + "]";
 	}
 	
 	public List<AnsweredQuestions> getQaed() {
@@ -82,20 +77,20 @@ public class Questions {
 
 
 	public List<Responses> getResponses() {
-		return responses;
+		return answers;
 	}
 
 
 	public void setResponses(List<Responses> responses) {
-		this.responses = responses;
+		this.answers = responses;
 	}
 
 
 	public int getQid() {
-		return qid;
+		return q_id;
 	}
 	public void setQid(int qid) {
-		this.qid = qid;
+		this.q_id = qid;
 	}
 	public String getQuestion() {
 		return question;
@@ -103,12 +98,7 @@ public class Questions {
 	public void setQuestion(String question) {
 		this.question = question;
 	}
-	public String getAnswer() {
-		return answer;
-	}
-	public void setAnswer(String answer) {
-		this.answer = answer;
-	}
+
 	public int getSuccesses() {
 		return successes;
 	}
