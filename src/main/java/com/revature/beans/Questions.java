@@ -63,7 +63,7 @@ public class Questions {
 	@Override
 	public String toString() {
 		return "Questions [qid=" + q_id + ", question=" + question + ", successes=" + successes
-				+ ", total=" + total + ", tag=" + tag + ", qaed=" + qaed + ", responses=" + answers + "]";
+				+ ", total=" + total + ", tag=" + tag + ", qaed=" + qaed + ", answers=" + answers + "]";
 	}
 	
 	public List<AnsweredQuestions> getQaed() {
@@ -81,8 +81,8 @@ public class Questions {
 	}
 
 
-	public void setResponses(List<Responses> responses) {
-		this.answers = responses;
+	public void setResponses(List<Responses> answers) {
+		this.answers = answers;
 	}
 
 

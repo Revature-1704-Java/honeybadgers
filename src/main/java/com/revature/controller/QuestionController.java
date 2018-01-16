@@ -19,7 +19,6 @@ import java.util.*;
 @RestController
 @RequestMapping("/question")
 public class QuestionController {
-/*	
   @RequestMapping(value="/{id}", method=RequestMethod.GET)
   public ResponseEntity getQuestion(@PathVariable int id) {
     QuestionsDao questionsDao = new QuestionsDao();
@@ -35,9 +34,9 @@ public class QuestionController {
   public ResponseEntity postQuestion(@RequestBody Questions input) {
     Questions question = input;
     QuestionsDao questionsDao = new QuestionsDao();
-    Questions questions = questionsDao.saveQuestion(question);
+    questionsDao.saveQuestion(question);
+    Questions dbQuestion = questionsDao.getQuestion(question.getQuestion());
     HttpHeaders responseHeaders = new HttpHeaders();
-    return new ResponseEntity("Question created", responseHeaders, HttpStatus.ACCEPTED);
+    return new ResponseEntity(dbQuestion, responseHeaders, HttpStatus.ACCEPTED);
   }
-  */
 }
