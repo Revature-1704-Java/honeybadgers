@@ -17,7 +17,7 @@ export class AuthService {
   }
 
   login(user: User) {
-    this.http.get<User>('./assets/TestUser').subscribe(res => this.loggedIn.next(res), error => this.loggedIn.next(null));
+    this.http.get<User>('./assets/mockuser.json').subscribe(res => this.loggedIn.next(res), error => this.loggedIn.next(null));
   }
 
   signup(user: User) {

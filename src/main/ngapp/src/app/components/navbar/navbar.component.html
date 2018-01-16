@@ -3,9 +3,9 @@
     QuizItUp
   </span>
   <span class="fill-remaining-space"></span>
-  <button mat-button>Home</button>
-  <button mat-button *ngIf="isLoggedIn$ | async">Profile</button>
-  <button mat-button *ngIf="isLoggedIn$ | async">Add Question</button>
+  <button mat-button routerLink="/">Home</button>
+  <button mat-button *ngIf="isLoggedIn$ | async" routerLink="/profile">Profile</button>
+  <button mat-button *ngIf="isLoggedIn$ | async" routerLink="/addQuestion">Add Question</button>
   <button mat-button *ngIf="isLoggedIn$ | async; else login" (click)="onLogout()">Log out</button>
   <ng-template #login>
     <button mat-button (click)="onLogin()">Log in</button>
