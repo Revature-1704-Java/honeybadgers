@@ -27,11 +27,11 @@ public class LoginController {
     UsersDao usersDao = new UsersDao();
     HttpHeaders responseHeaders = new HttpHeaders();
     if(user.getUsername() == null) {
-      return new ResponseEntity("user username is null", responseHeaders, HttpStatus.NOT_FOUND);
+      return new ResponseEntity("user username is null", responseHeaders, HttpStatus.BAD_REQUEST);
     }
     Users inDb = usersDao.getUser(user.getUsername());
     if(inDb == null) {
-      return new ResponseEntity(inDb, responseHeaders, HttpStatus.NOT_FOUND);
+      return new ResponseEntity(inDb, responseHeaders, HttpStatus.UNAUTHORIZED);
     }
     return new ResponseEntity(inDb, responseHeaders, HttpStatus.ACCEPTED);
   }
