@@ -72,7 +72,7 @@ public class Responses {
 
 	@Override
 	public String toString() {
-		return "Responses [rid=" + rid + ", qid=" + qid + ", response=" + text + ", correct=" + correct +"]";
+		return "Responses [rid=" + rid +", response=" + text + ", correct=" + correct +"]";
 	}
 	
 	
