@@ -26,7 +26,6 @@ import { ProfileQuestionListComponent } from './components/profile-question-list
 import { AddQformComponent } from './components/add-qform/add-qform.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

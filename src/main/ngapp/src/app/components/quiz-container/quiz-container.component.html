@@ -10,14 +10,14 @@
   </div>
   <div class="bottombar">
     <div class="bottombar-right">
-      <div>
-        <button class="button" mat-raised-button color="primary" [disabled]="!(questions && currentQ > 0)" (click)="prevQ($event)">Previous</button>
+      <div class="button">
+        <button mat-raised-button color="primary" [disabled]="!(questions && currentQ > 0)" (click)="prevQ($event)">Previous</button>
       </div>
-      <div>
-        <button class="button" mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+      <div class="button">
+        <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
       </div>
-      <div>
-        <button class="button" mat-raised-button color="primary" [disabled]=" questions && currentQ == questions.length-1" (click)="nextQ($event)">
+      <div class="button">
+        <button mat-raised-button color="primary" [disabled]=" questions && currentQ == questions.length-1" (click)="nextQ($event)">
             Next
         </button>
       </div>
