@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy
-} from '@angular/core';
+import { Component, OnInit, OnDestroy, trigger, style, state, transition, animate, group } from '@angular/core';
 import { QuestionService } from '../../services/question.service';
 import { Question } from '../../interfaces/question';
 import { QuizFormService } from '../../services/quiz-form.service';

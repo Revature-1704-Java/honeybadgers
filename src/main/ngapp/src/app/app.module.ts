@@ -24,7 +24,6 @@ import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileQuestionListComponent } from './components/profile-question-list/profile-question-list.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
