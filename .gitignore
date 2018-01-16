@@ -3,3 +3,5 @@ target
 pom.xml
 .project
 Jenkinsfile
+.vscode
+bin

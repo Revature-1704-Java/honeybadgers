@@ -23,6 +23,7 @@ import { TagItemComponent } from './components/tag-item/tag-item.component';
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileQuestionListComponent } from './components/profile-question-list/profile-question-list.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ProfileQuestionListComponent } from './components/profile-question-list
     TagListComponent,
     TagItemComponent,
     ProfileComponent,
-    ProfileQuestionListComponent
+    ProfileQuestionListComponent,
+    ChangePasswordComponent
   ],
   imports: [
     MatButtonModule,
