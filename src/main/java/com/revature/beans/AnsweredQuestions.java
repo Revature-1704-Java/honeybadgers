@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 
 @Entity
@@ -28,6 +30,7 @@ public class AnsweredQuestions {
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="qid")
+	@JsonManagedReference
 	Questions qid;
 	
 	@Column(name="success")

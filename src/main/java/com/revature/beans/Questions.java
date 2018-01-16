@@ -17,6 +17,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="Questions")
 public class Questions {
@@ -37,15 +40,18 @@ public class Questions {
 	
 	@ManyToOne
 	@JoinColumn(name="tid")
+	@JsonManagedReference
 	Tags tags;
 	
 //	@OneToMany(mappedBy="qid", fetch=FetchType.LAZY)
 	@OneToMany(fetch=FetchType.EAGER)
+	@JsonBackReference
 	List<AnsweredQuestions> qaed;
 	
 //	@OneToMany(mappedBy="qid", fetch=FetchType.LAZY)
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="qid")
 	@Cascade(CascadeType.SAVE_UPDATE)
+	@JsonBackReference
 	List<Responses> answers;
 	
 	public Questions(String question) {
@@ -116,6 +122,14 @@ public class Questions {
 	}
 	public void setTotal(int total) {
 		this.total = total;
+	}
+
+
+	public Tags getTags() {
+		return tags;
+	}
+	public void setTags(Tags tags) {
+		this.tags = tags;
 	}
 	
 	

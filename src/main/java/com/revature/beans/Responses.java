@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="Responses")
 public class Responses {
@@ -22,6 +24,7 @@ public class Responses {
 	
 	@ManyToOne
 	@JoinColumn(name="qid")
+	@JsonManagedReference
 	Questions qid;
 	
 	@Column(name="text")

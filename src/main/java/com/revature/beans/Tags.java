@@ -13,6 +13,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="tags")
 public class Tags {
@@ -27,9 +30,11 @@ public class Tags {
 	
 	@ManyToOne
 	@JoinColumn(name="userid")
+	@JsonManagedReference
 	Users userCreator;
 	
 	@OneToMany
+	@JsonBackReference
 	List<Questions> taggedQuestions;
 	
 	public Tags() {}

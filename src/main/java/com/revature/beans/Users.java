@@ -4,13 +4,15 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.FetchType;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="Users")
@@ -46,9 +48,11 @@ public class Users {
 	
 //	@OneToMany(mappedBy="uid")
 	@OneToMany(fetch=FetchType.EAGER)
+	@JsonBackReference
 	List<AnsweredQuestions> aedq;
 	
 	@OneToMany(fetch=FetchType.EAGER)
+	@JsonBackReference
 	List<Tags> createdTags;
 	
 	public List<AnsweredQuestions> getAedq() {
