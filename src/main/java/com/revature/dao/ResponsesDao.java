@@ -29,7 +29,7 @@ public class ResponsesDao {
 		List<Responses> responses = session.createQuery("from Responses where qid = :namevar").
 				setInteger("namevar", quest.getQid()).list();
 		session.close();
-		quest.setResponses(responses);
+		quest.setAnswers(responses);
 		return quest;	
 	}
 	
