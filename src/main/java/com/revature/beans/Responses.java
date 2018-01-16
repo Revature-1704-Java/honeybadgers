@@ -25,7 +25,7 @@ public class Responses {
 	
 	@ManyToOne
 	@JoinColumn(name="qid")
-  @JsonIgnore
+	@JsonIgnore
 	Questions qid;
 	
 	@Column(name="text")

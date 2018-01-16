@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -26,10 +26,12 @@ public class AnsweredQuestions {
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="userid")
+	@JsonIgnore
 	Users uid;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="qid")
+	@JsonIgnore
 	Questions qid;
 	
 	@Column(name="success")

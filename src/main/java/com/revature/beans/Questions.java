@@ -17,8 +17,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="Questions")
@@ -40,6 +39,7 @@ public class Questions {
 	
 	@ManyToOne
 	@JoinColumn(name="tid")
+	@JsonIgnore
 	Tags tags;
 	
 //	@OneToMany(mappedBy="qid", fetch=FetchType.LAZY)
