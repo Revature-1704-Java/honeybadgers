@@ -34,8 +34,18 @@ public class QuestionController {
   public ResponseEntity postQuestion(@RequestBody Questions input) {
     Questions question = input;
     QuestionsDao questionsDao = new QuestionsDao();
+    List<Responses> responses = question.getResponses();
+    for(Responses response : responses) {
+      response.setQid(question);
+    }
+    question.setResponses(responses);
+    /*
+     * for(int i = 0; i < question.getResponses().size(); i++) {
+     *  question.getResponses().get(i).setQid(question);
+     * }
     questionsDao.saveQuestion(question);
     Questions dbQuestion = questionsDao.getQuestion(question.getQuestion());
+
     HttpHeaders responseHeaders = new HttpHeaders();
     return new ResponseEntity(dbQuestion, responseHeaders, HttpStatus.ACCEPTED);
   }
