@@ -9,7 +9,7 @@ export class QuestionService {
   constructor(private http: HttpClient) { }
 
   getQuestions(): Observable<Question[]> {
-    this.questions = this.http.get<Question[]>('./assets/mockdata.json');
+    this.questions = this.http.get<Question[]>('../assets/mockdata.json');
     return this.questions;
   }
 

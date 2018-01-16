@@ -1,0 +1,25 @@
+<h1>Correct Answers: {{ correctCount }}</h1>
+<h1>Wrong Answers: {{ totalCount - correctCount }}</h1>
+<mat-accordion class="results-container">
+  <mat-expansion-panel *ngFor="let q of questions; let i = index;" 
+    [ngStyle]="{'background-color': correctAnswerCheck(i) ? 'lightgreen' : 'lightcoral'}">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Question {{i + 1}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{ q.question }}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div *ngIf = "userAnswerExist(i); else cheater">
+      <p *ngIf="correctAnswerCheck(i); else wrong">Your Answer: {{ correctAnswers[i].text }}</p>
+      <ng-template #wrong>
+        <p>Your Answer: {{questions[i].answers[userAnswers[i].answer].text}}</p>
+        <p>Correct Answer: {{ correctAnswers[i].text }}</p>
+      </ng-template>
+    </div>
+    <ng-template #cheater>
+      <p>You didn't answer this question, why you trying to cheat bruv?</p>
+    </ng-template>
+  </mat-expansion-panel>
+</mat-accordion>

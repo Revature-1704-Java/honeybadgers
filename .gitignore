@@ -1,4 +1,7 @@
 *.sh
 target
 pom.xml
+.project
 Jenkinsfile
+.vscode
+bin

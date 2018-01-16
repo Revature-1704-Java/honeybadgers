@@ -1,14 +1,15 @@
 <div class="signup-content">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <h1>Sign Up</h1>
+    <mat-error class="pass-error" *ngIf="passwordMatched('password', 'confirm')">Passwords don't match</mat-error>
     <mat-form-field class="full-width-input">
       <input matInput placeholder="Username" formControlName="username" required>
     </mat-form-field>
     <mat-form-field class="full-width-input">
       <input matInput type="password" placeholder="Password" formControlName="password" required>
     </mat-form-field>
-    <mat-form-field class="full-width-input">
-      <input matInput type="password" placeholder="Confirm" formControlName="confirm" required>
+    <mat-form-field class="full-width-inpout">
+      <input matInput type="password" placeholder="Confirm" formControlName="confirm" required> 
     </mat-form-field>
     <button mat-raised-button color="primary" type="submit">Sign Up</button>
     <button mat-raised-button color="primary" (click)="close()">Cancel</button>
