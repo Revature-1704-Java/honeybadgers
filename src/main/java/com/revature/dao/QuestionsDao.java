@@ -49,7 +49,7 @@ public class QuestionsDao {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		quest =	session.	createQuery("from Questions where tag = :namevar").
 				setString("namevar", tag).list();
-		if(quest.size() == 0) {
+		if(quest.size() != 0) {
 		for(int i = 0; i <10; i++) {
 			int rand = (int) (Math.random() * quest.size());
 			retquest.add(rdao.getResponses(quest.get(rand)));
