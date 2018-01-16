@@ -16,10 +16,13 @@ export class TagListComponent implements OnInit {
   constructor(private tagService: TagService) { }
 
   ngOnInit() {
-    this.tags = this.tagService.getTags();
-    this.filteredTags = [];
-    this.tags.forEach((tag) => {
-      this.filteredTags.push(tag);
+    // this.tags = this.tagService.getTags();
+    this.tagService.getTags().subscribe((response) => {
+      this.tags = response;
+      this.filteredTags = [];
+      this.tags.forEach((tag) => {
+        this.filteredTags.push(tag);
+      });
     });
     this.searchMode = "1";
   }
