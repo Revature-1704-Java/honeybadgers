@@ -25,7 +25,6 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileQuestionListComponent } from './components/profile-question-list/profile-question-list.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
