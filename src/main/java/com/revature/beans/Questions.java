@@ -42,6 +42,11 @@ public class Questions {
 	@JsonIgnore
 	Tags tags;
 	
+	@ManyToOne
+	@JoinColumn(name="userid")
+	@JsonIgnore
+	Users userCreator;
+	
 //	@OneToMany(mappedBy="qid", fetch=FetchType.LAZY)
 	@OneToMany(fetch=FetchType.EAGER)
 	List<AnsweredQuestions> qaed;
@@ -128,6 +133,17 @@ public class Questions {
 	public void setTags(Tags tags) {
 		this.tags = tags;
 	}
+
+
+	public Users getUserCreator() {
+		return userCreator;
+	}
+
+
+	public void setUserCreator(Users userCreator) {
+		this.userCreator = userCreator;
+	}
+	
 	
 	
 	
