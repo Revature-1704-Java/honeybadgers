@@ -1,13 +1,10 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy
-} from '@angular/core';
+import { Component, OnInit, OnDestroy, trigger, style, state, transition, animate, group } from '@angular/core';
 import { QuestionService } from '../../services/question.service';
 import { Question } from '../../interfaces/question';
 import { QuizFormService } from '../../services/quiz-form.service';
 import { FormBuilder, FormArray, FormGroup} from '@angular/forms';
-import {QuizAnswer } from '../../interfaces/quiz-answer';
+import { QuizAnswer } from '../../interfaces/quiz-answer';
+import { ActivatedRoute } from '@angular/router';
 import { ISubscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 
@@ -21,6 +18,7 @@ export class QuizContainerComponent implements OnInit, OnDestroy {
   questions: Question[];
   quizForm: FormGroup;
   currentQ = 0;
+  tagId: number;
   get answers(): FormArray {
     return <FormArray > this.quizForm.get('answers');
   }
@@ -28,6 +26,7 @@ export class QuizContainerComponent implements OnInit, OnDestroy {
     private fb: FormBuilder, private router: Router) {}
 
   ngOnInit() {
+    this.tagId = parseInt(this.route.snapshot.params['tagId']);
     this.quizForm = this.fb.group({
       answers: this.fb.array([])
     });
@@ -71,7 +70,6 @@ export class QuizContainerComponent implements OnInit, OnDestroy {
       });
     this.qfs.upadte(Ans);
     console.log(this.qfs.get());
-    
     this.router.navigate(['results']);
   }
 }
