@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { Validators } from '@angular/forms/';
 import { Tag } from '../../interfaces/tag';
 import { TagService } from '../../services/tag.service';
+import { QuestionService } from '../../services/question.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-add-qform',
@@ -11,12 +13,11 @@ import { TagService } from '../../services/tag.service';
 })
 export class AddQformComponent implements OnInit {
   QForm: FormGroup;
-  constructor(private fb: FormBuilder, private ts: TagService) { }
+  constructor(private fb: FormBuilder, private ts: TagService, private qs: QuestionService, private User: AuthService) { }
   tagList: Tag[];
   ngOnInit() {
     this.ts.getTags().subscribe(res => {
       this.tagList = res;
-      console.log(res);
     });
     this.QForm = this.fb.group(
       {
@@ -27,7 +28,6 @@ export class AddQformComponent implements OnInit {
     );
     this.addAnswers();
     this.addAnswers();
-    console.log(this.QForm.controls.Question.errors);
   }
 
   get Answers(): FormArray {

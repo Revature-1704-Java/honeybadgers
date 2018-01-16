@@ -5,7 +5,7 @@
     </mat-form-field>
     <mat-form-field *ngIf="tagList">
       <mat-select placeholder="Tag">
-        <mat-option *ngFor="let t of tagList" [value]="t.tagName">
+        <mat-option *ngFor="let t of tagList" [value]="t">
           {{t.tagName}}
         </mat-option>
       </mat-select>
@@ -18,7 +18,9 @@
         <mat-form-field class="Ans">
           <textarea matInput formControlName="text" placeholder="Answer {{i+1}}"></textarea>
         </mat-form-field>
-        <mat-slide-toggle formControlName="correct">Correct Answer</mat-slide-toggle>
+        <div class="Slider">
+          <mat-slide-toggle formControlName="correct">Correct Answer</mat-slide-toggle>
+        </div>
       </div>
     </div>
   </form>

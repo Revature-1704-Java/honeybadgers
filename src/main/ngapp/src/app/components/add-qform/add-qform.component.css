@@ -19,3 +19,7 @@
 .Ans{
     width:80%;
 }
+.Slider{
+    display: flex;
+    justify-content: center;
+}
