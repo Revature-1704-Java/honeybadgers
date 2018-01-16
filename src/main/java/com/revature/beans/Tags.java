@@ -30,11 +30,9 @@ public class Tags {
 	
 	@ManyToOne
 	@JoinColumn(name="userid")
-	@JsonManagedReference
 	Users userCreator;
 	
 	@OneToMany
-	@JsonBackReference(value="taggedQuestions")
 	List<Questions> taggedQuestions;
 	
 	public Tags() {}

@@ -26,12 +26,10 @@ public class AnsweredQuestions {
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="userid")
-	@JsonManagedReference
 	Users uid;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="qid")
-	@JsonManagedReference
 	Questions qid;
 	
 	@Column(name="success")

@@ -40,18 +40,15 @@ public class Questions {
 	
 	@ManyToOne
 	@JoinColumn(name="tid")
-	@JsonManagedReference
 	Tags tags;
 	
 //	@OneToMany(mappedBy="qid", fetch=FetchType.LAZY)
 	@OneToMany(fetch=FetchType.EAGER)
-	@JsonBackReference(value="qaed")
 	List<AnsweredQuestions> qaed;
 	
 //	@OneToMany(mappedBy="qid", fetch=FetchType.LAZY)
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="qid")
 	@Cascade(CascadeType.SAVE_UPDATE)
-	@JsonBackReference("answers")
 	List<Responses> answers;
 	
 	public Questions(String question) {

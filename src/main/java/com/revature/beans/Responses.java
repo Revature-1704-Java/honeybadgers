@@ -11,6 +11,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="Responses")
@@ -24,7 +25,7 @@ public class Responses {
 	
 	@ManyToOne
 	@JoinColumn(name="qid")
-	@JsonManagedReference
+  @JsonIgnore
 	Questions qid;
 	
 	@Column(name="text")

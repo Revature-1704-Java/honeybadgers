@@ -48,11 +48,9 @@ public class Users {
 	
 //	@OneToMany(mappedBy="uid")
 	@OneToMany(fetch=FetchType.EAGER)
-	@JsonBackReference(value="aedq")
 	List<AnsweredQuestions> aedq;
 	
 	@OneToMany(fetch=FetchType.EAGER)
-	@JsonBackReference(value="createdTags")
 	List<Tags> createdTags;
 	
 	public List<AnsweredQuestions> getAedq() {
