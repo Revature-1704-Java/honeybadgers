@@ -45,13 +45,13 @@ public class Questions {
 	
 //	@OneToMany(mappedBy="qid", fetch=FetchType.LAZY)
 	@OneToMany(fetch=FetchType.EAGER)
-	@JsonBackReference
+	@JsonBackReference(value="qaed")
 	List<AnsweredQuestions> qaed;
 	
 //	@OneToMany(mappedBy="qid", fetch=FetchType.LAZY)
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="qid")
 	@Cascade(CascadeType.SAVE_UPDATE)
-	@JsonBackReference
+	@JsonBackReference("answers")
 	List<Responses> answers;
 	
 	public Questions(String question) {

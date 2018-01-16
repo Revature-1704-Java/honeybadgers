@@ -34,7 +34,7 @@ public class Tags {
 	Users userCreator;
 	
 	@OneToMany
-	@JsonBackReference
+	@JsonBackReference(value="taggedQuestions")
 	List<Questions> taggedQuestions;
 	
 	public Tags() {}
