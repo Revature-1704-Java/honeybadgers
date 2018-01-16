@@ -48,6 +48,9 @@ public class Users {
 	@OneToMany(fetch=FetchType.EAGER)
 	List<AnsweredQuestions> aedq;
 	
+	@OneToMany(fetch=FetchType.EAGER)
+	List<Tags> createdTags;
+	
 	public List<AnsweredQuestions> getAedq() {
 		return aedq;
 	}

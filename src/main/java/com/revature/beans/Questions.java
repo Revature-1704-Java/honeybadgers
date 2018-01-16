@@ -8,6 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -33,8 +35,9 @@ public class Questions {
 	@Column(name="total")
 	private int total;
 	
-	@OneToMany
-	List<Tags> tags;
+	@ManyToOne
+	@JoinColumn(name="tid")
+	Tags tags;
 	
 //	@OneToMany(mappedBy="qid", fetch=FetchType.LAZY)
 	@OneToMany(fetch=FetchType.EAGER)
