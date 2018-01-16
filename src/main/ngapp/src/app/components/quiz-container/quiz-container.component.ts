@@ -22,7 +22,7 @@ export class QuizContainerComponent implements OnInit, OnDestroy {
   get answers(): FormArray {
     return <FormArray > this.quizForm.get('answers');
   }
-  constructor(private qs: QuestionService, private qfs: QuizFormService,
+  constructor(private route: ActivatedRoute, private qs: QuestionService, private qfs: QuizFormService,
     private fb: FormBuilder, private router: Router) {}
 
   ngOnInit() {
