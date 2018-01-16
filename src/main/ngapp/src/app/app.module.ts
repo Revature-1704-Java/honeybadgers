@@ -24,6 +24,9 @@ import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileQuestionListComponent } from './components/profile-question-list/profile-question-list.component';
 import { AddQformComponent } from './components/add-qform/add-qform.component';
+import { AuthGuard } from './guards/auth.guard';
+import { QuizResultsGuard } from './guards/quiz-results.guard';
+
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 @NgModule({
@@ -56,7 +59,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     FormsModule
   ],
   entryComponents: [LoginComponent, SignupComponent],
-  providers: [AuthService, QuestionService, QuizFormService, TagService],
+  providers: [AuthService, QuestionService, QuizFormService, TagService, AuthGuard, QuizResultsGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

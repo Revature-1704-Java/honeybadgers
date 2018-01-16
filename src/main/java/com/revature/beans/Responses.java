@@ -25,20 +25,25 @@ public class Responses {
 	Questions qid;
 	
 	@Column(name="response")
-	private String response;
+	private String text;
+	
+	@Column(name="correct")
+	private boolean correct;
 	
 	public Responses() {}
 	
-	public Responses(Questions qid, String response) {
+	public Responses(Questions qid, String response, boolean correct) {
 		this.qid = qid;
-		this.response = response;
+		this.text = response;
+		this.correct = correct;
 	}
 
-	public Responses(int rid, Questions qid, String response) {
+	public Responses(int rid, Questions qid, String text, boolean correct) {
 		super();
 		this.rid = rid;
 		this.qid = qid;
-		this.response = response;
+		this.text = text;
+		this.correct = correct;
 	}
 
 	public int getRid() {
@@ -57,17 +62,17 @@ public class Responses {
 		this.qid = qid;
 	}
 
-	public String getResponse() {
-		return response;
+	public String getText() {
+		return text;
 	}
 
-	public void setResponse(String response) {
-		this.response = response;
+	public void setText(String response) {
+		this.text = response;
 	}
 
 	@Override
 	public String toString() {
-		return "Responses [rid=" + rid + ", qid=" + qid + ", response=" + response + "]";
+		return "Responses [rid=" + rid + ", qid=" + qid + ", response=" + text + ", correct=" + correct +"]";
 	}
 	
 	
