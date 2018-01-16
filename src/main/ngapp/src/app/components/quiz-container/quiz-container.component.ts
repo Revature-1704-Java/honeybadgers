@@ -5,7 +5,7 @@ import { QuizFormService } from '../../services/quiz-form.service';
 import { FormBuilder, FormArray, FormGroup} from '@angular/forms';
 import { QuizAnswer } from '../../interfaces/quiz-answer';
 import { ActivatedRoute } from '@angular/router';
-import { ISubscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./quiz-container.component.css']
 })
 export class QuizContainerComponent implements OnInit, OnDestroy {
-  subscription: ISubscription;
+  subscription: Subscription;
   questions: Question[];
   quizForm: FormGroup;
   currentQ = 0;
