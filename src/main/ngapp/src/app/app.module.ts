@@ -23,11 +23,8 @@ import { TagItemComponent } from './components/tag-item/tag-item.component';
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileQuestionListComponent } from './components/profile-question-list/profile-question-list.component';
-<<<<<<< HEAD
 import { AddQformComponent } from './components/add-qform/add-qform.component';
-=======
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
->>>>>>> 68400bac7341e445faa2a3a038840ec4cfb83a9d
 
 
 @NgModule({
