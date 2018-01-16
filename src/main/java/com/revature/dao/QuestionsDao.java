@@ -23,7 +23,7 @@ public class QuestionsDao {
 	
 	public Questions getQuestion(String question) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		List<Questions> listQuest = session.createQuery("from Quetions where question =:namevar").setString("namevar", question).list();
+		List<Questions> listQuest = session.createQuery("from Questions where question =:namevar").setString("namevar", question).list();
 		if(listQuest.size()== 0) {
 			return null;
 		} 
