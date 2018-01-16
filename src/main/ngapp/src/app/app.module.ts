@@ -23,6 +23,8 @@ import { TagItemComponent } from './components/tag-item/tag-item.component';
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileQuestionListComponent } from './components/profile-question-list/profile-question-list.component';
+import { AuthGuard } from './guards/auth.guard';
+import { QuizResultsGuard } from './guards/quiz-results.guard';
 
 
 @NgModule({
@@ -53,7 +55,7 @@ import { ProfileQuestionListComponent } from './components/profile-question-list
     FormsModule
   ],
   entryComponents: [LoginComponent, SignupComponent],
-  providers: [AuthService, QuestionService, QuizFormService, TagService],
+  providers: [AuthService, QuestionService, QuizFormService, TagService, AuthGuard, QuizResultsGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

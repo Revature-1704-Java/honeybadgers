@@ -6,6 +6,7 @@ import { QuizResultsComponent } from './components/quiz-results/quiz-results.com
 import { ProfileQuestionListComponent } from './components/profile-question-list/profile-question-list.component';
 import { AuthGuard } from './guards/auth.guard';
 import { QuizContainerComponent } from './components/quiz-container/quiz-container.component';
+import { QuizResultsGuard } from './guards/quiz-results.guard';
 
 const routes: Routes = [
   {
@@ -41,6 +42,7 @@ const routes: Routes = [
   },
   {
     path: 'results',
+    canActivate: [QuizResultsGuard],
     component: QuizResultsComponent
   }
 ];

@@ -71,7 +71,7 @@ export class QuizContainerComponent implements OnInit, OnDestroy {
       });
     this.qfs.upadte(Ans);
     console.log(this.qfs.get());
-    
+
     this.router.navigate(['results']);
   }
 }
