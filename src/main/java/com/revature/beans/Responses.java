@@ -10,6 +10,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="Responses")
 public class Responses {
@@ -22,9 +25,10 @@ public class Responses {
 	
 	@ManyToOne
 	@JoinColumn(name="qid")
+	@JsonIgnore
 	Questions qid;
 	
-	@Column(name="response")
+	@Column(name="text")
 	private String text;
 	
 	@Column(name="correct")
@@ -32,19 +36,18 @@ public class Responses {
 	
 	public Responses() {}
 	
-	public Responses(Questions qid, String response, boolean correct) {
-		this.qid = qid;
-		this.text = response;
-		this.correct = correct;
-	}
+  public Responses(String text, boolean correct) {
+    this.text = text;
+    this.correct = correct;
+  }
 
-	public Responses(int rid, Questions qid, String text, boolean correct) {
-		super();
-		this.rid = rid;
-		this.qid = qid;
-		this.text = text;
-		this.correct = correct;
-	}
+	//public Responses(int rid, Questions qid, String text, boolean correct) {
+		//super();
+		//this.rid = rid;
+		//this.qid = qid;
+		//this.text = text;
+		//this.correct = correct;
+	//}
 
 	public int getRid() {
 		return rid;
@@ -66,13 +69,13 @@ public class Responses {
 		return text;
 	}
 
-	public void setText(String response) {
-		this.text = response;
+	public void setText(String text) {
+		this.text = text;
 	}
 
 	@Override
 	public String toString() {
-		return "Responses [rid=" + rid + ", qid=" + qid + ", response=" + text + ", correct=" + correct +"]";
+		return "Responses [rid=" + rid +", text=" + text + ", correct=" + correct +"]";
 	}
 	
 	
