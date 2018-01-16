@@ -21,6 +21,15 @@ public class QuestionsDao {
 		session.close();
 	}
 	
+	public Questions getQuestion(String question) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		List<Questions> listQuest = session.createQuery("from Quetions where question =:namevar").setString("namevar", question).list();
+		if(listQuest.size()== 0) {
+			return null;
+		} 
+		session.close();
+		return listQuest.get(0);
+	}
 	
 	//Simple get question based on qid mostly used for internal purpose
 	public Questions getQuestion(int qid) {
