@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthService {
 
-  readonly ROOTURL = 'login&signupURL';
+  readonly rootURL = 'http://192.168.61.3:8181';
   private loggedIn = new BehaviorSubject<User>(null);
   constructor(private router: Router, private http: HttpClient) { }
 
@@ -17,11 +17,11 @@ export class AuthService {
   }
 
   login(user: User) {
-    this.http.get<User>('./assets/mockuser.json').subscribe(res => this.loggedIn.next(res), error => this.loggedIn.next(null));
+    this.http.post<User>(this.rootURL + '/login', user).subscribe(res => this.loggedIn.next(res), error => this.loggedIn.next(null));
   }
 
   signup(user: User) {
-    this.http.post<User>('someURL', user).subscribe(res => this.loggedIn.next(res), error => this.loggedIn.next(null));
+    this.http.post<User>(this.rootURL + '/user', user).subscribe(res => this.loggedIn.next(res), error => this.loggedIn.next(null));
   }
 
   logout() {
