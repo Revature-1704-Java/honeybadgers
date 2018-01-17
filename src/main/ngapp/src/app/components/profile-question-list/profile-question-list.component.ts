@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../../services/question.service';
 import { Question } from '../../interfaces/question';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-profile-question-list',
@@ -9,14 +10,16 @@ import { Question } from '../../interfaces/question';
 })
 export class ProfileQuestionListComponent implements OnInit {
   public questions: Question[];
+  private username: string;
 
-  constructor(private questionService: QuestionService) { }
+  constructor(private authService: AuthService, private questionService: QuestionService) { }
 
   ngOnInit() {
-    this.questionService.questionArray.subscribe((response) => {
+    this.authService.isLoggedIn().subscribe((user) => {
+      this.username = user.username;
+    });
+    this.questionService.getQuestionsByUsername(this.username).subscribe((response) => {
       this.questions = response;
-      console.log(response);
-      console.log(this.questions);
     });
   }
 
