@@ -26,19 +26,41 @@ export class TagListComponent implements OnInit {
   }
 
   public updateTagList(event):void {
-    if(event.charCode === 32) {
-      this.filteredTags.splice(0);
-      this.tags.forEach((tag) => {
-        if(tag.tagName === this.tagFilter.trim()) {
-          this.filteredTags.push(tag);
-        }
-      });
-    } else if(this.tagFilter !== undefined && this.tagFilter.length === 0) {
+    if(this.tagFilter !== undefined && this.tagFilter.length === 0) {
       this.filteredTags.splice(0);
       this.tags.forEach((tag) => {
         this.filteredTags.push(tag);
       });
+    } else {
+      let filterTerms: string[] = this.tagFilter.split(" ");
+      this.filteredTags.splice(0);
+      this.tags.forEach((tag) => {
+        filterTerms.forEach((term) => {
+          if(tag.tagName === term) {
+            this.filteredTags.push(tag);
+          }
+        });
+        // if(tag.tagName === this.tagFilter.trim()) {
+        //   this.filteredTags.push(tag);
+        // }
+      });
     }
   }
+
+  // public updateTagList(event):void {
+  //   if(event.charCode === 32) {
+  //     this.filteredTags.splice(0);
+  //     this.tags.forEach((tag) => {
+  //       if(tag.tagName === this.tagFilter.trim()) {
+  //         this.filteredTags.push(tag);
+  //       }
+  //     });
+  //   } else if(this.tagFilter !== undefined && this.tagFilter.length === 0) {
+  //     this.filteredTags.splice(0);
+  //     this.tags.forEach((tag) => {
+  //       this.filteredTags.push(tag);
+  //     });
+  //   }
+  // }
 
 }
