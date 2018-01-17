@@ -27,7 +27,7 @@ public class ResponsesDao {
 	public Questions getResponses(Questions quest) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<Responses> responses = session.createQuery("from Responses where qid = :namevar").
-				setInteger("namevar", quest.getQid()).list();
+				setInteger("namevar", quest.getQ_id()).list();
 		session.close();
 		quest.setAnswers(responses);
 		return quest;	

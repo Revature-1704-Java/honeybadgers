@@ -3,7 +3,7 @@
   <mat-grid-tile colspan="2">
     <form>
       <mat-form-field>
-        <input matInput [(ngModel)]="tagFilter" placeholder="Filter Quizzes" type="text" id="tag-filter" name="tag-filter" (keypress)="updateTagList($event)" />
+        <input matInput [(ngModel)]="tagFilter" placeholder="Filter Quizzes" type="text" id="tag-filter" name="tag-filter" (keyup)="updateTagList($event)" />
       </mat-form-field>
     </form>
   </mat-grid-tile>

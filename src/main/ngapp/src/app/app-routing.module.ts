@@ -39,7 +39,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'quiz/:tagId',
+    path: 'quiz/:tagName', 
     component: QuizContainerComponent
   },
   {

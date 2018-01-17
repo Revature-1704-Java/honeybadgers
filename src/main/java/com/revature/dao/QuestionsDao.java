@@ -39,7 +39,15 @@ public class QuestionsDao {
 		session.close();
 		return quest;
 	}
-	
+
+	//Simple get question based on uid mostly used for internal purpose
+	public List<Questions> getQuestionByUser(int uid) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		List<Questions> quest = session.createQuery("from Questions where userid =:uid").setInteger("uid", uid).list();
+		session.close();
+		return quest;
+	}
+
 	// return a list of 10 Questions objects
 	// question objects do not have the responses in them
 	@SuppressWarnings("unchecked")
@@ -52,7 +60,7 @@ public class QuestionsDao {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		quest =	session.	createQuery("from Questions where tid = :namevar").
 				setInteger("namevar", tags.getTagId()).list();
-		if(quest.size() == 0) {
+		if(quest.size() != 0) {
 		for(int i = 0; i <10; i++) {
 			int rand = (int) (Math.random() * quest.size());
 			retquest.add(rdao.getResponses(quest.get(rand)));
@@ -68,7 +76,7 @@ public class QuestionsDao {
 	public void updateSuccess(Questions quest) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		Questions q = getQuestion(quest.getQid());
+		Questions q = getQuestion(quest.getQ_id());
 		q.setSuccesses(q.getSuccesses() + 1);
 		q.setTotal(q.getTotal() + 1);
 		session.update(q);
@@ -82,7 +90,7 @@ public class QuestionsDao {
 	public void updateTotal(Questions quest) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		Questions q = getQuestion(quest.getQid());
+		Questions q = getQuestion(quest.getQ_id());
 		q.setTotal(q.getTotal() + 1);
 		session.update(q);
 		tx.commit();
