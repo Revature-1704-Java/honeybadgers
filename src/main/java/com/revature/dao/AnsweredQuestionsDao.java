@@ -30,7 +30,7 @@ public class AnsweredQuestionsDao {
 	public Users getUsersAedQ(Users currentUser){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<AnsweredQuestions> aedq = session.createQuery("from AnsweredQuestions where userid = :namevar").
-				setInteger("namevar", currentUser.getUid()).list();
+				setInteger("namevar", currentUser.getId()).list();
 		session.close();
 		currentUser.setAedq(aedq);
 		return currentUser;		
