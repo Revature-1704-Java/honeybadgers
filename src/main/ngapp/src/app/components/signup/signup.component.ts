@@ -5,13 +5,15 @@ import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../../interfaces/user';
 import { FormControl } from '@angular/forms/src/model';
+import { AfterViewChecked } from '@angular/core/src/metadata/lifecycle_hooks';
+import { CustomValidator } from '../../customValidator';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit{
 
   form: FormGroup;
   private formSubmitAttempt: boolean;
@@ -26,11 +28,10 @@ export class SignupComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required],
       confirm: ['', Validators.required]
-    }, this.passwordMatchValidator)
+    }, {validator: CustomValidator.passwordMatchValidator})
 
     this.isLoggedIn$ = this.authService.isLoggedIn();
   }
-
   passwordMatchValidator(g: FormGroup) {
     return g.get('password').value === g.get('confirm').value
        ? null : {'mismatch': true};
