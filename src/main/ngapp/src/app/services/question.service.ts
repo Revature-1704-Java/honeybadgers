@@ -5,7 +5,7 @@ import { Question } from '../interfaces/question';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class QuestionService {
-  url = 'http://localhost:8181';
+  url = 'http://52.14.182.231:8181';
   private questions= new BehaviorSubject<Question[]>([]);
   constructor(private http: HttpClient) { }
   get questionArray(): Observable<Question[]>{
