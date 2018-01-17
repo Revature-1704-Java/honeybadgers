@@ -1,6 +1,7 @@
-# TBD
+# QuizItUp
 
 Project 2 for the Honey Badgers
+Lack of LMS performance and in house review tools led to this project idea.
 
 ## Getting Started
 
