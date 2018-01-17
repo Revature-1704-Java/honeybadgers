@@ -488,9 +488,6 @@ var ChangePasswordComponent = (function () {
         var _this = this;
         this.authService.isLoggedIn().subscribe(function (user) {
             if (user === null) {
-                _this.router.navigate['/'];
-            }
-            else {
                 _this.correctPassword = user.password;
                 _this.username = user.username;
             }
