@@ -764,10 +764,7 @@ var ProfileQuestionListComponent = (function () {
     ProfileQuestionListComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.authService.isLoggedIn().subscribe(function (user) {
-            if (user === null) {
-                _this.router.navigate(['/']);
-            }
-            else {
+            if (user !== null) {
                 _this.username = user.username;
                 _this.questionService.getQuestionsByUsername(_this.username).subscribe(function (response) {
                     _this.questions = response;
