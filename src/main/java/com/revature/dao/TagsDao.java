@@ -38,4 +38,14 @@ public class TagsDao {
 		return tags;
 	}
 	
+	public Tags getTagByString(String tagName) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		List<Tags> listTags = session.createQuery("from Tags where tag := namevar").setString("namevar", tagName).list();
+		if(listTags.size() == 0) {
+			return null;
+		}
+		session.close();
+		return listTags.get(0);
+	}
+	
 }
