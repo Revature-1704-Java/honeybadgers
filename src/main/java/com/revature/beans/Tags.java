@@ -22,61 +22,47 @@ public class Tags {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="tSeq")
 	@SequenceGenerator(allocationSize=1, name="tSeq", sequenceName="TAG_SEQ")	
 	@Column(name="tid")
-	private int tid;
+	private int tagId;
 	
 	@Column(name="tag")
-	private String tag;
-	
-	@ManyToOne
-	@JoinColumn(name="userid")
-	@JsonIgnore
-	Users userCreator;
+	private String tagName;
+
 	
 	@OneToMany
 	List<Questions> taggedQuestions;
 	
 	public Tags() {}
 	
-	public Tags(String tag, Users userCreator) {
-		this.tag = tag;
-		this.userCreator = userCreator;
+	public Tags(String tagName) {
+		this.tagName = tagName;
 	}
 
-	public Tags(int tid, String tag, Users userCreator, List<Questions> taggedQuestions) {
+	public Tags(int tagId, String tagName, List<Questions> taggedQuestions) {
 		super();
-		this.tid = tid;
-		this.tag = tag;
-		this.userCreator = userCreator;
+		this.tagId = tagId;
+		this.tagName = tagName;
 		this.taggedQuestions = taggedQuestions;
 	}
 
 	@Override
 	public String toString() {
-		return "Tags [tid=" + tid + ", tag=" + tag + "]";
+		return "Tags [tagId=" + tagId + ", tag=" + tagName + "]";
 	}
 
-	public int getTid() {
-		return tid;
+	public int getTagId() {
+		return tagId;
 	}
 
-	public void setTid(int tid) {
-		this.tid = tid;
+	public void setTagId(int tagId) {
+		this.tagId = tagId;
 	}
 
-	public String getTag() {
-		return tag;
+	public String getTagName() {
+		return tagName;
 	}
 
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
-
-	public Users getUserCreator() {
-		return userCreator;
-	}
-
-	public void setUserCreator(Users userCreator) {
-		this.userCreator = userCreator;
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
 	}
 
 	public List<Questions> getTaggedQuestions() {

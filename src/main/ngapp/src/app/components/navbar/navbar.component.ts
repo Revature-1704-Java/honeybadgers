@@ -5,6 +5,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../../interfaces/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -15,7 +16,7 @@ export class NavbarComponent implements OnInit {
   
   isLoggedIn$: Observable<User>;
 
-  constructor(private dialog: MatDialog, private authService: AuthService) { }
+  constructor(private dialog: MatDialog, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.isLoggedIn$ = this.authService.isLoggedIn();
@@ -35,6 +36,7 @@ export class NavbarComponent implements OnInit {
   }
 
   onLogout() {
+    this.router.navigate(['']);
     this.authService.logout();
   }
 }
