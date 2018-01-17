@@ -8,6 +8,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { AuthGuard } from './guards/auth.guard';
 import { QuizContainerComponent } from './components/quiz-container/quiz-container.component';
 import { QuizResultsGuard } from './guards/quiz-results.guard';
+import { AddQformComponent } from './components/add-qform/add-qform.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,11 @@ const routes: Routes = [
     path: 'results',
     canActivate: [QuizResultsGuard],
     component: QuizResultsComponent
+  },
+  {
+    path: 'addQuestion',
+    canActivate: [AuthGuard],
+    component: AddQformComponent
   }
 ];
 

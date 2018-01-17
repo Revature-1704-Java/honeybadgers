@@ -1,21 +1,39 @@
 .AddQFormContainer{
+    margin-top: 1em;
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
 .AddQFormContainer > *{
-    width:100%;
+    width:75%;
 }
 .AddForm{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+}
+.AddForm *{
+    margin-bottom: .5em;
 }
 .AnswerFields{
-    width:100%;
     display: flex;
     flex-direction: row;
 }
 .Ans{
-    width:80%;
+    flex:9 1 auto;
+}
+.ArrayErr{
+    text-align: right;
+}
+.SideControl{
+    flex:1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.BottomControl{
+    width:100%;
+    display: flex;
+    justify-content: flex-end;
 }

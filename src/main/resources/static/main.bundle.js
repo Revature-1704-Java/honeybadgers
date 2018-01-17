@@ -97,12 +97,14 @@ var AppMaterialModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__guards_auth_guard__ = __webpack_require__("../../../../../src/app/guards/auth.guard.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_quiz_container_quiz_container_component__ = __webpack_require__("../../../../../src/app/components/quiz-container/quiz-container.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__guards_quiz_results_guard__ = __webpack_require__("../../../../../src/app/guards/quiz-results.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_add_qform_add_qform_component__ = __webpack_require__("../../../../../src/app/components/add-qform/add-qform.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -149,6 +151,11 @@ var routes = [
         path: 'results',
         canActivate: [__WEBPACK_IMPORTED_MODULE_9__guards_quiz_results_guard__["a" /* QuizResultsGuard */]],
         component: __WEBPACK_IMPORTED_MODULE_4__components_quiz_results_quiz_results_component__["a" /* QuizResultsComponent */]
+    },
+    {
+        path: 'addQuestion',
+        canActivate: [__WEBPACK_IMPORTED_MODULE_7__guards_auth_guard__["a" /* AuthGuard */]],
+        component: __WEBPACK_IMPORTED_MODULE_10__components_add_qform_add_qform_component__["a" /* AddQformComponent */]
     }
 ];
 var AppRoutingModule = (function () {
@@ -188,7 +195,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\r\n<router-outlet></router-outlet>"
+module.exports = "<app-navbar></app-navbar>\r\n<!-- <app-add-qform></app-add-qform> -->\r\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -344,7 +351,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".AddQFormContainer{\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-orient: horizontal;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: row;\r\n            flex-direction: row;\r\n    -webkit-box-pack: center;\r\n        -ms-flex-pack: center;\r\n            justify-content: center;\r\n}\r\n\r\n.AddQFormContainer > *{\r\n    width:100%;\r\n}\r\n.AddForm{\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: column;\r\n            flex-direction: column;\r\n}\r\n.AnswerFields{\r\n    width:100%;\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-orient: horizontal;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: row;\r\n            flex-direction: row;\r\n}\r\n.Ans{\r\n    width:80%;\r\n}", ""]);
+exports.push([module.i, ".AddQFormContainer{\r\n    margin-top: 1em;\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-orient: horizontal;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: row;\r\n            flex-direction: row;\r\n    -webkit-box-pack: center;\r\n        -ms-flex-pack: center;\r\n            justify-content: center;\r\n}\r\n\r\n.AddQFormContainer > *{\r\n    width:75%;\r\n}\r\n.AddForm{\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: column;\r\n            flex-direction: column;\r\n    -webkit-box-pack: justify;\r\n        -ms-flex-pack: justify;\r\n            justify-content: space-between;\r\n}\r\n.AddForm *{\r\n    margin-bottom: .5em;\r\n}\r\n.AnswerFields{\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-orient: horizontal;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: row;\r\n            flex-direction: row;\r\n}\r\n.Ans{\r\n    -webkit-box-flex:9;\r\n        -ms-flex:9 1 auto;\r\n            flex:9 1 auto;\r\n}\r\n.ArrayErr{\r\n    text-align: right;\r\n}\r\n.SideControl{\r\n    -webkit-box-flex:1;\r\n        -ms-flex:1 1 auto;\r\n            flex:1 1 auto;\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-pack: center;\r\n        -ms-flex-pack: center;\r\n            justify-content: center;\r\n    -webkit-box-align: center;\r\n        -ms-flex-align: center;\r\n            align-items: center;\r\n}\r\n.BottomControl{\r\n    width:100%;\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-pack: end;\r\n        -ms-flex-pack: end;\r\n            justify-content: flex-end;\r\n}", ""]);
 
 // exports
 
@@ -357,7 +364,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/add-qform/add-qform.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"AddQFormContainer\">\r\n  <form class=\"AddForm\" [formGroup]=\"QForm\">\r\n    <mat-form-field>\r\n      <textarea matInput formControlName=\"Question\" placeholder=\"Question\"></textarea>\r\n    </mat-form-field>\r\n    <mat-form-field *ngIf=\"tagList\">\r\n      <mat-select placeholder=\"Tag\">\r\n        <mat-option *ngFor=\"let t of tagList\" [value]=\"t.tagName\">\r\n          {{t.tagName}}\r\n        </mat-option>\r\n      </mat-select>\r\n    </mat-form-field>\r\n    <div formArrayName=\"Answers\">\r\n      <span>\r\n        <button (click)=\"addAnswers()\" mat-mini-fab color=\"primary\">+</button>\r\n        Add Answer</span>\r\n      <div class=\"AnswerFields\" *ngFor=\"let a of Answers.controls; let i=index\" [formGroupName]=\"i\">\r\n        <mat-form-field class=\"Ans\">\r\n          <textarea matInput formControlName=\"text\" placeholder=\"Answer {{i+1}}\"></textarea>\r\n        </mat-form-field>\r\n        <mat-slide-toggle formControlName=\"correct\">Correct Answer</mat-slide-toggle>\r\n      </div>\r\n    </div>\r\n  </form>\r\n</div>\r\n"
+module.exports = "<div class=\"AddQFormContainer\">\r\n  <form class=\"AddForm\" [formGroup]=\"QForm\" (ngSubmit)=\"onSubmit()\">\r\n    <mat-form-field>\r\n      <textarea matInput formControlName=\"question\" placeholder=\"Question\"></textarea>\r\n      <mat-error *ngIf=\"QForm.get('question').invalid\">*Field Required</mat-error>\r\n    </mat-form-field>\r\n    <mat-form-field *ngIf=\"tagList\">\r\n      <mat-select placeholder=\"Tag\" formControlName=\"tag\">\r\n        <mat-option *ngFor=\"let t of tagList\" [value]=\"t\">\r\n          {{t.tagName}}\r\n        </mat-option>\r\n      </mat-select>\r\n      <mat-error *ngIf=\"QForm.get('tag').invalid\">*Field Required</mat-error>\r\n    </mat-form-field>\r\n    <div class=\"AFcontainer\" formArrayName=\"answers\">\r\n      <mat-error class=\"ArrayErr\" *ngIf=\"answers.invalid && (answers.touched||submitAttempted)\">{{getAnswersArrayErrorMessage()}}</mat-error>\r\n      <div class=\"AnswerFields\" *ngFor=\"let a of answers.controls; let i=index\" [formGroupName]=\"i\">\r\n        <mat-form-field class=\"Ans\">\r\n          <textarea matInput formControlName=\"text\" placeholder=\"Answer {{i+1}}\"></textarea>\r\n          <mat-error *ngIf=\"a.get('text').invalid && (a.get('text').touched||submitAttempted)\">*Field Required</mat-error>\r\n        </mat-form-field>\r\n        <div class=\"SideControl\">\r\n          <mat-slide-toggle formControlName=\"correct\">Correct Answer</mat-slide-toggle>\r\n        </div>\r\n        <div *ngIf=\"answers.length>2\" class=\"SideControl\">\r\n          <button mat-icon-button color=\"primary\" (click)=\"deleteAnswer(i)\">\r\n            <mat-icon>close</mat-icon>\r\n          </button>\r\n        </div>\r\n      </div>\r\n      <span *ngIf=\"answers.length<7\">\r\n        <button (click)=\"addAnswers($event)\" mat-mini-fab color=\"primary\">+</button>\r\n        Add Answer\r\n      </span>\r\n      <span *ngIf=\"answers.length>=7\">Maximum Allowed Choices Reached!</span>\r\n    </div>\r\n    <div class=\"BottomControl\">\r\n        <button mat-raised-button color=\"primary\" type=\"submit\">Submit</button>\r\n    </div>\r\n  </form>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -370,6 +377,10 @@ module.exports = "<div class=\"AddQFormContainer\">\r\n  <form class=\"AddForm\"
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms___ = __webpack_require__("../../../forms/esm5/forms.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_tag_service__ = __webpack_require__("../../../../../src/app/services/tag.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_question_service__ = __webpack_require__("../../../../../src/app/services/question.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__customValidator__ = __webpack_require__("../../../../../src/app/customValidator.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -383,38 +394,79 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
+
 var AddQformComponent = (function () {
-    function AddQformComponent(fb, ts) {
+    function AddQformComponent(fb, ts, qs, User, router) {
         this.fb = fb;
         this.ts = ts;
+        this.qs = qs;
+        this.User = User;
+        this.router = router;
+        this.submitAttempted = false;
     }
     AddQformComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.ts.getTags().subscribe(function (res) {
             _this.tagList = res;
-            console.log(res);
         });
         this.QForm = this.fb.group({
-            Question: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms___["k" /* Validators */].required],
-            Tags: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms___["k" /* Validators */].required],
-            Answers: this.fb.array([])
+            question: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms___["k" /* Validators */].required],
+            tag: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms___["k" /* Validators */].required],
+            answers: this.fb.array([], __WEBPACK_IMPORTED_MODULE_6__customValidator__["a" /* CustomValidator */].onlyOneCorrectAnswer)
         });
         this.addAnswers();
         this.addAnswers();
-        console.log(this.QForm.controls.Question.errors);
     };
-    Object.defineProperty(AddQformComponent.prototype, "Answers", {
+    Object.defineProperty(AddQformComponent.prototype, "answers", {
+        // ngAfterViewChecked() {
+        //   console.log(this.QForm);
+        // }
         get: function () {
-            return this.QForm.get('Answers');
+            return this.QForm.get('answers');
         },
         enumerable: true,
         configurable: true
     });
-    AddQformComponent.prototype.addAnswers = function () {
-        this.Answers.push(this.fb.group({
+    AddQformComponent.prototype.addAnswers = function (e) {
+        if (e) {
+            e.preventDefault();
+        }
+        this.answers.push(this.fb.group({
             text: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms___["k" /* Validators */].required],
-            correct: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms___["k" /* Validators */].required]
+            correct: [false, __WEBPACK_IMPORTED_MODULE_2__angular_forms___["k" /* Validators */].required]
         }));
+    };
+    AddQformComponent.prototype.deleteAnswer = function (i) {
+        this.answers.removeAt(i);
+    };
+    AddQformComponent.prototype.getAnswersArrayErrorMessage = function () {
+        if (this.QForm.get('answers').hasError('moreThanOne')) {
+            return 'Only One Correct Answer Allowed';
+        }
+        else if (this.QForm.get('answers').hasError('noCorrect')) {
+            return 'No Correct Answer Selected';
+        }
+        return null;
+    };
+    AddQformComponent.prototype.onSubmit = function () {
+        var _this = this;
+        this.submitAttempted = true;
+        if (this.QForm.valid) {
+            this.User.isLoggedIn().subscribe(function (res) {
+                _this.Question2Submit = {
+                    q_id: 0,
+                    tag: _this.QForm.get('tag').value,
+                    user: res,
+                    question: _this.QForm.get('question').value,
+                    answers: _this.QForm.get('answers').value
+                };
+                _this.qs.postQuestion(_this.Question2Submit).subscribe();
+                _this.router.navigate(['']);
+            });
+        }
     };
     AddQformComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -422,7 +474,11 @@ var AddQformComponent = (function () {
             template: __webpack_require__("../../../../../src/app/components/add-qform/add-qform.component.html"),
             styles: [__webpack_require__("../../../../../src/app/components/add-qform/add-qform.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_3__services_tag_service__["a" /* TagService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormBuilder */],
+            __WEBPACK_IMPORTED_MODULE_3__services_tag_service__["a" /* TagService */],
+            __WEBPACK_IMPORTED_MODULE_4__services_question_service__["a" /* QuestionService */],
+            __WEBPACK_IMPORTED_MODULE_5__services_auth_service__["a" /* AuthService */],
+            __WEBPACK_IMPORTED_MODULE_7__angular_router__["b" /* Router */]])
     ], AddQformComponent);
     return AddQformComponent;
 }());
@@ -874,7 +930,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".list{\r\n    overflow-y: auto;\r\n}\r\n.list::-webkit-scrollbar-track\r\n{\r\n\t-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);\r\n\tbackground-color: #F5F5F5;\r\n}\r\n\r\n.list::-webkit-scrollbar\r\n{\r\n\twidth: 10px;\r\n\tbackground-color: #F5F5F5;\r\n}\r\n\r\n.list::-webkit-scrollbar-thumb\r\n{\r\n\tbackground-color: #673AB7;\r\n\tborder: 2px solid #555555;\r\n}\r\n.item{\r\n    border-bottom: 1px solid #F2F2F2;\r\n    border-left: 1px solid #F2F2F2;\r\n}\r\n\r\n.item span{\r\n    margin-left: 1.5em;\r\n    margin-right: 1.5em;\r\n}", ""]);
+exports.push([module.i, ".list{\r\n    overflow-y: auto;\r\n}\r\n.list::-webkit-scrollbar-track\r\n{\r\n\t-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);\r\n\tbackground-color: #F5F5F5;\r\n}\r\n\r\n.list::-webkit-scrollbar\r\n{\r\n\twidth: 10px;\r\n\tbackground-color: #F5F5F5;\r\n}\r\n\r\n.list::-webkit-scrollbar-thumb\r\n{\r\n\tbackground-color: #673AB7;\r\n\tborder: 2px solid #555555;\r\n}\r\n.item{\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -ms-flexbox;\r\n\tdisplay: flex;\r\n\t-webkit-box-pack: justify;\r\n\t    -ms-flex-pack: justify;\r\n\t        justify-content: space-between;\r\n    border-bottom: 1px solid #F2F2F2;\r\n    border-left: 1px solid #F2F2F2;\r\n}\r\n\r\n.item span{\r\n    margin-left: 1.5em;\r\n    margin-right: 1.5em;\r\n}", ""]);
 
 // exports
 
@@ -887,7 +943,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/question-list/question-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<span>Questions</span>\r\n<mat-list class=\"list\">\r\n  <mat-list-item\r\n    class=\"item\"\r\n    *ngFor=\"let a of answers; let i = index;\" \r\n    (click)=\"onClick(i)\"\r\n    [ngStyle]=\"{'background-color': i==currentQ?'#FFD740':''}\"\r\n  ><span>Question {{i+1}}</span> \r\n  <span *ngIf=\"a.answer==0||a.answer\">Answered</span>\r\n  </mat-list-item>\r\n</mat-list>\r\n"
+module.exports = "<span>Questions</span>\n<mat-list class=\"list\">\n  <mat-list-item\n    class=\"item\"\n    *ngFor=\"let a of answers; let i = index;\" \n    (click)=\"onClick(i)\"\n    [ngStyle]=\"{'background-color': i==currentQ?'#FFD740':''}\"\n  ><span>Question {{i+1}}</span> \n  <span *ngIf=\"a.answer==0||a.answer\">Answered</span>\n  </mat-list-item>\n</mat-list>\n"
 
 /***/ }),
 
@@ -965,7 +1021,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/quiz-card/quiz-card.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\" [formGroup]=\"parent\">\r\n  <div class=\"form-container\" formArrayName=\"answers\">\r\n    <div class=\"form\" [formGroupName]=\"index\">\r\n      <div class=\"question\">\r\n        {{question.question}}\r\n      </div>\r\n      <div class=\"answer\" *ngFor=\"let a of question.answers; let i = index\">\r\n        <input formControlName=\"answer\" type=\"radio\" [value]=\"i\" id=\"{{i}}\"> \r\n        <label for=\"{{i}}\">{{a.text}}</label>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"card\" [formGroup]=\"parent\">\n  <div class=\"form-container\" formArrayName=\"answers\">\n    <div class=\"form\" [formGroupName]=\"index\">\n      <div class=\"question\">\n        {{question.question}}\n      </div>\n      <div class=\"answer\" *ngFor=\"let a of question.answers; let i = index\">\n        <input formControlName=\"answer\" type=\"radio\" [value]=\"i\" id=\"{{i}}\"> \n        <label for=\"{{i}}\">{{a.text}}</label>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1287,6 +1343,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__customValidator__ = __webpack_require__("../../../../../src/app/customValidator.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1296,6 +1353,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1311,7 +1369,7 @@ var SignupComponent = (function () {
             username: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["k" /* Validators */].required],
             password: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["k" /* Validators */].required],
             confirm: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["k" /* Validators */].required]
-        }, this.passwordMatchValidator);
+        }, { validator: __WEBPACK_IMPORTED_MODULE_4__customValidator__["a" /* CustomValidator */].passwordMatchValidator });
         this.isLoggedIn$ = this.authService.isLoggedIn();
     };
     SignupComponent.prototype.passwordMatchValidator = function (g) {
@@ -1526,6 +1584,39 @@ var TagListComponent = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/customValidator.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomValidator; });
+var CustomValidator = (function () {
+    function CustomValidator() {
+    }
+    CustomValidator.onlyOneCorrectAnswer = function (fa) {
+        var count = 0;
+        fa.controls.forEach(function (el) {
+            count += el.get('correct').value ? 1 : 0;
+        });
+        if (count > 1) {
+            return { moreThanOne: true };
+        }
+        else if (count === 0) {
+            return { noCorrect: true };
+        }
+        return null;
+    };
+    CustomValidator.passwordMatchValidator = function (g) {
+        console.log('runs', g);
+        return g.get('password').value === g.get('confirm').value
+            ? null : { 'mismatch': true };
+    };
+    return CustomValidator;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/guards/auth.guard.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1717,7 +1808,7 @@ var QuestionService = (function () {
         });
     };
     QuestionService.prototype.postQuestion = function (Q) {
-        return this.http.post(this.url + '/quiz/', Q);
+        return this.http.post(this.url + '/question', Q);
     };
     QuestionService.prototype.getQuestionsByUsername = function (username) {
         return this.http.get(this.url + '/question/' + username);
