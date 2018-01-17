@@ -188,7 +188,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n<router-outlet></router-outlet>"
+module.exports = "<app-navbar></app-navbar>\r\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -344,7 +344,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".AddQFormContainer{\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\n\n.AddQFormContainer > *{\n    width:100%;\n}\n.AddForm{\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n}\n.AnswerFields{\n    width:100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n}\n.Ans{\n    width:80%;\n}", ""]);
+exports.push([module.i, ".AddQFormContainer{\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-orient: horizontal;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: row;\r\n            flex-direction: row;\r\n    -webkit-box-pack: center;\r\n        -ms-flex-pack: center;\r\n            justify-content: center;\r\n}\r\n\r\n.AddQFormContainer > *{\r\n    width:100%;\r\n}\r\n.AddForm{\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: column;\r\n            flex-direction: column;\r\n}\r\n.AnswerFields{\r\n    width:100%;\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-orient: horizontal;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: row;\r\n            flex-direction: row;\r\n}\r\n.Ans{\r\n    width:80%;\r\n}", ""]);
 
 // exports
 
@@ -357,7 +357,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/add-qform/add-qform.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"AddQFormContainer\">\n  <form class=\"AddForm\" [formGroup]=\"QForm\">\n    <mat-form-field>\n      <textarea matInput formControlName=\"Question\" placeholder=\"Question\"></textarea>\n    </mat-form-field>\n    <mat-form-field *ngIf=\"tagList\">\n      <mat-select placeholder=\"Tag\">\n        <mat-option *ngFor=\"let t of tagList\" [value]=\"t.tagName\">\n          {{t.tagName}}\n        </mat-option>\n      </mat-select>\n    </mat-form-field>\n    <div formArrayName=\"Answers\">\n      <span>\n        <button (click)=\"addAnswers()\" mat-mini-fab color=\"primary\">+</button>\n        Add Answer</span>\n      <div class=\"AnswerFields\" *ngFor=\"let a of Answers.controls; let i=index\" [formGroupName]=\"i\">\n        <mat-form-field class=\"Ans\">\n          <textarea matInput formControlName=\"text\" placeholder=\"Answer {{i+1}}\"></textarea>\n        </mat-form-field>\n        <mat-slide-toggle formControlName=\"correct\">Correct Answer</mat-slide-toggle>\n      </div>\n    </div>\n  </form>\n</div>\n"
+module.exports = "<div class=\"AddQFormContainer\">\r\n  <form class=\"AddForm\" [formGroup]=\"QForm\">\r\n    <mat-form-field>\r\n      <textarea matInput formControlName=\"Question\" placeholder=\"Question\"></textarea>\r\n    </mat-form-field>\r\n    <mat-form-field *ngIf=\"tagList\">\r\n      <mat-select placeholder=\"Tag\">\r\n        <mat-option *ngFor=\"let t of tagList\" [value]=\"t.tagName\">\r\n          {{t.tagName}}\r\n        </mat-option>\r\n      </mat-select>\r\n    </mat-form-field>\r\n    <div formArrayName=\"Answers\">\r\n      <span>\r\n        <button (click)=\"addAnswers()\" mat-mini-fab color=\"primary\">+</button>\r\n        Add Answer</span>\r\n      <div class=\"AnswerFields\" *ngFor=\"let a of Answers.controls; let i=index\" [formGroupName]=\"i\">\r\n        <mat-form-field class=\"Ans\">\r\n          <textarea matInput formControlName=\"text\" placeholder=\"Answer {{i+1}}\"></textarea>\r\n        </mat-form-field>\r\n        <mat-slide-toggle formControlName=\"correct\">Correct Answer</mat-slide-toggle>\r\n      </div>\r\n    </div>\r\n  </form>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -439,7 +439,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 // module
-exports.push([module.i, "h3, span {\n  font-family: 'Roboto', sans-serif;\n}", ""]);
+exports.push([module.i, "h3, span {\r\n  font-family: 'Roboto', sans-serif;\r\n}", ""]);
 
 // exports
 
@@ -452,7 +452,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/change-password/change-password.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Change your password</h3>\n<form>\n  <mat-form-field>\n    <input matInput [(ngModel)]=\"password\" type=\"password\" id=\"currentPassword\" name=\"currentPassword\" placeholder=\"Current Password\" />\n  </mat-form-field><br />\n  <mat-form-field>\n    <input matInput [(ngModel)]=\"newPassword\" type=\"password\" id=\"newPassword\" name=\"newPassword\" placeholder=\"New Password\" />\n  </mat-form-field><br />\n  <mat-form-field>\n      <input matInput [(ngModel)]=\"confirmNewPassword\" type=\"password\" id=\"confirmNewPassword\" name=\"confirmNewPassword\" placeholder=\"Confirm Password\" />\n  </mat-form-field><br />\n  <button mat-button (click)=\"updatePassword()\">Submit</button>\n</form>\n<span *ngIf=\"updatePasswordError\">{{ updatePasswordError }}</span>"
+module.exports = "<h3>Change your password</h3>\r\n<form>\r\n  <mat-form-field>\r\n    <input matInput [(ngModel)]=\"password\" type=\"password\" id=\"currentPassword\" name=\"currentPassword\" placeholder=\"Current Password\" />\r\n  </mat-form-field><br />\r\n  <mat-form-field>\r\n    <input matInput [(ngModel)]=\"newPassword\" type=\"password\" id=\"newPassword\" name=\"newPassword\" placeholder=\"New Password\" />\r\n  </mat-form-field><br />\r\n  <mat-form-field>\r\n      <input matInput [(ngModel)]=\"confirmNewPassword\" type=\"password\" id=\"confirmNewPassword\" name=\"confirmNewPassword\" placeholder=\"Confirm Password\" />\r\n  </mat-form-field><br />\r\n  <button mat-button (click)=\"updatePassword()\">Submit</button>\r\n</form>\r\n<span *ngIf=\"updatePasswordError\">{{ updatePasswordError }}</span>"
 
 /***/ }),
 
@@ -529,7 +529,7 @@ var ChangePasswordComponent = (function () {
 /***/ "../../../../../src/app/components/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"signup-content\">\n    <form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\">\n      <h1>Log In</h1>\n      <mat-form-field class=\"full-width-input\">\n        <input matInput placeholder=\"Username\" formControlName=\"username\" required>\n      </mat-form-field>\n      <mat-form-field class=\"full-width-input\">\n        <input matInput type=\"password\" placeholder=\"Password\" formControlName=\"password\" required>\n      </mat-form-field>\n      <button mat-raised-button color=\"primary\" type=\"submit\">Log In</button>\n      <button mat-raised-button color=\"primary\" (click)=\"close()\">Cancel</button>\n    </form>\n  </div>"
+module.exports = "<div class=\"signup-content\">\r\n    <form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\">\r\n      <h1>Log In</h1>\r\n      <mat-form-field class=\"full-width-input\">\r\n        <input matInput placeholder=\"Username\" formControlName=\"username\" required>\r\n      </mat-form-field>\r\n      <mat-form-field class=\"full-width-input\">\r\n        <input matInput type=\"password\" placeholder=\"Password\" formControlName=\"password\" required>\r\n      </mat-form-field>\r\n      <button mat-raised-button color=\"primary\" type=\"submit\">Log In</button>\r\n      <button mat-raised-button color=\"primary\" (click)=\"close()\">Cancel</button>\r\n    </form>\r\n  </div>"
 
 /***/ }),
 
@@ -622,7 +622,7 @@ var LoginComponent = (function () {
 /***/ "../../../../../src/app/components/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"primary\">\n  <span>\n    QuizItUp\n  </span>\n  <span class=\"fill-remaining-space\"></span>\n  <button mat-button routerLink=\"/\">Home</button>\n  <button mat-button *ngIf=\"isLoggedIn$ | async\" routerLink=\"/profile\">Profile</button>\n  <button mat-button *ngIf=\"isLoggedIn$ | async\" routerLink=\"/addQuestion\">Add Question</button>\n  <button mat-button *ngIf=\"isLoggedIn$ | async; else login\" (click)=\"onLogout()\">Log out</button>\n  <ng-template #login>\n    <button mat-button (click)=\"onLogin()\">Log in</button>\n    <button mat-button (click)=\"signUp()\">Sign Up</button>\n  </ng-template>\n</mat-toolbar>"
+module.exports = "<mat-toolbar color=\"primary\">\r\n  <span>\r\n    QuizItUp\r\n  </span>\r\n  <span class=\"fill-remaining-space\"></span>\r\n  <button mat-button routerLink=\"/\">Home</button>\r\n  <button mat-button *ngIf=\"isLoggedIn$ | async\" routerLink=\"/profile\">Profile</button>\r\n  <button mat-button *ngIf=\"isLoggedIn$ | async\" routerLink=\"/addQuestion\">Add Question</button>\r\n  <button mat-button *ngIf=\"isLoggedIn$ | async; else login\" (click)=\"onLogout()\">Log out</button>\r\n  <ng-template #login>\r\n    <button mat-button (click)=\"onLogin()\">Log in</button>\r\n    <button mat-button (click)=\"signUp()\">Sign Up</button>\r\n  </ng-template>\r\n</mat-toolbar>"
 
 /***/ }),
 
@@ -716,7 +716,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "mat-sidenav-container mat-sidenav button {\n  text-decoration: none;\n}", ""]);
+exports.push([module.i, "mat-sidenav-container mat-sidenav button {\r\n  text-decoration: none;\r\n}", ""]);
 
 // exports
 
@@ -729,7 +729,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/profile-question-list/profile-question-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-card *ngFor=\"let q of questions\">\n  <mat-card-content>\n    <p>{{ q.question }}</p>\n    <mat-list>\n      <mat-list-item *ngFor=\"let a of q.answers\">{{ a.text }}</mat-list-item>\n    </mat-list>\n  </mat-card-content>\n</mat-card>\n\n<!-- <div *ngFor=\"let q of questions\" class=\"question\">\n  <p>{{ q.question }}</p>\n  <ul>\n    <li *ngFor=\"let a of q.answers\">{{ a.text }}</li>\n  </ul>\n</div> -->"
+module.exports = "<mat-card *ngFor=\"let q of questions\">\r\n  <mat-card-content>\r\n    <p>{{ q.question }}</p>\r\n    <mat-list>\r\n      <mat-list-item *ngFor=\"let a of q.answers\">{{ a.text }}</mat-list-item>\r\n    </mat-list>\r\n  </mat-card-content>\r\n</mat-card>\r\n\r\n<!-- <div *ngFor=\"let q of questions\" class=\"question\">\r\n  <p>{{ q.question }}</p>\r\n  <ul>\r\n    <li *ngFor=\"let a of q.answers\">{{ a.text }}</li>\r\n  </ul>\r\n</div> -->"
 
 /***/ }),
 
@@ -739,8 +739,9 @@ module.exports = "<mat-card *ngFor=\"let q of questions\">\n  <mat-card-content>
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfileQuestionListComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_question_service__ = __webpack_require__("../../../../../src/app/services/question.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_question_service__ = __webpack_require__("../../../../../src/app/services/question.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -753,18 +754,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ProfileQuestionListComponent = (function () {
-    function ProfileQuestionListComponent(authService, questionService) {
+    function ProfileQuestionListComponent(router, authService, questionService) {
+        this.router = router;
         this.authService = authService;
         this.questionService = questionService;
     }
     ProfileQuestionListComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.authService.isLoggedIn().subscribe(function (user) {
-            _this.username = user.username;
-        });
-        this.questionService.getQuestionsByUsername(this.username).subscribe(function (response) {
-            _this.questions = response;
+            if (user !== null) {
+                _this.username = user.username;
+                _this.questionService.getQuestionsByUsername(_this.username).subscribe(function (response) {
+                    _this.questions = response;
+                });
+            }
         });
     };
     ProfileQuestionListComponent = __decorate([
@@ -773,7 +778,7 @@ var ProfileQuestionListComponent = (function () {
             template: __webpack_require__("../../../../../src/app/components/profile-question-list/profile-question-list.component.html"),
             styles: [__webpack_require__("../../../../../src/app/components/profile-question-list/profile-question-list.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_1__services_question_service__["a" /* QuestionService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_2__services_question_service__["a" /* QuestionService */]])
     ], ProfileQuestionListComponent);
     return ProfileQuestionListComponent;
 }());
@@ -790,7 +795,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "a {\n  text-decoration: none;\n  color: black;\n}", ""]);
+exports.push([module.i, "a {\r\n  text-decoration: none;\r\n  color: black;\r\n}", ""]);
 
 // exports
 
@@ -803,7 +808,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-sidenav-container>\n  <mat-sidenav #sidenav [(opened)]=\"opened\" mode=\"side\">\n    <button mat-button><a [routerLink]=\"['tag-filter']\">Performance</a></button><br />\n    <button mat-button><a [routerLink]=\"['questions']\">My Questions</a></button><br />\n    <button mat-button><a [routerLink]=\"['settings']\">Settings</a></button><br />\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <router-outlet></router-outlet>\n  </mat-sidenav-content>>\n</mat-sidenav-container>"
+module.exports = "<mat-sidenav-container>\r\n  <mat-sidenav #sidenav [(opened)]=\"opened\" mode=\"side\">\r\n    <button mat-button><a [routerLink]=\"['tag-filter']\">Performance</a></button><br />\r\n    <button mat-button><a [routerLink]=\"['questions']\">My Questions</a></button><br />\r\n    <button mat-button><a [routerLink]=\"['settings']\">Settings</a></button><br />\r\n  </mat-sidenav>\r\n  <mat-sidenav-content>\r\n    <router-outlet></router-outlet>\r\n  </mat-sidenav-content>>\r\n</mat-sidenav-container>"
 
 /***/ }),
 
@@ -852,7 +857,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".list{\n    overflow-y: auto;\n}\n.list::-webkit-scrollbar-track\n{\n\t-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);\n\tbackground-color: #F5F5F5;\n}\n\n.list::-webkit-scrollbar\n{\n\twidth: 10px;\n\tbackground-color: #F5F5F5;\n}\n\n.list::-webkit-scrollbar-thumb\n{\n\tbackground-color: #673AB7;\n\tborder: 2px solid #555555;\n}\n.item{\n    border-bottom: 1px solid #F2F2F2;\n    border-left: 1px solid #F2F2F2;\n}\n\n.item span{\n    margin-left: 1.5em;\n    margin-right: 1.5em;\n}", ""]);
+exports.push([module.i, ".list{\r\n    overflow-y: auto;\r\n}\r\n.list::-webkit-scrollbar-track\r\n{\r\n\t-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);\r\n\tbackground-color: #F5F5F5;\r\n}\r\n\r\n.list::-webkit-scrollbar\r\n{\r\n\twidth: 10px;\r\n\tbackground-color: #F5F5F5;\r\n}\r\n\r\n.list::-webkit-scrollbar-thumb\r\n{\r\n\tbackground-color: #673AB7;\r\n\tborder: 2px solid #555555;\r\n}\r\n.item{\r\n    border-bottom: 1px solid #F2F2F2;\r\n    border-left: 1px solid #F2F2F2;\r\n}\r\n\r\n.item span{\r\n    margin-left: 1.5em;\r\n    margin-right: 1.5em;\r\n}", ""]);
 
 // exports
 
@@ -865,7 +870,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/question-list/question-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<span>Questions</span>\n<mat-list class=\"list\">\n  <mat-list-item\n    class=\"item\"\n    *ngFor=\"let a of answers; let i = index;\" \n    (click)=\"onClick(i)\"\n    [ngStyle]=\"{'background-color': i==currentQ?'#FFD740':''}\"\n  ><span>Question {{i+1}}</span> \n  <span *ngIf=\"a.answer==0||a.answer\">Answered</span>\n  </mat-list-item>\n</mat-list>\n"
+module.exports = "<span>Questions</span>\r\n<mat-list class=\"list\">\r\n  <mat-list-item\r\n    class=\"item\"\r\n    *ngFor=\"let a of answers; let i = index;\" \r\n    (click)=\"onClick(i)\"\r\n    [ngStyle]=\"{'background-color': i==currentQ?'#FFD740':''}\"\r\n  ><span>Question {{i+1}}</span> \r\n  <span *ngIf=\"a.answer==0||a.answer\">Answered</span>\r\n  </mat-list-item>\r\n</mat-list>\r\n"
 
 /***/ }),
 
@@ -930,7 +935,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".card {\n  background-color: #ECEFF1;\n  height: 100%;\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\n}\n\n.form-container {\n  height: 100%;\n}\n\n.form {\n  min-height: 360px;\n  display: -ms-grid;\n  display: grid;\n  -ms-grid-rows: 2fr 1fr 1fr 1fr 1fr;\n      grid-template-rows: 2fr 1fr 1fr 1fr 1fr;\n  grid-row-gap: 10px;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n\n.question {\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  background-color: #673AB7;\n  color: #ECEFF1;\n  height: calc(100% - 50px);\n  font-size: 1.5rem;\n  padding-top: 25px;\n  padding-bottom: 25px;\n  text-align: center;\n}\n\n.form .answer {\n  text-align: left;\n  padding-left: 1em;\n}\n\ninput[type=\"radio\"] {\n  display: none;\n}\n\n[type=\"radio\"]:checked + label,\n[type=\"radio\"]:not(:checked) + label\n{\n    position: relative;\n    padding-left: 28px;\n    cursor: pointer;\n    line-height: 20px;\n    display: inline-block;\n}\n[type=\"radio\"]:checked + label:before {\n    content: '';\n    position: absolute;\n    left: 0;\n    top: 0;\n    width: 22px;\n    height: 22px;\n    border: 2px solid #FFD740;\n    border-radius: 100%;\n    background: #fff;\n}\n[type=\"radio\"]:not(:checked) + label:before {\n    content: '';\n    position: absolute;\n    left: 0;\n    top: 0;\n    width: 22px;\n    height: 22px;\n    border: 2px solid #7D7D7D;\n    border-radius: 100%;\n    background: #fff;\n}\n[type=\"radio\"]:checked + label:after{\n    content: '';\n    width: 16px;\n    height: 16px;\n    background: #FFD740;\n    position: absolute;\n    top: 4.5px;\n    left: 4.5px;\n    border-radius: 100%;\n    transition: all 0.2s ease;\n}\n[type=\"radio\"]:not(:checked) + label:after {\n    -webkit-transform: scale(0);\n    transform: scale(0);\n}\n[type=\"radio\"]:checked + label:after {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1);\n}", ""]);
+exports.push([module.i, ".card {\r\n  background-color: #ECEFF1;\r\n  height: 100%;\r\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\r\n}\r\n\r\n.form-container {\r\n  height: 100%;\r\n}\r\n\r\n.form {\r\n  min-height: 360px;\r\n  display: -ms-grid;\r\n  display: grid;\r\n  -ms-grid-rows: 2fr 1fr 1fr 1fr 1fr;\r\n      grid-template-rows: 2fr 1fr 1fr 1fr 1fr;\r\n  grid-row-gap: 10px;\r\n  -webkit-box-align: center;\r\n      -ms-flex-align: center;\r\n          align-items: center;\r\n}\r\n\r\n.question {\r\n  -webkit-box-align: center;\r\n      -ms-flex-align: center;\r\n          align-items: center;\r\n  background-color: #673AB7;\r\n  color: #ECEFF1;\r\n  height: calc(100% - 50px);\r\n  font-size: 1.5rem;\r\n  padding-top: 25px;\r\n  padding-bottom: 25px;\r\n  text-align: center;\r\n}\r\n\r\n.form .answer {\r\n  text-align: left;\r\n  padding-left: 1em;\r\n}\r\n\r\ninput[type=\"radio\"] {\r\n  display: none;\r\n}\r\n\r\n[type=\"radio\"]:checked + label,\r\n[type=\"radio\"]:not(:checked) + label\r\n{\r\n    position: relative;\r\n    padding-left: 28px;\r\n    cursor: pointer;\r\n    line-height: 20px;\r\n    display: inline-block;\r\n}\r\n[type=\"radio\"]:checked + label:before {\r\n    content: '';\r\n    position: absolute;\r\n    left: 0;\r\n    top: 0;\r\n    width: 22px;\r\n    height: 22px;\r\n    border: 2px solid #FFD740;\r\n    border-radius: 100%;\r\n    background: #fff;\r\n}\r\n[type=\"radio\"]:not(:checked) + label:before {\r\n    content: '';\r\n    position: absolute;\r\n    left: 0;\r\n    top: 0;\r\n    width: 22px;\r\n    height: 22px;\r\n    border: 2px solid #7D7D7D;\r\n    border-radius: 100%;\r\n    background: #fff;\r\n}\r\n[type=\"radio\"]:checked + label:after{\r\n    content: '';\r\n    width: 16px;\r\n    height: 16px;\r\n    background: #FFD740;\r\n    position: absolute;\r\n    top: 4.5px;\r\n    left: 4.5px;\r\n    border-radius: 100%;\r\n    transition: all 0.2s ease;\r\n}\r\n[type=\"radio\"]:not(:checked) + label:after {\r\n    -webkit-transform: scale(0);\r\n    transform: scale(0);\r\n}\r\n[type=\"radio\"]:checked + label:after {\r\n    opacity: 1;\r\n    -webkit-transform: scale(1);\r\n    transform: scale(1);\r\n}", ""]);
 
 // exports
 
@@ -943,7 +948,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/quiz-card/quiz-card.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\" [formGroup]=\"parent\">\n  <div class=\"form-container\" formArrayName=\"answers\">\n    <div class=\"form\" [formGroupName]=\"index\">\n      <div class=\"question\">\n        {{question.question}}\n      </div>\n      <div class=\"answer\" *ngFor=\"let a of question.answers; let i = index\">\n        <input formControlName=\"answer\" type=\"radio\" [value]=\"i\" id=\"{{i}}\"> \n        <label for=\"{{i}}\">{{a.text}}</label>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"card\" [formGroup]=\"parent\">\r\n  <div class=\"form-container\" formArrayName=\"answers\">\r\n    <div class=\"form\" [formGroupName]=\"index\">\r\n      <div class=\"question\">\r\n        {{question.question}}\r\n      </div>\r\n      <div class=\"answer\" *ngFor=\"let a of question.answers; let i = index\">\r\n        <input formControlName=\"answer\" type=\"radio\" [value]=\"i\" id=\"{{i}}\"> \r\n        <label for=\"{{i}}\">{{a.text}}</label>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1005,7 +1010,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 // module
-exports.push([module.i, ".quiz-container {\n  display: -ms-grid;\n  display: grid;\n  -ms-grid-rows: 3fr 2fr;\n      grid-template-rows: 3fr 2fr;\n  font-family: 'Roboto', sans-serif;\n  color: #212121;\n  margin-top: 1em;\n  text-align: center;\n  height: 100vh;\n}\n\n.content {\n  display: grid;\n  grid-template-columns: 1fr 3fr;\n  grid-column-gap: .5em;\n  grid-row: 1/2;\n  /* autoprefixer: off */\n}\n.bottombar {\n  grid-row: 2/3;\n<<<<<<< HEAD\n=======\n  grid-column-gap: .5em;\n>>>>>>> b0ad7c422f71d7670a2c1356fdf89e70dbbe5b53\n  display: grid;\n  grid-template-columns: 1fr 3fr;\n  align-items: baseline;\n  margin-top: 1em;\n  /* autoprefixer: off */\n}\n.bottombar-right{\n    grid-column: 2/3;\n    -ms-grid-columns: (1fr)[3];\n        grid-template-columns: repeat(3, 1fr);\n    display: -ms-grid;\n    display: grid;\n    background-color:#ECEFF1;\n    padding-top:1em;\n    padding-bottom:1em;\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\n}\n\n.card-container {\n  grid-column: 2/3;\n  display: block;\n}\n.button{\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.list-container {\n  grid-column:1/2;\n  display: block;\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\n}\n", ""]);
+exports.push([module.i, ".quiz-container {\r\n  display: -ms-grid;\r\n  display: grid;\r\n  -ms-grid-rows: 3fr 2fr;\r\n      grid-template-rows: 3fr 2fr;\r\n  font-family: 'Roboto', sans-serif;\r\n  color: #212121;\r\n  margin-top: 1em;\r\n  text-align: center;\r\n  height: 100vh;\r\n}\r\n\r\n.content {\r\n  display: grid;\r\n  grid-template-columns: 1fr 3fr;\r\n  grid-column-gap: .5em;\r\n  grid-row: 1/2;\r\n  /* autoprefixer: off */\r\n}\r\n.bottombar {\r\n  grid-row: 2/3;\r\n<<<<<<< HEAD\r\n=======\r\n  grid-column-gap: .5em;\r\n>>>>>>> b0ad7c422f71d7670a2c1356fdf89e70dbbe5b53\r\n  display: grid;\r\n  grid-template-columns: 1fr 3fr;\r\n  align-items: baseline;\r\n  margin-top: 1em;\r\n  /* autoprefixer: off */\r\n}\r\n.bottombar-right{\r\n    grid-column: 2/3;\r\n    -ms-grid-columns: (1fr)[3];\r\n        grid-template-columns: repeat(3, 1fr);\r\n    display: -ms-grid;\r\n    display: grid;\r\n    background-color:#ECEFF1;\r\n    padding-top:1em;\r\n    padding-bottom:1em;\r\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\r\n}\r\n\r\n.card-container {\r\n  grid-column: 2/3;\r\n  display: block;\r\n}\r\n.button{\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-pack: center;\r\n      -ms-flex-pack: center;\r\n          justify-content: center;\r\n}\r\n.list-container {\r\n  grid-column:1/2;\r\n  display: block;\r\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\r\n}\r\n", ""]);
 
 // exports
 
@@ -1018,7 +1023,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/quiz-container/quiz-container.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"quiz-container\">\n  <div class=\"content\">\n    <div class=\"list-container\">\n      <app-question-list *ngIf=\"questions.length>0\" [answers]=\"quizForm.get('answers').value\" [(currentQ)]=\"currentQ\"></app-question-list>\n    </div>\n    <div class=\"card-container\" *ngIf=\"questions.length>0\">\n      <app-quiz-card [parent]=\"quizForm\" [question]=\"questions[currentQ]\" [index]=\"currentQ\">\n      </app-quiz-card>\n    </div>\n  </div>\n  <div class=\"bottombar\">\n    <div class=\"bottombar-right\">\n      <div class=\"button\">\n        <button mat-raised-button color=\"primary\" [disabled]=\"!(questions && currentQ > 0)\" (click)=\"prevQ($event)\">Previous</button>\n      </div>\n      <div class=\"button\">\n        <button mat-raised-button color=\"primary\" (click)=\"onSubmit()\">Submit</button>\n      </div>\n      <div class=\"button\">\n        <button mat-raised-button color=\"primary\" [disabled]=\" questions && currentQ == questions.length-1\" (click)=\"nextQ($event)\">\n            Next\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"quiz-container\">\r\n  <div class=\"content\">\r\n    <div class=\"list-container\">\r\n      <app-question-list *ngIf=\"questions.length>0\" [answers]=\"quizForm.get('answers').value\" [(currentQ)]=\"currentQ\"></app-question-list>\r\n    </div>\r\n    <div class=\"card-container\" *ngIf=\"questions.length>0\">\r\n      <app-quiz-card [parent]=\"quizForm\" [question]=\"questions[currentQ]\" [index]=\"currentQ\">\r\n      </app-quiz-card>\r\n    </div>\r\n  </div>\r\n  <div class=\"bottombar\">\r\n    <div class=\"bottombar-right\">\r\n      <div class=\"button\">\r\n        <button mat-raised-button color=\"primary\" [disabled]=\"!(questions && currentQ > 0)\" (click)=\"prevQ($event)\">Previous</button>\r\n      </div>\r\n      <div class=\"button\">\r\n        <button mat-raised-button color=\"primary\" (click)=\"onSubmit()\">Submit</button>\r\n      </div>\r\n      <div class=\"button\">\r\n        <button mat-raised-button color=\"primary\" [disabled]=\" questions && currentQ == questions.length-1\" (click)=\"nextQ($event)\">\r\n            Next\r\n        </button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1131,7 +1136,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 // module
-exports.push([module.i, "\n", ""]);
+exports.push([module.i, "\r\n", ""]);
 
 // exports
 
@@ -1144,7 +1149,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/quiz-results/quiz-results.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Correct Answers: {{ correctCount }}</h1>\n<h1>Wrong Answers: {{ totalCount - correctCount }}</h1>\n<mat-accordion class=\"results-container\">\n  <mat-expansion-panel *ngFor=\"let q of questions; let i = index;\" \n    [ngStyle]=\"{'background-color': correctAnswerCheck(i) ? 'lightgreen' : 'lightcoral'}\">\n    <mat-expansion-panel-header>\n      <mat-panel-title>\n        Question {{i + 1}}\n      </mat-panel-title>\n      <mat-panel-description>\n        {{ q.question }}\n      </mat-panel-description>\n    </mat-expansion-panel-header>\n    <div *ngIf = \"userAnswerExist(i); else cheater\">\n      <p *ngIf=\"correctAnswerCheck(i); else wrong\">Your Answer: {{ correctAnswers[i].text }}</p>\n      <ng-template #wrong>\n        <p>Your Answer: {{questions[i].answers[userAnswers[i].answer].text}}</p>\n        <p>Correct Answer: {{ correctAnswers[i].text }}</p>\n      </ng-template>\n    </div>\n    <ng-template #cheater>\n      <p>You didn't answer this question, why you trying to cheat bruv?</p>\n    </ng-template>\n  </mat-expansion-panel>\n</mat-accordion>"
+module.exports = "<h1>Correct Answers: {{ correctCount }}</h1>\r\n<h1>Wrong Answers: {{ totalCount - correctCount }}</h1>\r\n<mat-accordion class=\"results-container\">\r\n  <mat-expansion-panel *ngFor=\"let q of questions; let i = index;\" \r\n    [ngStyle]=\"{'background-color': correctAnswerCheck(i) ? 'lightgreen' : 'lightcoral'}\">\r\n    <mat-expansion-panel-header>\r\n      <mat-panel-title>\r\n        Question {{i + 1}}\r\n      </mat-panel-title>\r\n      <mat-panel-description>\r\n        {{ q.question }}\r\n      </mat-panel-description>\r\n    </mat-expansion-panel-header>\r\n    <div *ngIf = \"userAnswerExist(i); else cheater\">\r\n      <p *ngIf=\"correctAnswerCheck(i); else wrong\">Your Answer: {{ correctAnswers[i].text }}</p>\r\n      <ng-template #wrong>\r\n        <p>Your Answer: {{questions[i].answers[userAnswers[i].answer].text}}</p>\r\n        <p>Correct Answer: {{ correctAnswers[i].text }}</p>\r\n      </ng-template>\r\n    </div>\r\n    <ng-template #cheater>\r\n      <p>You didn't answer this question, why you trying to cheat bruv?</p>\r\n    </ng-template>\r\n  </mat-expansion-panel>\r\n</mat-accordion>"
 
 /***/ }),
 
@@ -1234,7 +1239,7 @@ var QuizResultsComponent = (function () {
 /***/ "../../../../../src/app/components/signup/signup.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"signup-content\">\n  <form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\">\n    <h1>Sign Up</h1>\n    <mat-error class=\"pass-error\" *ngIf=\"passwordMatched('password', 'confirm')\">Passwords don't match</mat-error>\n    <mat-error *ngIf=\"submitFailed\">That username already exists</mat-error>\n    <mat-form-field class=\"full-width-input\">\n      <input matInput placeholder=\"Username\" formControlName=\"username\" required>\n    </mat-form-field>\n    <mat-form-field class=\"full-width-input\">\n      <input matInput type=\"password\" placeholder=\"Password\" formControlName=\"password\" required>\n    </mat-form-field>\n    <mat-form-field class=\"full-width-inpout\">\n      <input matInput type=\"password\" placeholder=\"Confirm\" formControlName=\"confirm\" required> \n    </mat-form-field>\n    <button mat-raised-button color=\"primary\" type=\"submit\">Sign Up</button>\n    <button mat-raised-button color=\"primary\" (click)=\"close()\">Cancel</button>\n  </form>\n</div>"
+module.exports = "<div class=\"signup-content\">\r\n  <form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\">\r\n    <h1>Sign Up</h1>\r\n    <mat-error class=\"pass-error\" *ngIf=\"passwordMatched('password', 'confirm')\">Passwords don't match</mat-error>\r\n    <mat-error *ngIf=\"submitFailed\">That username already exists</mat-error>\r\n    <mat-form-field class=\"full-width-input\">\r\n      <input matInput placeholder=\"Username\" formControlName=\"username\" required>\r\n    </mat-form-field>\r\n    <mat-form-field class=\"full-width-input\">\r\n      <input matInput type=\"password\" placeholder=\"Password\" formControlName=\"password\" required>\r\n    </mat-form-field>\r\n    <mat-form-field class=\"full-width-inpout\">\r\n      <input matInput type=\"password\" placeholder=\"Confirm\" formControlName=\"confirm\" required> \r\n    </mat-form-field>\r\n    <button mat-raised-button color=\"primary\" type=\"submit\">Sign Up</button>\r\n    <button mat-raised-button color=\"primary\" (click)=\"close()\">Cancel</button>\r\n  </form>\r\n</div>"
 
 /***/ }),
 
@@ -1363,7 +1368,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/tag-item/tag-item.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-card class=\"tag-item-card\">\n  <img mat-card-image src=\"http://placehold.it/320x150\" />\n<mat-card-header>\n  <mat-card-title><a [routerLink]=\"[ '/quiz', tag.tagName ]\">{{ tag.tagName }}</a></mat-card-title>\n</mat-card-header>\n</mat-card>"
+module.exports = "<mat-card class=\"tag-item-card\">\r\n  <img mat-card-image src=\"http://placehold.it/320x150\" />\r\n<mat-card-header>\r\n  <mat-card-title><a [routerLink]=\"[ '/quiz', tag.tagName ]\">{{ tag.tagName }}</a></mat-card-title>\r\n</mat-card-header>\r\n</mat-card>"
 
 /***/ }),
 
@@ -1429,7 +1434,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/tag-list/tag-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-grid-list cols=\"4\" rowHeight=\"100px\">\n  <mat-grid-tile></mat-grid-tile>\n  <mat-grid-tile colspan=\"2\">\n    <form>\n      <mat-form-field>\n        <input matInput [(ngModel)]=\"tagFilter\" placeholder=\"Filter Quizzes\" type=\"text\" id=\"tag-filter\" name=\"tag-filter\" (keyup)=\"updateTagList($event)\" />\n      </mat-form-field>\n    </form>\n  </mat-grid-tile>\n  <mat-grid-tile></mat-grid-tile>\n  <mat-grid-tile *ngFor=\"let tag of filteredTags\" rowspan=\"3\">\n    <app-tag-item [tag]=\"tag\"></app-tag-item>\n  </mat-grid-tile>\n</mat-grid-list>"
+module.exports = "<mat-grid-list cols=\"4\" rowHeight=\"100px\">\r\n  <mat-grid-tile></mat-grid-tile>\r\n  <mat-grid-tile colspan=\"2\">\r\n    <form>\r\n      <mat-form-field>\r\n        <input matInput [(ngModel)]=\"tagFilter\" placeholder=\"Filter Quizzes\" type=\"text\" id=\"tag-filter\" name=\"tag-filter\" (keyup)=\"updateTagList($event)\" />\r\n      </mat-form-field>\r\n    </form>\r\n  </mat-grid-tile>\r\n  <mat-grid-tile></mat-grid-tile>\r\n  <mat-grid-tile *ngFor=\"let tag of filteredTags\" rowspan=\"3\">\r\n    <app-tag-item [tag]=\"tag\"></app-tag-item>\r\n  </mat-grid-tile>\r\n</mat-grid-list>"
 
 /***/ }),
 
