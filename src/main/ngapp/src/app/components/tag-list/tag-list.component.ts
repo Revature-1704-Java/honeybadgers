@@ -11,31 +11,25 @@ export class TagListComponent implements OnInit {
   public tags: Tag[];
   public filteredTags: Tag[];
   public tagFilter: string;
-  public searchMode: string;
 
   constructor(private tagService: TagService) { }
 
   ngOnInit() {
-    this.tags = this.tagService.getTags();
-    this.filteredTags = [];
-    this.tags.forEach((tag) => {
-      this.filteredTags.push(tag);
+    // this.tags = this.tagService.getTags();
+    this.tagService.getTags().subscribe((response) => {
+      this.tags = response;
+      this.filteredTags = [];
+      this.tags.forEach((tag) => {
+        this.filteredTags.push(tag);
+      });
     });
-    this.searchMode = "1";
   }
 
   public updateTagList(event):void {
-    if(event.charCode === 32 && parseInt(this.searchMode) === 1) {
+    if(event.charCode === 32) {
       this.filteredTags.splice(0);
       this.tags.forEach((tag) => {
         if(tag.tagName === this.tagFilter.trim()) {
-          this.filteredTags.push(tag);
-        }
-      });
-    } else if(event.charCode === 32 && parseInt(this.searchMode) === 2) {
-      this.filteredTags.splice(0);
-      this.tags.forEach((tag) => {
-        if(tag.creator === this.tagFilter.trim()) {
           this.filteredTags.push(tag);
         }
       });

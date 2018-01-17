@@ -21,6 +21,15 @@ public class QuestionsDao {
 		session.close();
 	}
 	
+	public Questions getQuestion(String question) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		List<Questions> listQuest = session.createQuery("from Questions where question =:namevar").setString("namevar", question).list();
+		if(listQuest.size()== 0) {
+			return null;
+		} 
+		session.close();
+		return listQuest.get(0);
+	}
 	
 	//Simple get question based on qid mostly used for internal purpose
 	public Questions getQuestion(int qid) {
@@ -40,7 +49,7 @@ public class QuestionsDao {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		quest =	session.	createQuery("from Questions where tag = :namevar").
 				setString("namevar", tag).list();
-		if(quest.size() == 0) {
+		if(quest.size() != 0) {
 		for(int i = 0; i <10; i++) {
 			int rand = (int) (Math.random() * quest.size());
 			retquest.add(rdao.getResponses(quest.get(rand)));
