@@ -13,7 +13,7 @@ export class ProfileQuestionListComponent implements OnInit {
   constructor(private questionService: QuestionService) { }
 
   ngOnInit() {
-    this.questionService.getQuestions().subscribe((response) => {
+    this.questionService.questionArray.subscribe((response) => {
       this.questions = response;
       console.log(response);
       console.log(this.questions);
