@@ -45,14 +45,15 @@ pipeline {
         }
       }
     }
-    stage('redeploy') {
-      steps{
-        sh 'mvn tomcat7:redeploy -Dmaven.tomcat.path=/mvnAngular'
+    stage('service restart') {
+      steps {
+        sh 'sudo service mvnAngular restart'
       }
-      post {
-        failure {
-          slackSend baseUrl: 'https://honeybadgerscave.slack.com/services/hooks/jenkins-ci/', channel: 'build', color: 'Red', message: 'Maven Deployment Failure', token: 'vZgaSxqVFuprS2RIO5AOnSBf'
-        }
+    }
+    post {
+      failure {
+        slackSend baseUrl: 'https://honeybadgerscave.slack.com/services/hooks/jenkins-ci/', channel: 'build', color: 'Red', message: 'Maven Package Failure', token: 'vZgaSxqVFuprS2RIO5AOnSBf'
+        sh 'exit 1'
       }
     }
   }
