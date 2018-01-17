@@ -1,10 +1,10 @@
 <div class="quiz-container">
   <div class="content">
     <div class="list-container">
-      <app-question-list *ngIf="questions" [answers]="quizForm.get('answers').value" [(currentQ)]="currentQ"></app-question-list>
+      <app-question-list *ngIf="questions.length>0" [answers]="quizForm.get('answers').value" [(currentQ)]="currentQ"></app-question-list>
     </div>
-    <div class="card-container">
-      <app-quiz-card *ngIf="questions" [parent]="quizForm" [question]="questions[currentQ]" [index]="currentQ">
+    <div class="card-container" *ngIf="questions.length>0">
+      <app-quiz-card [parent]="quizForm" [question]="questions[currentQ]" [index]="currentQ">
       </app-quiz-card>
     </div>
   </div>
