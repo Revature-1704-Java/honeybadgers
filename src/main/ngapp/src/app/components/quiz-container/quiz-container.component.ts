@@ -38,6 +38,7 @@ export class QuizContainerComponent implements OnInit, OnDestroy {
         for (let i = 0; i < this.questions.length; i++) {
           this.addAnswers();
         }
+        console.log(response);
       }
     );
   }
@@ -72,7 +73,6 @@ export class QuizContainerComponent implements OnInit, OnDestroy {
         };
       });
     this.qfs.upadte(Ans);
-    console.log(this.qfs.get());
     this.router.navigate(['results']);
   }
 }
