@@ -3,7 +3,7 @@ import { QuizFormService } from '../../services/quiz-form.service';
 import { QuestionService } from '../../services/question.service';
 import { QuizAnswer } from '../../interfaces/quiz-answer';
 import { Question } from '../../interfaces/question';
-import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { OnDestroy, OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Answer } from '../../interfaces/answer';
 
 @Component({
@@ -11,7 +11,7 @@ import { Answer } from '../../interfaces/answer';
   templateUrl: './quiz-results.component.html',
   styleUrls: ['./quiz-results.component.css']
 })
-export class QuizResultsComponent implements AfterViewInit {
+export class QuizResultsComponent implements OnInit, OnDestroy {
 
   public questions: Question[];
   public userAnswers: QuizAnswer[];
@@ -19,14 +19,9 @@ export class QuizResultsComponent implements AfterViewInit {
   public totalCount: number = 0;
   public correctCount: number = 0;
 
-  constructor(private qs: QuestionService, private qfs: QuizFormService) {
-    // this.questions = this.testQuestions();
-    // this.userAnswers = this.testAnswers();
-    // this.correctAnswers = this.findCorrect();
-    // console.log(this.correctCount);
-  }
+  constructor(private qs: QuestionService, private qfs: QuizFormService) { }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     
     this.qs.getQuestions().subscribe(res => {
       this.questions = res;
@@ -36,38 +31,9 @@ export class QuizResultsComponent implements AfterViewInit {
     this.userAnswers = this.qfs.get();
   }
 
-  // testQuestions(): Question[] {
-  //   let questions: Question[] = [];
-
-  //   for (let i = 0; i < 4; i++){
-  //     let q: Question = {q_id: i, question: 'what?', answers: []};
-  //     q.q_id = i;
-  //     q.question = `Question ${i}`;
-  //     let answers: Answer[] = []
-  //     for (let j = 0; j < 4; j++){
-  //       let a: Answer = { text: `Answer ${j} of Question ${i}`, correct: false };
-  //       a.correct = (j == 2) ? true: false;
-  //       answers.push(a);
-  //     }
-  //     q.answers = answers;
-  //     questions.push(q);
-  //   }
-
-  //   return questions;
-  // }
-
-  // testAnswers(): QuizAnswer[] {
-  //   let quizAnswers: QuizAnswer[] = [];
-
-  //   for (let i = 0; i < 4; i++){
-  //     let qa: QuizAnswer = { q_id: i, answer: i};
-  //     qa.q_id = i;
-  //     qa.answer = i;
-  //     quizAnswers.push(qa);
-  //   }
-
-  //   return quizAnswers;
-  // }
+  ngOnDestroy() {
+    this.qfs.setQuizTaken(false);
+  }
 
   findCorrect(): Answer[] {
     let answers: Answer[] = [];
