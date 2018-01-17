@@ -34,7 +34,7 @@ public class QuestionController {
   public ResponseEntity postQuestion(@RequestBody Questions input) {
     Questions question = input;
     System.out.println(input);
-    Tags tag = question.getTags();
+    Tags tag = question.getTag();
     TagsDao tagsDao = new TagsDao();
     QuestionsDao questionsDao = new QuestionsDao();
     if(tagsDao.getTagByString(tag.getTagName()) == null) {
@@ -42,7 +42,7 @@ public class QuestionController {
     } else {
     		tag = tagsDao.getTagByString(tag.getTagName());
     }
-    question.setTags(tag);
+    question.setTag(tag);
     List<Responses> responses = question.getAnswers();
     for(Responses response : responses) {
       response.setQid(question);

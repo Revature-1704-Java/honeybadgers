@@ -80,7 +80,7 @@ public class AnsweredQuestions {
 
 	@Override
 	public String toString() {
-		return "AnsweredQuestions [quid=" + quid + ", uid=" + uid + ", qid=" + qid + ", success=" + success + "]";
+		return "AnsweredQuestions [quid=" + quid + ", success=" + success + "]";
 	}
 	
 }
