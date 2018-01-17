@@ -1,0 +1,21 @@
+.AddQFormContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.AddQFormContainer > *{
+    width:100%;
+}
+.AddForm{
+    display: flex;
+    flex-direction: column;
+}
+.AnswerFields{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+}
+.Ans{
+    width:80%;
+}

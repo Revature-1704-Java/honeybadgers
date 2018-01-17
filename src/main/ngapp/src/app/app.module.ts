@@ -23,6 +23,7 @@ import { TagItemComponent } from './components/tag-item/tag-item.component';
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileQuestionListComponent } from './components/profile-question-list/profile-question-list.component';
+import { AddQformComponent } from './components/add-qform/add-qform.component';
 import { AuthGuard } from './guards/auth.guard';
 import { QuizResultsGuard } from './guards/quiz-results.guard';
 
@@ -42,6 +43,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     TagItemComponent,
     ProfileComponent,
     ProfileQuestionListComponent,
+    AddQformComponent,
     ChangePasswordComponent
   ],
   imports: [
