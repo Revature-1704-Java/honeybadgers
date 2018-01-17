@@ -39,7 +39,15 @@ public class QuestionsDao {
 		session.close();
 		return quest;
 	}
-	
+
+	//Simple get question based on uid mostly used for internal purpose
+	public List<Questions> getQuestionByUser(int uid) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		List<Questions> quest = session.createQuery("from Questions where userid =:uid").setInteger("uid", uid).list();
+		session.close();
+		return quest;
+	}
+
 	// return a list of 10 Questions objects
 	// question objects do not have the responses in them
 	@SuppressWarnings("unchecked")
