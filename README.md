@@ -4,32 +4,25 @@ Project 2 for the Honey Badgers
 
 ## Getting Started
 
-Currently awaiting project approval
+The site is publicly available at 52.14.182.231:8181
 
 ### Prerequisites
 
-tbd
-
-```
-Nothing here yet
-```
+None needed, only a browser if you care about the views.
 
 ### Installing
 
-Requirement of live host, will need a browser
-
-```
-Download browser of your choice
-```
+No installation necessary
 
 ## Deployment
 
-Our version will be deployed over an EC2 instance with Jenkins used as the CI/CD tool
+Our application will be deployed over an EC2 instance with Jenkins used as the CI/CD tool
 
 ## Built With
 
 * [Angular](http://www.anguler.io)- The web framework used
 * [Maven](https://maven.apache.org/) - Dependency Management
+* [Spring](https://spring.io/) - Enterprise Java Framework
 
 ## Contributing
 
@@ -38,11 +31,11 @@ Please read [CONTRIBUTING.md](https://google.com) for details on our code of con
 
 ## Authors
 
-* **Daniel Ocano** - *Initial work* - [dgcocano](https://github.com/dgcocano)
-* **Jonathan Fenstermacher** - *Initial work* - [JFenstermacher](https://github.com/JFenstermacher)
-* **Kei Peralta** - *Initial work* - [cnmperalta](https://github.com/cnmperalta)
-* **Tzu Chao** - *Initial work* - [pyschometry](https://github.com/psychometry)
-* **John Reidy** - *Initial work* - [jnreidy](https://github.com/jnreidy)
+* **Daniel Ocano** - *Pipeline and Enpoint Design* - [dgcocano](https://github.com/dgcocano)
+* **Jonathan Fenstermacher** - *Login and Signup, Navbar, QuizResults Components* - [JFenstermacher](https://github.com/JFenstermacher)
+* **Kei Peralta** - *Tag List, Profile Views, Question List Components* - [cnmperalta](https://github.com/cnmperalta)
+* **Tzu Chao** - *Quiz Card, Add Question Components* - [pyschometry](https://github.com/psychometry)
+* **John Reidy** - *DB and Respository Design* - [jnreidy](https://github.com/jnreidy)
 
 ## License
 
@@ -50,4 +43,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* TBD
+* Shoutout to Mehrab
