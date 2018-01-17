@@ -42,9 +42,6 @@ export class TagListComponent implements OnInit {
               this.filteredTags.push(tag);
             }
           });
-          // if(tag.tagName === this.tagFilter.trim()) {
-          //   this.filteredTags.push(tag);
-          // }
         });
       }
     }
