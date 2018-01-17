@@ -39,7 +39,6 @@ public class Questions {
 	
 	@ManyToOne
 	@JoinColumn(name="tid")
-	@JsonIgnore
 	Tags tags;
 	
 	@ManyToOne

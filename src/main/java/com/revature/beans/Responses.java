@@ -34,6 +34,14 @@ public class Responses {
 	@Column(name="correct")
 	private boolean correct;
 	
+	public boolean isCorrect() {
+		return correct;
+	}
+
+	public void setCorrect(boolean correct) {
+		this.correct = correct;
+	}
+
 	public Responses() {}
 	
   public Responses(String text, boolean correct) {
