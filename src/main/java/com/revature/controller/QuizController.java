@@ -27,8 +27,11 @@ public class QuizController {
     QuestionsDao questionsDao = new QuestionsDao();
     List<Questions> questions = questionsDao.getTenQuestion(tagname);
     HttpHeaders responseHeaders = new HttpHeaders();
-    if(questions.size() < 10) {
+    if(questions != null) {
       return new ResponseEntity("No questions with that tagname", responseHeaders, HttpStatus.NOT_FOUND);
+    }
+    if(questions.size() < 10) {
+      return new ResponseEntity("Not enough questions with that tagname", responseHeaders, HttpStatus.SERVICE_UNAVAILABLE);
     }
     return new ResponseEntity(questions, responseHeaders, HttpStatus.ACCEPTED);
   }
