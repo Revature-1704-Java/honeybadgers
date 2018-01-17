@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.revature.beans.Questions;
+import com.revature.beans.Tags;
 import com.revature.util.HibernateUtil;
 
 
@@ -44,12 +45,14 @@ public class QuestionsDao {
 	@SuppressWarnings("unchecked")
 	public List<Questions> getTenQuestion(String tag){
 		ResponsesDao rdao = new ResponsesDao();
+		TagsDao tdao = new TagsDao();
+		Tags tags = tdao.getTagByString(tag);
 		List<Questions> quest = new ArrayList<>();
 		List<Questions> retquest = new ArrayList<>();
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		quest =	session.	createQuery("from Questions where tag = :namevar").
-				setString("namevar", tag).list();
-		if(quest.size() != 0) {
+		quest =	session.	createQuery("from Questions where tid = :namevar").
+				setInteger("namevar", tags.getTagId()).list();
+		if(quest.size() == 0) {
 		for(int i = 0; i <10; i++) {
 			int rand = (int) (Math.random() * quest.size());
 			retquest.add(rdao.getResponses(quest.get(rand)));
