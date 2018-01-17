@@ -23,7 +23,7 @@ export class QuizResultsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     
-    this.qs.getQuestions('newTag').subscribe(res => {
+    this.qs.questionArray.subscribe(res => {
       this.questions = res;
       this.correctAnswers = this.findCorrect();
     });

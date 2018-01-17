@@ -16,11 +16,9 @@ import { TagService } from '../../services/tag.service';
 })
 export class QuizContainerComponent implements OnInit, OnDestroy {
   subscription: Subscription;
-  subscription2: Subscription;
   questions: Question[];
   quizForm: FormGroup;
   currentQ = 0;
-  tagId: number;
   tagName: string;
   get answers(): FormArray {
     return <FormArray > this.quizForm.get('answers');
@@ -30,10 +28,11 @@ export class QuizContainerComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.tagName = this.route.snapshot.params['tagName'];
+    this.qs.getQuestions(this.tagName);
     this.quizForm = this.fb.group({
       answers: this.fb.array([])
     });
-    this.subscription = this.qs.getQuestions(this.tagName).subscribe(
+    this.subscription = this.qs.questionArray.subscribe(
       response => {
         this.questions = response;
         for (let i = 0; i < this.questions.length; i++) {

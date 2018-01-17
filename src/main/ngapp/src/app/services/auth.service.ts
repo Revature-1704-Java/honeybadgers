@@ -12,7 +12,7 @@ export class AuthService {
   private loggedIn = new BehaviorSubject<User>(null);
   constructor(private router: Router, private http: HttpClient) { }
 
-  isLoggedIn() : Observable<User> {
+  isLoggedIn(): Observable<User> {
     return this.loggedIn.asObservable();
   }
 
