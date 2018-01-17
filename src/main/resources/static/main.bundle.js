@@ -739,8 +739,9 @@ module.exports = "<mat-card *ngFor=\"let q of questions\">\r\n  <mat-card-conten
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfileQuestionListComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_question_service__ = __webpack_require__("../../../../../src/app/services/question.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_question_service__ = __webpack_require__("../../../../../src/app/services/question.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -753,18 +754,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ProfileQuestionListComponent = (function () {
-    function ProfileQuestionListComponent(authService, questionService) {
+    function ProfileQuestionListComponent(router, authService, questionService) {
+        this.router = router;
         this.authService = authService;
         this.questionService = questionService;
     }
     ProfileQuestionListComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.authService.isLoggedIn().subscribe(function (user) {
-            _this.username = user.username;
-        });
-        this.questionService.getQuestionsByUsername(this.username).subscribe(function (response) {
-            _this.questions = response;
+            if (user === null) {
+                _this.router.navigate(['/']);
+            }
+            else {
+                _this.username = user.username;
+                _this.questionService.getQuestionsByUsername(_this.username).subscribe(function (response) {
+                    _this.questions = response;
+                });
+            }
         });
     };
     ProfileQuestionListComponent = __decorate([
@@ -773,7 +781,7 @@ var ProfileQuestionListComponent = (function () {
             template: __webpack_require__("../../../../../src/app/components/profile-question-list/profile-question-list.component.html"),
             styles: [__webpack_require__("../../../../../src/app/components/profile-question-list/profile-question-list.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_1__services_question_service__["a" /* QuestionService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_2__services_question_service__["a" /* QuestionService */]])
     ], ProfileQuestionListComponent);
     return ProfileQuestionListComponent;
 }());
