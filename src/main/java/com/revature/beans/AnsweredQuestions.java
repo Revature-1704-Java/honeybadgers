@@ -31,7 +31,6 @@ public class AnsweredQuestions {
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="qid")
-	@JsonIgnore
 	Questions qid;
 	
 	@Column(name="success")
@@ -54,11 +53,11 @@ public class AnsweredQuestions {
 		this.quid = quid;
 	}
 
-	public Users getUid() {
+	public Users getId() {
 		return uid;
 	}
 
-	public void setUid(Users uid) {
+	public void setId(Users uid) {
 		this.uid = uid;
 	}
 
