@@ -43,6 +43,7 @@ public class Questions {
 	
 	@ManyToOne
 	@JoinColumn(name="userid")
+  @JsonIgnore
 	Users user;
 	
 //	@OneToMany(mappedBy="qid", fetch=FetchType.LAZY)

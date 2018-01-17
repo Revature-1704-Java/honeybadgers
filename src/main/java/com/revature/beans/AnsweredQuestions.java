@@ -56,7 +56,8 @@ public class AnsweredQuestions {
 	public Users getId() {
 		return uid;
 	}
-
+  
+  @JsonIgnore
 	public void setId(Users uid) {
 		this.uid = uid;
 	}
