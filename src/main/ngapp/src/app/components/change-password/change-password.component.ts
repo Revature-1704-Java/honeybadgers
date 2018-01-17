@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
+import { User } from '../../interfaces/user';
 
 @Component({
   selector: 'app-change-password',
@@ -11,26 +13,32 @@ export class ChangePasswordComponent implements OnInit {
   public password: string;
   public newPassword: string;
   public confirmNewPassword: string;
-  public updatePasswordError: string;
+  public updatePasswordMessage: string;
   private correctPassword: string;
+  private username: string;
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private router: Router, private http: HttpClient, private authService: AuthService) { }
 
   ngOnInit() {
     this.authService.isLoggedIn().subscribe((user) => {
-      this.correctPassword = user.password;
+      if(user === null) {
+        this.router.navigate['/'];
+      } else {
+        this.correctPassword = user.password;
+        this.username = user.username;
+      }
     });
   }
 
   public updatePassword(): void {
     if(this.password !== this.correctPassword) {
-      this.updatePasswordError = "Wrong current password.";
+      this.updatePasswordMessage = "Wrong current password.";
     } else if(this.newPassword.length < 8) {
-      this.updatePasswordError = "Password must be at least 8 characters.";
+      this.updatePasswordMessage = "Password must be at least 8 characters.";
     } else if(this.newPassword === this.confirmNewPassword) {
-      this.updatePasswordError = "";
+      this.updatePasswordMessage = "";
       // make asynchronous call here
-      this.http.put("http://192.168.0.2:8181/user/notAdmin",
+      this.http.put<User>("http://52.14.182.231:8181/user/" + this.username,
         { 
           "password" : this.newPassword 
         },
@@ -40,11 +48,23 @@ export class ChangePasswordComponent implements OnInit {
           }
         }
       ).subscribe((response) => {
-        console.log(response);
+        if(this.newPassword === response.password) {
+          this.password = '';
+          this.newPassword = '';
+          this.confirmNewPassword = '';
+          this.updatePasswordMessage = "Password updated.";
+          this.authService.updateUser(response);
+          this.authService.isLoggedIn().subscribe((user) => {
+            this.correctPassword = user.password;
+            this.username = user.username;
+          });
+        } else {
+          this.updatePasswordMessage = "Failed to update password.";
+        }
       });
 
     } else {
-      this.updatePasswordError = "Passwords don't match.";
+      this.updatePasswordMessage = "Passwords don't match.";
     }
   }
 
