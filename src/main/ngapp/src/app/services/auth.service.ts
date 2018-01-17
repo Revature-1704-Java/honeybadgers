@@ -27,4 +27,8 @@ export class AuthService {
   logout() {
     this.loggedIn.next(null);
   }
+
+  updateUser(newUser: User): void {
+    this.loggedIn.next(newUser);
+  }
 }

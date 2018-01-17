@@ -452,7 +452,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/change-password/change-password.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Change your password</h3>\r\n<form>\r\n  <mat-form-field>\r\n    <input matInput [(ngModel)]=\"password\" type=\"password\" id=\"currentPassword\" name=\"currentPassword\" placeholder=\"Current Password\" />\r\n  </mat-form-field><br />\r\n  <mat-form-field>\r\n    <input matInput [(ngModel)]=\"newPassword\" type=\"password\" id=\"newPassword\" name=\"newPassword\" placeholder=\"New Password\" />\r\n  </mat-form-field><br />\r\n  <mat-form-field>\r\n      <input matInput [(ngModel)]=\"confirmNewPassword\" type=\"password\" id=\"confirmNewPassword\" name=\"confirmNewPassword\" placeholder=\"Confirm Password\" />\r\n  </mat-form-field><br />\r\n  <button mat-button (click)=\"updatePassword()\">Submit</button>\r\n</form>\r\n<span *ngIf=\"updatePasswordError\">{{ updatePasswordError }}</span>"
+module.exports = "<h3>Change your password</h3>\r\n<form>\r\n  <mat-form-field>\r\n    <input matInput [(ngModel)]=\"password\" type=\"password\" id=\"currentPassword\" name=\"currentPassword\" placeholder=\"Current Password\" />\r\n  </mat-form-field><br />\r\n  <mat-form-field>\r\n    <input matInput [(ngModel)]=\"newPassword\" type=\"password\" id=\"newPassword\" name=\"newPassword\" placeholder=\"New Password\" />\r\n  </mat-form-field><br />\r\n  <mat-form-field>\r\n      <input matInput [(ngModel)]=\"confirmNewPassword\" type=\"password\" id=\"confirmNewPassword\" name=\"confirmNewPassword\" placeholder=\"Confirm Password\" />\r\n  </mat-form-field><br />\r\n  <button mat-button (click)=\"updatePassword()\">Submit</button>\r\n</form>\r\n<span *ngIf=\"updatePasswordMessage\">{{ updatePasswordMessage }}</span>"
 
 /***/ }),
 
@@ -462,8 +462,9 @@ module.exports = "<h3>Change your password</h3>\r\n<form>\r\n  <mat-form-field>\
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChangePasswordComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -476,39 +477,58 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ChangePasswordComponent = (function () {
-    function ChangePasswordComponent(http, authService) {
+    function ChangePasswordComponent(router, http, authService) {
+        this.router = router;
         this.http = http;
         this.authService = authService;
     }
     ChangePasswordComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.authService.isLoggedIn().subscribe(function (user) {
-            _this.correctPassword = user.password;
+            if (user !== null) {
+                _this.correctPassword = user.password;
+                _this.username = user.username;
+            }
         });
     };
     ChangePasswordComponent.prototype.updatePassword = function () {
+        var _this = this;
         if (this.password !== this.correctPassword) {
-            this.updatePasswordError = "Wrong current password.";
+            this.updatePasswordMessage = "Wrong current password.";
         }
         else if (this.newPassword.length < 8) {
-            this.updatePasswordError = "Password must be at least 8 characters.";
+            this.updatePasswordMessage = "Password must be at least 8 characters.";
         }
         else if (this.newPassword === this.confirmNewPassword) {
-            this.updatePasswordError = "";
+            this.updatePasswordMessage = "";
             // make asynchronous call here
-            this.http.put("http://192.168.0.2:8181/user/notAdmin", {
+            this.http.put("http://52.14.182.231:8181/user/" + this.username, {
                 "password": this.newPassword
             }, {
                 headers: {
                     "Content-Type": "application/json"
                 }
             }).subscribe(function (response) {
-                console.log(response);
+                if (_this.newPassword === response.password) {
+                    _this.password = '';
+                    _this.newPassword = '';
+                    _this.confirmNewPassword = '';
+                    _this.updatePasswordMessage = "Password updated.";
+                    _this.authService.updateUser(response);
+                    _this.authService.isLoggedIn().subscribe(function (user) {
+                        _this.correctPassword = user.password;
+                        _this.username = user.username;
+                    });
+                }
+                else {
+                    _this.updatePasswordMessage = "Failed to update password.";
+                }
             });
         }
         else {
-            this.updatePasswordError = "Passwords don't match.";
+            this.updatePasswordMessage = "Passwords don't match.";
         }
     };
     ChangePasswordComponent = __decorate([
@@ -517,7 +537,7 @@ var ChangePasswordComponent = (function () {
             template: __webpack_require__("../../../../../src/app/components/change-password/change-password.component.html"),
             styles: [__webpack_require__("../../../../../src/app/components/change-password/change-password.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */]])
     ], ChangePasswordComponent);
     return ChangePasswordComponent;
 }());
@@ -739,9 +759,8 @@ module.exports = "<mat-card *ngFor=\"let q of questions\">\r\n  <mat-card-conten
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfileQuestionListComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_question_service__ = __webpack_require__("../../../../../src/app/services/question.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_question_service__ = __webpack_require__("../../../../../src/app/services/question.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -754,10 +773,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var ProfileQuestionListComponent = (function () {
-    function ProfileQuestionListComponent(router, authService, questionService) {
-        this.router = router;
+    function ProfileQuestionListComponent(authService, questionService) {
         this.authService = authService;
         this.questionService = questionService;
     }
@@ -778,7 +795,7 @@ var ProfileQuestionListComponent = (function () {
             template: __webpack_require__("../../../../../src/app/components/profile-question-list/profile-question-list.component.html"),
             styles: [__webpack_require__("../../../../../src/app/components/profile-question-list/profile-question-list.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_2__services_question_service__["a" /* QuestionService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_1__services_question_service__["a" /* QuestionService */]])
     ], ProfileQuestionListComponent);
     return ProfileQuestionListComponent;
 }());
@@ -1643,6 +1660,9 @@ var AuthService = (function () {
     };
     AuthService.prototype.logout = function () {
         this.loggedIn.next(null);
+    };
+    AuthService.prototype.updateUser = function (newUser) {
+        this.loggedIn.next(newUser);
     };
     AuthService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
