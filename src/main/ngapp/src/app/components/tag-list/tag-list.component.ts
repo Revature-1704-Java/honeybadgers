@@ -23,27 +23,30 @@ export class TagListComponent implements OnInit {
         this.filteredTags.push(tag);
       });
     });
+    this.tagFilter = '';
   }
 
   public updateTagList(event):void {
-    if(this.tagFilter !== undefined && this.tagFilter.length === 0) {
-      this.filteredTags.splice(0);
-      this.tags.forEach((tag) => {
-        this.filteredTags.push(tag);
-      });
-    } else {
-      let filterTerms: string[] = this.tagFilter.split(" ");
-      this.filteredTags.splice(0);
-      this.tags.forEach((tag) => {
-        filterTerms.forEach((term) => {
-          if(tag.tagName === term) {
-            this.filteredTags.push(tag);
-          }
+    if(this.filteredTags !== undefined) {
+      if(this.tagFilter.length === 0) {
+        this.filteredTags.splice(0);
+        this.tags.forEach((tag) => {
+          this.filteredTags.push(tag);
         });
-        // if(tag.tagName === this.tagFilter.trim()) {
-        //   this.filteredTags.push(tag);
-        // }
-      });
+      } else {
+        let filterTerms: string[] = this.tagFilter.trim().split(" ");
+        this.filteredTags.splice(0);
+        this.tags.forEach((tag) => {
+          filterTerms.forEach((term) => {
+            if(tag.tagName === term) {
+              this.filteredTags.push(tag);
+            }
+          });
+          // if(tag.tagName === this.tagFilter.trim()) {
+          //   this.filteredTags.push(tag);
+          // }
+        });
+      }
     }
   }
 
