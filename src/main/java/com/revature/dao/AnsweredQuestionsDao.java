@@ -26,12 +26,11 @@ public class AnsweredQuestionsDao {
 	// Returned AnsweredQuestions objects have questions stored in qid property
 	// but only store int pk of questions in database
 	@SuppressWarnings("unchecked")
-	public Users getUsersAedQ(Users currentUser){
+	public List<AnsweredQuestions> getUsersAedQ(Users currentUser){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<AnsweredQuestions> aedq = session.createQuery("from AnsweredQuestions where userid = :namevar").
 				setInteger("namevar", currentUser.getId()).list();
 		session.close();
-		currentUser.setAedq(aedq);
-		return currentUser;		
+		return aedq;		
 	}
 }

@@ -48,6 +48,7 @@ public class Users {
 	
 //	@OneToMany(mappedBy="uid")
 	@OneToMany(fetch=FetchType.EAGER)
+  @JsonIgnore
 	List<AnsweredQuestions> aedq;
 	
 	@OneToMany(fetch=FetchType.EAGER)

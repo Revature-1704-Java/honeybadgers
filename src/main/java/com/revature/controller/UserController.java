@@ -3,6 +3,7 @@ package com.revature.application.controller;
 import com.revature.dao.*;
 import com.revature.beans.*;
 
+import java.util.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -54,5 +55,60 @@ public class UserController {
     usersDao.updateUser(currentUser);
     return new ResponseEntity(currentUser, responseHeaders, HttpStatus.OK);
   }
+
+  @RequestMapping(value="/{username}/answeredQuestions", method=RequestMethod.POST)
+  public ResponseEntity getUsersAnsweredQuestions(@PathVariable String username, @RequestBody List<AnsweredQuestions> answeredQuestions) {
+    AnsweredQuestionsDao answeredQuestionsDao = new AnsweredQuestionsDao();
+    UsersDao usersDao = new UsersDao();
+    Users user = usersDao.getUser(username);
+    HttpHeaders responseHeaders = new HttpHeaders();
+
+    if(user == null) {
+      return new ResponseEntity(user, responseHeaders, HttpStatus.NOT_FOUND);
+    }
+    for(AnsweredQuestions aq : answeredQuestions) {
+      aq.setId(user);
+      answeredQuestionsDao.saveAnsweredQuestion(aq);
+    }
+
+    if(answeredQuestions == null) {
+      return new ResponseEntity("No questions with that id", responseHeaders, HttpStatus.NOT_FOUND);
+    }
+    return new ResponseEntity(answeredQuestions, responseHeaders, HttpStatus.ACCEPTED);
+  }
+
+  @RequestMapping(value="/{username}/answeredQuestions", method=RequestMethod.GET)
+  public ResponseEntity getUsersAnsweredQuestions(@PathVariable String username) {
+    AnsweredQuestionsDao answeredQuestionsDao = new AnsweredQuestionsDao();
+    UsersDao usersDao = new UsersDao();
+    Users user = usersDao.getUser(username);
+    HttpHeaders responseHeaders = new HttpHeaders();
+
+    if(user == null) {
+      return new ResponseEntity(user, responseHeaders, HttpStatus.NOT_FOUND);
+    }
+    List<AnsweredQuestions> answeredQuestions = answeredQuestionsDao.getUsersAedQ(user);
+    if(answeredQuestions == null) {
+      return new ResponseEntity("No questions with that id", responseHeaders, HttpStatus.NOT_FOUND);
+    }
+    return new ResponseEntity(answeredQuestions, responseHeaders, HttpStatus.ACCEPTED);
+  }
+  @RequestMapping(value="/{username}/questions", method=RequestMethod.GET)
+  public ResponseEntity getUsersQuestions(@PathVariable String username) {
+    QuestionsDao questionsDao = new QuestionsDao();
+    UsersDao usersDao = new UsersDao();
+    Users user = usersDao.getUser(username);
+    HttpHeaders responseHeaders = new HttpHeaders();
+
+    if(user == null) {
+      return new ResponseEntity(user, responseHeaders, HttpStatus.NOT_FOUND);
+    }
+    List<Questions> questions = questionsDao.getQuestionByUser(user.getId());
+    if(questions == null) {
+      return new ResponseEntity("No questions with that id", responseHeaders, HttpStatus.NOT_FOUND);
+    }
+    return new ResponseEntity(questions, responseHeaders, HttpStatus.ACCEPTED);
+  }
+
 
 }
