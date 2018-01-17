@@ -33,6 +33,7 @@ public class QuestionController {
   @PostMapping
   public ResponseEntity postQuestion(@RequestBody Questions input) {
     Questions question = input;
+    System.out.println(input);
     Tags tag = question.getTags();
     TagsDao tagsDao = new TagsDao();
     QuestionsDao questionsDao = new QuestionsDao();
