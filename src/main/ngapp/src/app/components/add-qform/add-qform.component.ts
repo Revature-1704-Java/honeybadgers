@@ -19,15 +19,16 @@ export class AddQformComponent implements OnInit {
   tagList: Tag[];
   QForm: FormGroup;
   Question2Submit: Question;
+  submitAttempted = false;
   ngOnInit() {
     this.ts.getTags().subscribe(res => {
       this.tagList = res;
     });
     this.QForm = this.fb.group(
       {
-        Question: ['', Validators.required],
-        Tag: ['', Validators.required],
-        Answers: this.fb.array([], CustomValidator.onlyOneCorrectAnswer)
+        question: ['', Validators.required],
+        tag: ['', Validators.required],
+        answers: this.fb.array([], CustomValidator.onlyOneCorrectAnswer)
       }
     );
     this.addAnswers();
@@ -36,24 +37,42 @@ export class AddQformComponent implements OnInit {
   // ngAfterViewChecked() {
   //   console.log(this.QForm);
   // }
-  get Answers(): FormArray {
-    return this.QForm.get('Answers') as FormArray;
+  get answers(): FormArray {
+    return this.QForm.get('answers') as FormArray;
   }
-  addAnswers(): void {
-    this.Answers.push(this.fb.group({
+  addAnswers(e?): void {
+    if (e) {
+      e.preventDefault();
+    }
+    this.answers.push(this.fb.group({
       text: ['', Validators.required],
       correct: [false, Validators.required]
     }));
   }
   deleteAnswer(i: number): void {
-    this.Answers.removeAt(i);
+    this.answers.removeAt(i);
   }
   getAnswersArrayErrorMessage(): string {
-    if (this.QForm.get('Answers').hasError('moreThanOne')) {
+    if (this.QForm.get('answers').hasError('moreThanOne')) {
       return 'Only One Correct Answer Allowed';
-    }else if (this.QForm.get('Answers').hasError('noCorrect')) {
+    }else if (this.QForm.get('answers').hasError('noCorrect')) {
       return 'No Correct Answer Selected';
     }
     return null;
+  }
+  onSubmit() {
+    this.submitAttempted = true;
+    if (this.QForm.valid) {
+      this.User.isLoggedIn().subscribe(res => {
+        this.Question2Submit = {
+          q_id: 0,
+          tag: this.QForm.get('tag').value,
+          user: res,
+          question: this.QForm.get('question').value,
+          answers: this.QForm.get('answers').value
+        };
+        this.qs.postQuestion(this.Question2Submit).subscribe();
+      });
+    }
   }
 }

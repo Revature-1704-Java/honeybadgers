@@ -1,38 +1,41 @@
 <div class="AddQFormContainer">
-  <form class="AddForm" [formGroup]="QForm">
+  <form class="AddForm" [formGroup]="QForm" (ngSubmit)="onSubmit()">
     <mat-form-field>
-      <textarea matInput formControlName="Question" placeholder="Question"></textarea>
-      <mat-error *ngIf="QForm.get('Question').invalid">*Field Required</mat-error>
+      <textarea matInput formControlName="question" placeholder="Question"></textarea>
+      <mat-error *ngIf="QForm.get('question').invalid">*Field Required</mat-error>
     </mat-form-field>
     <mat-form-field *ngIf="tagList">
-      <mat-select placeholder="Tag" formControlName="Tag">
+      <mat-select placeholder="Tag" formControlName="tag">
         <mat-option *ngFor="let t of tagList" [value]="t">
           {{t.tagName}}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="QForm.get('Tag').invalid">*Field Required</mat-error>
+      <mat-error *ngIf="QForm.get('tag').invalid">*Field Required</mat-error>
     </mat-form-field>
-    <div class="AFcontainer" formArrayName="Answers">
-      <mat-error class="ArrayErr" *ngIf="Answers.invalid">{{getAnswersArrayErrorMessage()}}</mat-error>
-      <div class="AnswerFields" *ngFor="let a of Answers.controls; let i=index" [formGroupName]="i">
+    <div class="AFcontainer" formArrayName="answers">
+      <mat-error class="ArrayErr" *ngIf="answers.invalid && (answers.touched||submitAttempted)">{{getAnswersArrayErrorMessage()}}</mat-error>
+      <div class="AnswerFields" *ngFor="let a of answers.controls; let i=index" [formGroupName]="i">
         <mat-form-field class="Ans">
           <textarea matInput formControlName="text" placeholder="Answer {{i+1}}"></textarea>
-          <mat-error *ngIf="a.get('text').invalid">*Field Required</mat-error>
+          <mat-error *ngIf="a.get('text').invalid && (a.get('text').touched||submitAttempted)">*Field Required</mat-error>
         </mat-form-field>
         <div class="SideControl">
           <mat-slide-toggle formControlName="correct">Correct Answer</mat-slide-toggle>
         </div>
-        <div *ngIf="Answers.length>2" class="SideControl">
+        <div *ngIf="answers.length>2" class="SideControl">
           <button mat-icon-button color="primary" (click)="deleteAnswer(i)">
             <mat-icon>close</mat-icon>
           </button>
         </div>
       </div>
-      <span *ngIf="Answers.length<7">
-        <button (click)="addAnswers()" mat-mini-fab color="primary">+</button>
+      <span *ngIf="answers.length<7">
+        <button (click)="addAnswers($event)" mat-mini-fab color="primary">+</button>
         Add Answer
       </span>
-      <span *ngIf="Answers.length>=7">Maximum Allowed Choices Reached!</span>
+      <span *ngIf="answers.length>=7">Maximum Allowed Choices Reached!</span>
+    </div>
+    <div class="BottomControl">
+        <button mat-raised-button color="primary" type="submit">Submit</button>
     </div>
   </form>
 </div>
