@@ -16,10 +16,12 @@ export class ProfileQuestionListComponent implements OnInit {
 
   ngOnInit() {
     this.authService.isLoggedIn().subscribe((user) => {
-      this.username = user.username;
-    });
-    this.questionService.getQuestionsByUsername(this.username).subscribe((response) => {
-      this.questions = response;
+      if(user !== null) {
+        this.username = user.username;
+        this.questionService.getQuestionsByUsername(this.username).subscribe((response) => {
+          this.questions = response;
+        });
+      }
     });
   }
 
