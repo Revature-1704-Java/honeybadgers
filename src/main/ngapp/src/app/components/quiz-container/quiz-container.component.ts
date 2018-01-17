@@ -7,6 +7,7 @@ import { QuizAnswer } from '../../interfaces/quiz-answer';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
+import { TagService } from '../../services/tag.service';
 
 @Component({
   selector: 'app-quiz-container',
@@ -15,24 +16,26 @@ import { Router } from '@angular/router';
 })
 export class QuizContainerComponent implements OnInit, OnDestroy {
   subscription: Subscription;
+  subscription2: Subscription;
   questions: Question[];
   quizForm: FormGroup;
   currentQ = 0;
   tagId: number;
+  tagName: string;
   get answers(): FormArray {
     return <FormArray > this.quizForm.get('answers');
   }
-  constructor(private route: ActivatedRoute, private qs: QuestionService, private qfs: QuizFormService,
-    private fb: FormBuilder, private router: Router) {}
+  constructor(private route: ActivatedRoute, private qs: QuestionService, private qfs: QuizFormService
+    , private fb: FormBuilder, private router: Router) {}
 
   ngOnInit() {
-    this.tagId = parseInt(this.route.snapshot.params['tagId']);
+    this.tagName = this.route.snapshot.params['tagName'];
     this.quizForm = this.fb.group({
       answers: this.fb.array([])
     });
-    this.subscription = this.qs.getQuestions().subscribe(
-      res => {
-        this.questions = res;
+    this.subscription = this.qs.getQuestions(this.tagName).subscribe(
+      response => {
+        this.questions = response;
         for (let i = 0; i < this.questions.length; i++) {
           this.addAnswers();
         }
@@ -65,7 +68,8 @@ export class QuizContainerComponent implements OnInit, OnDestroy {
       (q, index) => {
         return {
           q_id: q.q_id,
-          answer: userAns[index].answer
+          answer: userAns[index].answer,
+          tagName: this.tagName
         };
       });
     this.qfs.upadte(Ans);

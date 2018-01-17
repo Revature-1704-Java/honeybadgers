@@ -8,7 +8,7 @@ export class QuestionService {
   questions: Observable<Question[]>;
   constructor(private http: HttpClient) { }
 
-  getQuestions(): Observable<Question[]> {
+  getQuestions(tagname: string): Observable<Question[]> {
     this.questions = this.http.get<Question[]>('../assets/mockdata.json');
     return this.questions;
   }
