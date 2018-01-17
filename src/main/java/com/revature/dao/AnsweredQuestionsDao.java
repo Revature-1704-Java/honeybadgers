@@ -14,11 +14,10 @@ public class AnsweredQuestionsDao {
 	
 	//called when a user submits a question they've answered
 	//boolean correct if they have answered question correctly set to true
-	public void questionAnswered(Users currentUser, Questions cQuest, boolean correct) {
-		AnsweredQuestions aedq = new AnsweredQuestions(currentUser, cQuest, correct);
+  public void saveAnsweredQuestion(AnsweredQuestions aq) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		session.save(aedq);
+		session.save(aq);
 		tx.commit();
 		session.close();
 	}

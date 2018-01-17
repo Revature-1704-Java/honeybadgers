@@ -47,6 +47,7 @@ public class Questions {
 	
 //	@OneToMany(mappedBy="qid", fetch=FetchType.LAZY)
 	@OneToMany(fetch=FetchType.EAGER)
+  @JsonIgnore
 	List<AnsweredQuestions> qaed;
 	
 //	@OneToMany(mappedBy="qid", fetch=FetchType.LAZY)
