@@ -68,7 +68,7 @@ public class QuestionsDao {
 	public void updateSuccess(Questions quest) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		Questions q = getQuestion(quest.getQid());
+		Questions q = getQuestion(quest.getQ_id());
 		q.setSuccesses(q.getSuccesses() + 1);
 		q.setTotal(q.getTotal() + 1);
 		session.update(q);
@@ -82,7 +82,7 @@ public class QuestionsDao {
 	public void updateTotal(Questions quest) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		Questions q = getQuestion(quest.getQid());
+		Questions q = getQuestion(quest.getQ_id());
 		q.setTotal(q.getTotal() + 1);
 		session.update(q);
 		tx.commit();

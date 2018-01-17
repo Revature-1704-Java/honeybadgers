@@ -39,12 +39,11 @@ public class Questions {
 	
 	@ManyToOne
 	@JoinColumn(name="tid")
-	Tags tags;
+	Tags tag;
 	
 	@ManyToOne
 	@JoinColumn(name="userid")
-	@JsonIgnore
-	Users userCreator;
+	Users user;
 	
 //	@OneToMany(mappedBy="qid", fetch=FetchType.LAZY)
 	@OneToMany(fetch=FetchType.EAGER)
@@ -76,7 +75,7 @@ public class Questions {
 	@Override
 	public String toString() {
 		return "Questions [qid=" + q_id + ", question=" + question + ", successes=" + successes
-				+ ", total=" + total + ", tag=" + tags + ", qaed=" + qaed + ", answers=" + answers + "]";
+				+ ", total=" + total + ", tag=" + tag + ", qaed=" + qaed + ", answers=" + answers + "]";
 	}
 	
 	public List<AnsweredQuestions> getQaed() {
@@ -99,10 +98,10 @@ public class Questions {
 	}
 
 
-	public int getQid() {
+	public int getQ_id() {
 		return q_id;
 	}
-	public void setQid(int qid) {
+	public void setQ_id(int qid) {
 		this.q_id = qid;
 	}
 	public String getQuestion() {
@@ -126,21 +125,21 @@ public class Questions {
 	}
 
 
-	public Tags getTags() {
-		return tags;
+	public Tags getTag() {
+		return tag;
 	}
-	public void setTags(Tags tags) {
-		this.tags = tags;
-	}
-
-
-	public Users getUserCreator() {
-		return userCreator;
+	public void setTag(Tags tag) {
+		this.tag = tag;
 	}
 
 
-	public void setUserCreator(Users userCreator) {
-		this.userCreator = userCreator;
+	public Users getUser() {
+		return user;
+	}
+
+
+	public void setUser(Users user) {
+		this.user = user;
 	}
 	
 	

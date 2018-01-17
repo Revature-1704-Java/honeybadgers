@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="Users")
@@ -35,7 +35,7 @@ public class Users {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="userSeq")
 	@SequenceGenerator(allocationSize=1, name="userSeq", sequenceName="USER_SEQ")	
 	@Column(name="userid")
-	private int userid;
+	private int id;
 	
 	@Column(name="username", unique=true)
 	private String username;
@@ -51,7 +51,8 @@ public class Users {
 	List<AnsweredQuestions> aedq;
 	
 	@OneToMany(fetch=FetchType.EAGER)
-	List<Tags> createdTags;
+	@JsonIgnore
+	List<Questions> createdquestions;
 	
 	public List<AnsweredQuestions> getAedq() {
 		return aedq;
@@ -68,11 +69,11 @@ public class Users {
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
-	public int getUid() {
-		return userid;
+	public int getId() {
+		return id;
 	}
-	public void setUid(int uid) {
-		this.userid = uid;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getUsername() {
 		return username;
@@ -89,7 +90,7 @@ public class Users {
 
 	@Override
 	public String toString() {
-		return "Users [userid=" + userid + ", username=" + username + ", password=" + password + "]";
+		return "Users [userid=" + id + ", username=" + username + ", password=" + password + "]";
 	}
 	
 }

@@ -22,12 +22,12 @@ public class TagsDao {
 	public Questions getTag(Questions quest) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<Tags> tags = session.createQuery("from Tags where qid = :namevar").
-				setInteger("namevar", quest.getQid()).list();
+				setInteger("namevar", quest.getQ_id()).list();
 		session.close();
 		if(tags.size() == 0) {
 			return null;
 		}
-		quest.setTags(tags.get(0));
+		quest.setTag(tags.get(0));
 		return quest;
 	}
 	
