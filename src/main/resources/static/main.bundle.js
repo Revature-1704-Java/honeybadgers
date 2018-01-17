@@ -487,7 +487,7 @@ var ChangePasswordComponent = (function () {
     ChangePasswordComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.authService.isLoggedIn().subscribe(function (user) {
-            if (user === null) {
+            if (user !== null) {
                 _this.correctPassword = user.password;
                 _this.username = user.username;
             }

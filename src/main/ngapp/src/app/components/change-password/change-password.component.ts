@@ -21,7 +21,7 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit() {
     this.authService.isLoggedIn().subscribe((user) => {
-      if(user === null) {
+      if(user !== null) {
         this.correctPassword = user.password;
         this.username = user.username;
       }
