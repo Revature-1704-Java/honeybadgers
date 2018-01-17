@@ -1,6 +1,15 @@
-<div *ngFor="let q of questions" class="question">
+<mat-card *ngFor="let q of questions">
+  <mat-card-content>
+    <p>{{ q.question }}</p>
+    <mat-list>
+      <mat-list-item *ngFor="let a of q.answers">{{ a.text }}</mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+
+<!-- <div *ngFor="let q of questions" class="question">
   <p>{{ q.question }}</p>
   <ul>
     <li *ngFor="let a of q.answers">{{ a.text }}</li>
   </ul>
-</div>
+</div> -->
