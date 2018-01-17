@@ -29,6 +29,7 @@ public class Tags {
 
 	
 	@OneToMany
+	@JsonIgnore
 	List<Questions> taggedQuestions;
 	
 	public Tags() {}

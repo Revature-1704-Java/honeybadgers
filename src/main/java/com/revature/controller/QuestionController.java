@@ -33,13 +33,21 @@ public class QuestionController {
   @PostMapping
   public ResponseEntity postQuestion(@RequestBody Questions input) {
     Questions question = input;
+    System.out.println(input);
+    Tags tag = question.getTags();
+    TagsDao tagsDao = new TagsDao();
     QuestionsDao questionsDao = new QuestionsDao();
+    if(tagsDao.getTagByString(tag.getTagName()) == null) {
+    		tagsDao.saveTag(tag);
+    } else {
+    		tag = tagsDao.getTagByString(tag.getTagName());
+    }
+    question.setTags(tag);
     List<Responses> responses = question.getAnswers();
     for(Responses response : responses) {
       response.setQid(question);
     }
     question.setAnswers(responses);
-    
      /*for(int i = 0; i < question.getResponses().size(); i++) {
       question.getResponses().get(i).setQid(question);
      }
