@@ -1,13 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
-import { Validators } from '@angular/forms/';
-import { Tag } from '../../interfaces/tag';
-import { TagService } from '../../services/tag.service';
-import { QuestionService } from '../../services/question.service';
-import { AuthService } from '../../services/auth.service';
-import { AfterViewChecked } from '@angular/core/src/metadata/lifecycle_hooks';
-import { CustomValidator } from '../../customValidator';
-import { Question } from '../../interfaces/question';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormArray
+} from '@angular/forms';
+import {
+  Validators
+} from '@angular/forms/';
+import {
+  Tag
+} from '../../interfaces/tag';
+import {
+  TagService
+} from '../../services/tag.service';
+import {
+  QuestionService
+} from '../../services/question.service';
+import {
+  AuthService
+} from '../../services/auth.service';
+import {
+  AfterViewChecked
+} from '@angular/core/src/metadata/lifecycle_hooks';
+import {
+  CustomValidator
+} from '../../customValidator';
+import {
+  Question
+} from '../../interfaces/question';
+import {
+  Router
+} from '@angular/router';
 
 @Component({
   selector: 'app-add-qform',
@@ -15,7 +41,12 @@ import { Question } from '../../interfaces/question';
   styleUrls: ['./add-qform.component.css']
 })
 export class AddQformComponent implements OnInit {
-  constructor(private fb: FormBuilder, private ts: TagService, private qs: QuestionService, private User: AuthService) { }
+  constructor(
+    private fb: FormBuilder,
+    private ts: TagService,
+    private qs: QuestionService,
+    private User: AuthService,
+    private router: Router) {}
   tagList: Tag[];
   QForm: FormGroup;
   Question2Submit: Question;
@@ -24,13 +55,11 @@ export class AddQformComponent implements OnInit {
     this.ts.getTags().subscribe(res => {
       this.tagList = res;
     });
-    this.QForm = this.fb.group(
-      {
-        question: ['', Validators.required],
-        tag: ['', Validators.required],
-        answers: this.fb.array([], CustomValidator.onlyOneCorrectAnswer)
-      }
-    );
+    this.QForm = this.fb.group({
+      question: ['', Validators.required],
+      tag: ['', Validators.required],
+      answers: this.fb.array([], CustomValidator.onlyOneCorrectAnswer)
+    });
     this.addAnswers();
     this.addAnswers();
   }
@@ -40,7 +69,7 @@ export class AddQformComponent implements OnInit {
   get answers(): FormArray {
     return this.QForm.get('answers') as FormArray;
   }
-  addAnswers(e?): void {
+  addAnswers(e ? ): void {
     if (e) {
       e.preventDefault();
     }
@@ -55,7 +84,7 @@ export class AddQformComponent implements OnInit {
   getAnswersArrayErrorMessage(): string {
     if (this.QForm.get('answers').hasError('moreThanOne')) {
       return 'Only One Correct Answer Allowed';
-    }else if (this.QForm.get('answers').hasError('noCorrect')) {
+    } else if (this.QForm.get('answers').hasError('noCorrect')) {
       return 'No Correct Answer Selected';
     }
     return null;
@@ -72,6 +101,7 @@ export class AddQformComponent implements OnInit {
           answers: this.QForm.get('answers').value
         };
         this.qs.postQuestion(this.Question2Submit).subscribe();
+        this.router.navigate(['']);
       });
     }
   }

@@ -20,7 +20,7 @@ export class QuestionService {
   }
 
   postQuestion(Q: Question) {
-    return this.http.post(this.url + '/quiz/', Q);
+    return this.http.post(this.url + '/question', Q);
   }
 
   getQuestionsByUsername(username: string): Observable<Question[]> {
