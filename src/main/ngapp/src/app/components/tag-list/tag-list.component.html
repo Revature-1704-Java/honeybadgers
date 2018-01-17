@@ -5,12 +5,6 @@
       <mat-form-field>
         <input matInput [(ngModel)]="tagFilter" placeholder="Filter Quizzes" type="text" id="tag-filter" name="tag-filter" (keypress)="updateTagList($event)" />
       </mat-form-field>
-      <mat-form-field>
-          <mat-select [(ngModel)]="searchMode" name="search-mode" placeholder="Search By">
-            <mat-option value="1">Tag Name</mat-option>
-            <mat-option value="2">Creator</mat-option>
-          </mat-select>
-      </mat-form-field>
     </form>
   </mat-grid-tile>
   <mat-grid-tile></mat-grid-tile>

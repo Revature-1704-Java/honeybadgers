@@ -13,4 +13,8 @@ export class QuestionService {
     return this.questions;
   }
 
+  postQuestion(Q: Question) {
+    return this.http.post('/', Q);
+  }
+
 }

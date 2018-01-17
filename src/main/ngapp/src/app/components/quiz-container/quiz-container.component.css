@@ -18,7 +18,10 @@
 }
 .bottombar {
   grid-row: 2/3;
+<<<<<<< HEAD
+=======
   grid-column-gap: .5em;
+>>>>>>> b0ad7c422f71d7670a2c1356fdf89e70dbbe5b53
   display: grid;
   grid-template-columns: 1fr 3fr;
   align-items: baseline;

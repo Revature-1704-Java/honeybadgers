@@ -91,7 +91,12 @@ var AppMaterialModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_tag_list_tag_list_component__ = __webpack_require__("../../../../../src/app/components/tag-list/tag-list.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_profile_profile_component__ = __webpack_require__("../../../../../src/app/components/profile/profile.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_profile_question_list_profile_question_list_component__ = __webpack_require__("../../../../../src/app/components/profile-question-list/profile-question-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_quiz_results_quiz_results_component__ = __webpack_require__("../../../../../src/app/components/quiz-results/quiz-results.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_profile_question_list_profile_question_list_component__ = __webpack_require__("../../../../../src/app/components/profile-question-list/profile-question-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_change_password_change_password_component__ = __webpack_require__("../../../../../src/app/components/change-password/change-password.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__guards_auth_guard__ = __webpack_require__("../../../../../src/app/guards/auth.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_quiz_container_quiz_container_component__ = __webpack_require__("../../../../../src/app/components/quiz-container/quiz-container.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__guards_quiz_results_guard__ = __webpack_require__("../../../../../src/app/guards/quiz-results.guard.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -103,17 +108,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
+
+
+
 var routes = [
     {
         path: '',
         component: __WEBPACK_IMPORTED_MODULE_2__components_tag_list_tag_list_component__["a" /* TagListComponent */]
     },
     {
-        path: 'tag-filter',
-        component: __WEBPACK_IMPORTED_MODULE_2__components_tag_list_tag_list_component__["a" /* TagListComponent */]
-    },
-    {
         path: 'profile',
+        canActivate: [__WEBPACK_IMPORTED_MODULE_7__guards_auth_guard__["a" /* AuthGuard */]],
         component: __WEBPACK_IMPORTED_MODULE_3__components_profile_profile_component__["a" /* ProfileComponent */],
         children: [
             {
@@ -126,13 +133,22 @@ var routes = [
             },
             {
                 path: 'questions',
-                component: __WEBPACK_IMPORTED_MODULE_4__components_profile_question_list_profile_question_list_component__["a" /* ProfileQuestionListComponent */]
+                component: __WEBPACK_IMPORTED_MODULE_5__components_profile_question_list_profile_question_list_component__["a" /* ProfileQuestionListComponent */]
             },
             {
                 path: 'settings',
-                component: __WEBPACK_IMPORTED_MODULE_2__components_tag_list_tag_list_component__["a" /* TagListComponent */]
+                component: __WEBPACK_IMPORTED_MODULE_6__components_change_password_change_password_component__["a" /* ChangePasswordComponent */]
             }
         ]
+    },
+    {
+        path: 'quiz/:tagId',
+        component: __WEBPACK_IMPORTED_MODULE_8__components_quiz_container_quiz_container_component__["a" /* QuizContainerComponent */]
+    },
+    {
+        path: 'results',
+        canActivate: [__WEBPACK_IMPORTED_MODULE_9__guards_quiz_results_guard__["a" /* QuizResultsGuard */]],
+        component: __WEBPACK_IMPORTED_MODULE_4__components_quiz_results_quiz_results_component__["a" /* QuizResultsComponent */]
     }
 ];
 var AppRoutingModule = (function () {
@@ -140,8 +156,8 @@ var AppRoutingModule = (function () {
     }
     AppRoutingModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* NgModule */])({
-            imports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* RouterModule */].forRoot(routes)],
-            exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* RouterModule */]]
+            imports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* RouterModule */].forRoot(routes)],
+            exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* RouterModule */]]
         })
     ], AppRoutingModule);
     return AppRoutingModule;
@@ -236,12 +252,20 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_tag_item_tag_item_component__ = __webpack_require__("../../../../../src/app/components/tag-item/tag-item.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_profile_profile_component__ = __webpack_require__("../../../../../src/app/components/profile/profile.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_profile_question_list_profile_question_list_component__ = __webpack_require__("../../../../../src/app/components/profile-question-list/profile-question-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_add_qform_add_qform_component__ = __webpack_require__("../../../../../src/app/components/add-qform/add-qform.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__guards_auth_guard__ = __webpack_require__("../../../../../src/app/guards/auth.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__guards_quiz_results_guard__ = __webpack_require__("../../../../../src/app/guards/quiz-results.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_change_password_change_password_component__ = __webpack_require__("../../../../../src/app/components/change-password/change-password.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
 
 
 
@@ -284,7 +308,9 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_20__components_tag_list_tag_list_component__["a" /* TagListComponent */],
                 __WEBPACK_IMPORTED_MODULE_21__components_tag_item_tag_item_component__["a" /* TagItemComponent */],
                 __WEBPACK_IMPORTED_MODULE_22__components_profile_profile_component__["a" /* ProfileComponent */],
-                __WEBPACK_IMPORTED_MODULE_23__components_profile_question_list_profile_question_list_component__["a" /* ProfileQuestionListComponent */]
+                __WEBPACK_IMPORTED_MODULE_23__components_profile_question_list_profile_question_list_component__["a" /* ProfileQuestionListComponent */],
+                __WEBPACK_IMPORTED_MODULE_24__components_add_qform_add_qform_component__["a" /* AddQformComponent */],
+                __WEBPACK_IMPORTED_MODULE_27__components_change_password_change_password_component__["a" /* ChangePasswordComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["b" /* MatButtonModule */],
@@ -299,11 +325,201 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_6__angular_forms__["e" /* FormsModule */]
             ],
             entryComponents: [__WEBPACK_IMPORTED_MODULE_14__components_login_login_component__["a" /* LoginComponent */], __WEBPACK_IMPORTED_MODULE_15__components_signup_signup_component__["a" /* SignupComponent */]],
-            providers: [__WEBPACK_IMPORTED_MODULE_16__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_8__services_question_service__["a" /* QuestionService */], __WEBPACK_IMPORTED_MODULE_9__services_quiz_form_service__["a" /* QuizFormService */], __WEBPACK_IMPORTED_MODULE_19__services_tag_service__["a" /* TagService */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_16__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_8__services_question_service__["a" /* QuestionService */], __WEBPACK_IMPORTED_MODULE_9__services_quiz_form_service__["a" /* QuizFormService */], __WEBPACK_IMPORTED_MODULE_19__services_tag_service__["a" /* TagService */], __WEBPACK_IMPORTED_MODULE_25__guards_auth_guard__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_26__guards_quiz_results_guard__["a" /* QuizResultsGuard */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/add-qform/add-qform.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".AddQFormContainer{\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\n\n.AddQFormContainer > *{\n    width:100%;\n}\n.AddForm{\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n}\n.AnswerFields{\n    width:100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n}\n.Ans{\n    width:80%;\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/add-qform/add-qform.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"AddQFormContainer\">\n  <form class=\"AddForm\" [formGroup]=\"QForm\">\n    <mat-form-field>\n      <textarea matInput formControlName=\"Question\" placeholder=\"Question\"></textarea>\n    </mat-form-field>\n    <mat-form-field *ngIf=\"tagList\">\n      <mat-select placeholder=\"Tag\">\n        <mat-option *ngFor=\"let t of tagList\" [value]=\"t.tagName\">\n          {{t.tagName}}\n        </mat-option>\n      </mat-select>\n    </mat-form-field>\n    <div formArrayName=\"Answers\">\n      <span>\n        <button (click)=\"addAnswers()\" mat-mini-fab color=\"primary\">+</button>\n        Add Answer</span>\n      <div class=\"AnswerFields\" *ngFor=\"let a of Answers.controls; let i=index\" [formGroupName]=\"i\">\n        <mat-form-field class=\"Ans\">\n          <textarea matInput formControlName=\"text\" placeholder=\"Answer {{i+1}}\"></textarea>\n        </mat-form-field>\n        <mat-slide-toggle formControlName=\"correct\">Correct Answer</mat-slide-toggle>\n      </div>\n    </div>\n  </form>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/add-qform/add-qform.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddQformComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms___ = __webpack_require__("../../../forms/esm5/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_tag_service__ = __webpack_require__("../../../../../src/app/services/tag.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var AddQformComponent = (function () {
+    function AddQformComponent(fb, ts) {
+        this.fb = fb;
+        this.ts = ts;
+    }
+    AddQformComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.ts.getTags().subscribe(function (res) {
+            _this.tagList = res;
+            console.log(res);
+        });
+        this.QForm = this.fb.group({
+            Question: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms___["k" /* Validators */].required],
+            Tags: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms___["k" /* Validators */].required],
+            Answers: this.fb.array([])
+        });
+        this.addAnswers();
+        this.addAnswers();
+        console.log(this.QForm.controls.Question.errors);
+    };
+    Object.defineProperty(AddQformComponent.prototype, "Answers", {
+        get: function () {
+            return this.QForm.get('Answers');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AddQformComponent.prototype.addAnswers = function () {
+        this.Answers.push(this.fb.group({
+            text: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms___["k" /* Validators */].required],
+            correct: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms___["k" /* Validators */].required]
+        }));
+    };
+    AddQformComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-add-qform',
+            template: __webpack_require__("../../../../../src/app/components/add-qform/add-qform.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/components/add-qform/add-qform.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_3__services_tag_service__["a" /* TagService */]])
+    ], AddQformComponent);
+    return AddQformComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/change-password/change-password.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
+
+// module
+exports.push([module.i, "h3, span {\n  font-family: 'Roboto', sans-serif;\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/change-password/change-password.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h3>Change your password</h3>\n<form>\n  <mat-form-field>\n    <input matInput [(ngModel)]=\"password\" type=\"password\" id=\"currentPassword\" name=\"currentPassword\" placeholder=\"Current Password\" />\n  </mat-form-field><br />\n  <mat-form-field>\n    <input matInput [(ngModel)]=\"newPassword\" type=\"password\" id=\"newPassword\" name=\"newPassword\" placeholder=\"New Password\" />\n  </mat-form-field><br />\n  <mat-form-field>\n      <input matInput [(ngModel)]=\"confirmNewPassword\" type=\"password\" id=\"confirmNewPassword\" name=\"confirmNewPassword\" placeholder=\"Confirm Password\" />\n  </mat-form-field><br />\n  <button mat-button (click)=\"updatePassword()\">Submit</button>\n</form>\n<span *ngIf=\"updatePasswordError\">{{ updatePasswordError }}</span>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/change-password/change-password.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChangePasswordComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var ChangePasswordComponent = (function () {
+    function ChangePasswordComponent(http, authService) {
+        this.http = http;
+        this.authService = authService;
+    }
+    ChangePasswordComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.authService.isLoggedIn().subscribe(function (user) {
+            _this.correctPassword = user.password;
+        });
+    };
+    ChangePasswordComponent.prototype.updatePassword = function () {
+        if (this.password !== this.correctPassword) {
+            this.updatePasswordError = "Wrong current password.";
+        }
+        else if (this.newPassword.length < 8) {
+            this.updatePasswordError = "Password must be at least 8 characters.";
+        }
+        else if (this.newPassword === this.confirmNewPassword) {
+            this.updatePasswordError = "";
+            // make asynchronous call here
+            this.http.put("http://192.168.0.2:8181/user/notAdmin", {
+                "password": this.newPassword
+            }, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).subscribe(function (response) {
+                console.log(response);
+            });
+        }
+        else {
+            this.updatePasswordError = "Passwords don't match.";
+        }
+    };
+    ChangePasswordComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-change-password',
+            template: __webpack_require__("../../../../../src/app/components/change-password/change-password.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/components/change-password/change-password.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]])
+    ], ChangePasswordComponent);
+    return ChangePasswordComponent;
 }());
 
 
@@ -406,7 +622,7 @@ var LoginComponent = (function () {
 /***/ "../../../../../src/app/components/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"primary\">\n  <span>\n    QuizItUp\n  </span>\n  <span class=\"fill-remaining-space\"></span>\n  <button mat-button>Home</button>\n  <button mat-button *ngIf=\"isLoggedIn$ | async\">Profile</button>\n  <button mat-button *ngIf=\"isLoggedIn$ | async\">Add Question</button>\n  <button mat-button *ngIf=\"isLoggedIn$ | async; else login\" (click)=\"onLogout()\">Log out</button>\n  <ng-template #login>\n    <button mat-button (click)=\"onLogin()\">Log in</button>\n    <button mat-button (click)=\"signUp()\">Sign Up</button>\n  </ng-template>\n</mat-toolbar>"
+module.exports = "<mat-toolbar color=\"primary\">\n  <span>\n    QuizItUp\n  </span>\n  <span class=\"fill-remaining-space\"></span>\n  <button mat-button routerLink=\"/\">Home</button>\n  <button mat-button *ngIf=\"isLoggedIn$ | async\" routerLink=\"/profile\">Profile</button>\n  <button mat-button *ngIf=\"isLoggedIn$ | async\" routerLink=\"/addQuestion\">Add Question</button>\n  <button mat-button *ngIf=\"isLoggedIn$ | async; else login\" (click)=\"onLogout()\">Log out</button>\n  <ng-template #login>\n    <button mat-button (click)=\"onLogin()\">Log in</button>\n    <button mat-button (click)=\"signUp()\">Sign Up</button>\n  </ng-template>\n</mat-toolbar>"
 
 /***/ }),
 
@@ -566,7 +782,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "a {\n  text-decoration: none;\n  color: black;\n}", ""]);
 
 // exports
 
@@ -579,7 +795,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-sidenav-container>\n  <mat-sidenav #sidenav [(opened)]=\"opened\" mode=\"side\">\n    <button mat-button><a [routerLink]=\"['tag-filter']\">Performance</a></button><br />\n    <button mat-button><a [routerLink]=\"['questions']\">My Questions</a></button><br />\n    <button mat-button><a [routerLink]=\"settings\">Settings</a></button><br />\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <router-outlet></router-outlet>\n  </mat-sidenav-content>>\n</mat-sidenav-container>"
+module.exports = "<mat-sidenav-container>\n  <mat-sidenav #sidenav [(opened)]=\"opened\" mode=\"side\">\n    <button mat-button><a [routerLink]=\"['tag-filter']\">Performance</a></button><br />\n    <button mat-button><a [routerLink]=\"['questions']\">My Questions</a></button><br />\n    <button mat-button><a [routerLink]=\"['settings']\">Settings</a></button><br />\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <router-outlet></router-outlet>\n  </mat-sidenav-content>>\n</mat-sidenav-container>"
 
 /***/ }),
 
@@ -781,7 +997,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 // module
-exports.push([module.i, ".quiz-container {\n  display: -ms-grid;\n  display: grid;\n  -ms-grid-rows: 2fr 3fr 2fr;\n      grid-template-rows: 2fr 3fr 2fr;\n  font-family: 'Roboto', sans-serif;\n  color: #212121;\n  height: 100vh;\n}\n\n.topbar {\n  grid-row: 1/2;\n  background-color: #673AB7;\n  margin-bottom: 1em;\n  color:#ECEFF1;\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\n  /* autoprefixer: off */\n}\n\n.content {\n  display: grid;\n  grid-template-columns: 1fr 3fr;\n  grid-column-gap: .5em;\n  grid-row: 2/3;\n  /* autoprefixer: off */\n}\n.bottombar {\n  grid-row: 3/4;\n  display: grid;\n  grid-template-columns: 1fr 3fr;\n  align-items: baseline;\n  margin-top: 1em;\n  /* autoprefixer: off */\n}\n.bottombar-right{\n    grid-column: 2/3;\n    -ms-grid-columns: (1fr)[3];\n        grid-template-columns: repeat(3, 1fr);\n    display: -ms-grid;\n    display: grid;\n    background-color:#ECEFF1;\n    padding-top:1em;\n    padding-bottom:1em;\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\n}\n\n.card-container {\n  grid-column: 2/3;\n  display: block;\n}\n\n.list-container {\n  grid-column:1/2;\n  display: block;\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\n}\n", ""]);
+exports.push([module.i, ".quiz-container {\n  display: -ms-grid;\n  display: grid;\n  -ms-grid-rows: 3fr 2fr;\n      grid-template-rows: 3fr 2fr;\n  font-family: 'Roboto', sans-serif;\n  color: #212121;\n  margin-top: 1em;\n  text-align: center;\n  height: 100vh;\n}\n\n.content {\n  display: grid;\n  grid-template-columns: 1fr 3fr;\n  grid-column-gap: .5em;\n  grid-row: 1/2;\n  /* autoprefixer: off */\n}\n.bottombar {\n  grid-row: 2/3;\n<<<<<<< HEAD\n=======\n  grid-column-gap: .5em;\n>>>>>>> b0ad7c422f71d7670a2c1356fdf89e70dbbe5b53\n  display: grid;\n  grid-template-columns: 1fr 3fr;\n  align-items: baseline;\n  margin-top: 1em;\n  /* autoprefixer: off */\n}\n.bottombar-right{\n    grid-column: 2/3;\n    -ms-grid-columns: (1fr)[3];\n        grid-template-columns: repeat(3, 1fr);\n    display: -ms-grid;\n    display: grid;\n    background-color:#ECEFF1;\n    padding-top:1em;\n    padding-bottom:1em;\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\n}\n\n.card-container {\n  grid-column: 2/3;\n  display: block;\n}\n.button{\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.list-container {\n  grid-column:1/2;\n  display: block;\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\n}\n", ""]);
 
 // exports
 
@@ -794,7 +1010,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/quiz-container/quiz-container.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"quiz-container\">\n  <div class=\"topbar\">\n    top bar place holder\n  </div>\n  <div class=\"content\">\n    <div class=\"list-container\">\n      <app-question-list *ngIf=\"questions\" [answers]=\"quizForm.get('answers').value\" [(currentQ)]=\"currentQ\"></app-question-list>\n    </div>\n    <div class=\"card-container\">\n      <app-quiz-card *ngIf=\"questions\" [parent]=\"quizForm\" [question]=\"questions[currentQ]\" [index]=\"currentQ\">\n      </app-quiz-card>\n    </div>\n  </div>\n  <div class=\"bottombar\">\n    <div class=\"bottombar-right\">\n      <div>\n        <button class=\"button\" mat-raised-button color=\"primary\" [disabled]=\"!(questions && currentQ > 0)\" (click)=\"prevQ($event)\">Previous</button>\n      </div>\n      <div>\n        <button class=\"button\" mat-raised-button color=\"primary\" (click)=\"onSubmit()\">Submit</button>\n      </div>\n      <div>\n        <button class=\"button\" mat-raised-button color=\"primary\" [disabled]=\" questions && currentQ == questions.length-1\" (click)=\"nextQ($event)\">\n            Next\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"quiz-container\">\n  <div class=\"content\">\n    <div class=\"list-container\">\n      <app-question-list *ngIf=\"questions\" [answers]=\"quizForm.get('answers').value\" [(currentQ)]=\"currentQ\"></app-question-list>\n    </div>\n    <div class=\"card-container\">\n      <app-quiz-card *ngIf=\"questions\" [parent]=\"quizForm\" [question]=\"questions[currentQ]\" [index]=\"currentQ\">\n      </app-quiz-card>\n    </div>\n  </div>\n  <div class=\"bottombar\">\n    <div class=\"bottombar-right\">\n      <div class=\"button\">\n        <button mat-raised-button color=\"primary\" [disabled]=\"!(questions && currentQ > 0)\" (click)=\"prevQ($event)\">Previous</button>\n      </div>\n      <div class=\"button\">\n        <button mat-raised-button color=\"primary\" (click)=\"onSubmit()\">Submit</button>\n      </div>\n      <div class=\"button\">\n        <button mat-raised-button color=\"primary\" [disabled]=\" questions && currentQ == questions.length-1\" (click)=\"nextQ($event)\">\n            Next\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -807,6 +1023,7 @@ module.exports = "<div class=\"quiz-container\">\n  <div class=\"topbar\">\n    
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_question_service__ = __webpack_require__("../../../../../src/app/services/question.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_quiz_form_service__ = __webpack_require__("../../../../../src/app/services/quiz-form.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -820,11 +1037,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var QuizContainerComponent = (function () {
-    function QuizContainerComponent(qs, qfs, fb) {
+    function QuizContainerComponent(route, qs, qfs, fb, router) {
+        this.route = route;
         this.qs = qs;
         this.qfs = qfs;
         this.fb = fb;
+        this.router = router;
         this.currentQ = 0;
     }
     Object.defineProperty(QuizContainerComponent.prototype, "answers", {
@@ -836,6 +1057,7 @@ var QuizContainerComponent = (function () {
     });
     QuizContainerComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.tagId = parseInt(this.route.snapshot.params['tagId']);
         this.quizForm = this.fb.group({
             answers: this.fb.array([])
         });
@@ -872,6 +1094,7 @@ var QuizContainerComponent = (function () {
         });
         this.qfs.upadte(Ans);
         console.log(this.qfs.get());
+        this.router.navigate(['results']);
     };
     QuizContainerComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -879,8 +1102,8 @@ var QuizContainerComponent = (function () {
             template: __webpack_require__("../../../../../src/app/components/quiz-container/quiz-container.component.html"),
             styles: [__webpack_require__("../../../../../src/app/components/quiz-container/quiz-container.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_question_service__["a" /* QuestionService */], __WEBPACK_IMPORTED_MODULE_2__services_quiz_form_service__["a" /* QuizFormService */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_forms__["b" /* FormBuilder */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_1__services_question_service__["a" /* QuestionService */], __WEBPACK_IMPORTED_MODULE_2__services_quiz_form_service__["a" /* QuizFormService */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_forms__["b" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */]])
     ], QuizContainerComponent);
     return QuizContainerComponent;
 }());
@@ -910,7 +1133,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/quiz-results/quiz-results.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Correct Answers: {{ correctCount }}</h1>\n<h1>Wrong Answers: {{ questions.length - correctCount }}</h1>\n<mat-accordion class=\"results-container\">\n  <mat-expansion-panel *ngFor=\"let q of questions; let i = index;\" \n    [ngStyle]=\"{'background-color': questions[i].answers[userAnswers[i].answer].correct ? 'lightgreen' : 'lightcoral'}\">\n    <mat-expansion-panel-header>\n      <mat-panel-title>\n        Question {{i + 1}}\n      </mat-panel-title>\n      <mat-panel-description>\n        {{ q.question }}\n      </mat-panel-description>\n    </mat-expansion-panel-header>\n    <p *ngIf=\"questions[i].answers[userAnswers[i].answer].correct; else wrong\">Your Answer: {{ correctAnswers[i].text }}</p>\n    <ng-template #wrong>\n      <p>Your Answer: {{questions[i].answers[userAnswers[i].answer].text}}</p>\n      <p>Correct Answer: {{ correctAnswers[i].text }}</p>\n    </ng-template>\n  </mat-expansion-panel>\n</mat-accordion>"
+module.exports = "<h1>Correct Answers: {{ correctCount }}</h1>\n<h1>Wrong Answers: {{ totalCount - correctCount }}</h1>\n<mat-accordion class=\"results-container\">\n  <mat-expansion-panel *ngFor=\"let q of questions; let i = index;\" \n    [ngStyle]=\"{'background-color': correctAnswerCheck(i) ? 'lightgreen' : 'lightcoral'}\">\n    <mat-expansion-panel-header>\n      <mat-panel-title>\n        Question {{i + 1}}\n      </mat-panel-title>\n      <mat-panel-description>\n        {{ q.question }}\n      </mat-panel-description>\n    </mat-expansion-panel-header>\n    <div *ngIf = \"userAnswerExist(i); else cheater\">\n      <p *ngIf=\"correctAnswerCheck(i); else wrong\">Your Answer: {{ correctAnswers[i].text }}</p>\n      <ng-template #wrong>\n        <p>Your Answer: {{questions[i].answers[userAnswers[i].answer].text}}</p>\n        <p>Correct Answer: {{ correctAnswers[i].text }}</p>\n      </ng-template>\n    </div>\n    <ng-template #cheater>\n      <p>You didn't answer this question, why you trying to cheat bruv?</p>\n    </ng-template>\n  </mat-expansion-panel>\n</mat-accordion>"
 
 /***/ }),
 
@@ -938,48 +1161,51 @@ var QuizResultsComponent = (function () {
     function QuizResultsComponent(qs, qfs) {
         this.qs = qs;
         this.qfs = qfs;
+        this.totalCount = 0;
         this.correctCount = 0;
-        this.questions = this.testQuestions();
-        this.userAnswers = this.testAnswers();
-        this.correctAnswers = this.findCorrect();
-        console.log(this.correctCount);
+        // this.questions = this.testQuestions();
+        // this.userAnswers = this.testAnswers();
+        // this.correctAnswers = this.findCorrect();
+        // console.log(this.correctCount);
     }
-    /*ngAfterViewInit() {
-      this.qs.getQuestions().subscribe(res => this.questions = res);
-      this.userAnswers = this.qfs.get();
-      this.correctAnswers = this.findCorrect();
-    }*/
     QuizResultsComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        this.qs.getQuestions().subscribe(function (res) {
+            _this.questions = res;
+            _this.correctAnswers = _this.findCorrect();
+        });
+        this.userAnswers = this.qfs.get();
     };
-    QuizResultsComponent.prototype.testQuestions = function () {
-        var questions = [];
-        for (var i = 0; i < 4; i++) {
-            var q = { q_id: i, question: 'what?', answers: [] };
-            q.q_id = i;
-            q.question = "Question " + i;
-            var answers = [];
-            for (var j = 0; j < 4; j++) {
-                var a = { text: "Answer " + j + " of Question " + i, correct: false };
-                a.correct = (j == 2) ? true : false;
-                answers.push(a);
-            }
-            q.answers = answers;
-            questions.push(q);
-        }
-        return questions;
-    };
-    QuizResultsComponent.prototype.testAnswers = function () {
-        var quizAnswers = [];
-        for (var i = 0; i < 4; i++) {
-            var qa = { q_id: i, answer: i };
-            qa.q_id = i;
-            qa.answer = i;
-            quizAnswers.push(qa);
-        }
-        return quizAnswers;
-    };
+    // testQuestions(): Question[] {
+    //   let questions: Question[] = [];
+    //   for (let i = 0; i < 4; i++){
+    //     let q: Question = {q_id: i, question: 'what?', answers: []};
+    //     q.q_id = i;
+    //     q.question = `Question ${i}`;
+    //     let answers: Answer[] = []
+    //     for (let j = 0; j < 4; j++){
+    //       let a: Answer = { text: `Answer ${j} of Question ${i}`, correct: false };
+    //       a.correct = (j == 2) ? true: false;
+    //       answers.push(a);
+    //     }
+    //     q.answers = answers;
+    //     questions.push(q);
+    //   }
+    //   return questions;
+    // }
+    // testAnswers(): QuizAnswer[] {
+    //   let quizAnswers: QuizAnswer[] = [];
+    //   for (let i = 0; i < 4; i++){
+    //     let qa: QuizAnswer = { q_id: i, answer: i};
+    //     qa.q_id = i;
+    //     qa.answer = i;
+    //     quizAnswers.push(qa);
+    //   }
+    //   return quizAnswers;
+    // }
     QuizResultsComponent.prototype.findCorrect = function () {
         var answers = [];
+        this.totalCount = this.questions.length;
         for (var i = 0; i < this.questions.length; i++) {
             for (var j = 0; j < this.questions[i].answers.length; j++) {
                 var answer = this.questions[i].answers[j];
@@ -992,6 +1218,18 @@ var QuizResultsComponent = (function () {
             }
         }
         return answers;
+    };
+    QuizResultsComponent.prototype.correctAnswerCheck = function (index) {
+        if (this.userAnswerExist(index)) {
+            if (this.questions[index].answers[this.userAnswers[index].answer].correct)
+                return true;
+            else
+                return false;
+        }
+        return false;
+    };
+    QuizResultsComponent.prototype.userAnswerExist = function (index) {
+        return this.userAnswers[index].answer != null;
     };
     QuizResultsComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -1011,7 +1249,7 @@ var QuizResultsComponent = (function () {
 /***/ "../../../../../src/app/components/signup/signup.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"signup-content\">\n  <form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\">\n    <h1>Sign Up</h1>\n    <mat-form-field class=\"full-width-input\">\n      <input matInput placeholder=\"Username\" formControlName=\"username\" required>\n    </mat-form-field>\n    <mat-form-field class=\"full-width-input\">\n      <input matInput type=\"password\" placeholder=\"Password\" formControlName=\"password\" required>\n    </mat-form-field>\n    <mat-form-field class=\"full-width-input\">\n      <input matInput type=\"password\" placeholder=\"Confirm\" formControlName=\"confirm\" required>\n    </mat-form-field>\n    <button mat-raised-button color=\"primary\" type=\"submit\">Sign Up</button>\n    <button mat-raised-button color=\"primary\" (click)=\"close()\">Cancel</button>\n  </form>\n</div>"
+module.exports = "<div class=\"signup-content\">\n  <form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\">\n    <h1>Sign Up</h1>\n    <mat-error class=\"pass-error\" *ngIf=\"passwordMatched('password', 'confirm')\">Passwords don't match</mat-error>\n    <mat-form-field class=\"full-width-input\">\n      <input matInput placeholder=\"Username\" formControlName=\"username\" required>\n    </mat-form-field>\n    <mat-form-field class=\"full-width-input\">\n      <input matInput type=\"password\" placeholder=\"Password\" formControlName=\"password\" required>\n    </mat-form-field>\n    <mat-form-field class=\"full-width-inpout\">\n      <input matInput type=\"password\" placeholder=\"Confirm\" formControlName=\"confirm\" required> \n    </mat-form-field>\n    <button mat-raised-button color=\"primary\" type=\"submit\">Sign Up</button>\n    <button mat-raised-button color=\"primary\" (click)=\"close()\">Cancel</button>\n  </form>\n</div>"
 
 /***/ }),
 
@@ -1077,9 +1315,14 @@ var SignupComponent = (function () {
         return ((!this.form.get(field).valid && this.form.get(field).touched) ||
             (this.form.get(field).untouched && this.formSubmitAttempt));
     };
+    SignupComponent.prototype.passwordMatched = function (field1, field2) {
+        return (this.form.get(field1).value !== this.form.get(field2).value) &&
+            (this.form.get(field1).valid && this.form.get(field1).touched) &&
+            (this.form.get(field2).valid && this.form.get(field2).touched);
+    };
     SignupComponent.prototype.onSubmit = function () {
         var _this = this;
-        if (this.form.valid) {
+        if (this.form.valid && (this.form.get('password').value === this.form.get('confirm').value)) {
             this.authService.signup(this.form.value);
         }
         this.isLoggedIn$.subscribe(function (res) {
@@ -1131,7 +1374,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/tag-item/tag-item.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-card class=\"tag-item-card\">\n  <img mat-card-image src=\"http://placehold.it/320x150\" />\n<mat-card-header>\n  <mat-card-title><a [routerLink]=\"[ '/quiz', tag.tagId ]\">{{ tag.tagName }}</a></mat-card-title>\n  <mat-card-subtitle>created by {{ tag.creator }}</mat-card-subtitle>  \n</mat-card-header>\n</mat-card>"
+module.exports = "<mat-card class=\"tag-item-card\">\n  <img mat-card-image src=\"http://placehold.it/320x150\" />\n<mat-card-header>\n  <mat-card-title><a [routerLink]=\"[ '/quiz', tag.tagId ]\">{{ tag.tagName }}</a></mat-card-title>\n</mat-card-header>\n</mat-card>"
 
 /***/ }),
 
@@ -1197,7 +1440,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/tag-list/tag-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-grid-list cols=\"4\" rowHeight=\"100px\">\n  <mat-grid-tile></mat-grid-tile>\n  <mat-grid-tile colspan=\"2\">\n    <form>\n      <mat-form-field>\n        <input matInput [(ngModel)]=\"tagFilter\" placeholder=\"Filter Quizzes\" type=\"text\" id=\"tag-filter\" name=\"tag-filter\" (keypress)=\"updateTagList($event)\" />\n      </mat-form-field>\n      <mat-form-field>\n          <mat-select [(ngModel)]=\"searchMode\" name=\"search-mode\" placeholder=\"Search By\">\n            <mat-option value=\"1\">Tag Name</mat-option>\n            <mat-option value=\"2\">Creator</mat-option>\n          </mat-select>\n      </mat-form-field>\n    </form>\n  </mat-grid-tile>\n  <mat-grid-tile></mat-grid-tile>\n  <mat-grid-tile *ngFor=\"let tag of filteredTags\" rowspan=\"3\">\n    <app-tag-item [tag]=\"tag\"></app-tag-item>\n  </mat-grid-tile>\n</mat-grid-list>"
+module.exports = "<mat-grid-list cols=\"4\" rowHeight=\"100px\">\n  <mat-grid-tile></mat-grid-tile>\n  <mat-grid-tile colspan=\"2\">\n    <form>\n      <mat-form-field>\n        <input matInput [(ngModel)]=\"tagFilter\" placeholder=\"Filter Quizzes\" type=\"text\" id=\"tag-filter\" name=\"tag-filter\" (keypress)=\"updateTagList($event)\" />\n      </mat-form-field>\n    </form>\n  </mat-grid-tile>\n  <mat-grid-tile></mat-grid-tile>\n  <mat-grid-tile *ngFor=\"let tag of filteredTags\" rowspan=\"3\">\n    <app-tag-item [tag]=\"tag\"></app-tag-item>\n  </mat-grid-tile>\n</mat-grid-list>"
 
 /***/ }),
 
@@ -1225,27 +1468,21 @@ var TagListComponent = (function () {
     }
     TagListComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.tags = this.tagService.getTags();
-        this.filteredTags = [];
-        this.tags.forEach(function (tag) {
-            _this.filteredTags.push(tag);
+        // this.tags = this.tagService.getTags();
+        this.tagService.getTags().subscribe(function (response) {
+            _this.tags = response;
+            _this.filteredTags = [];
+            _this.tags.forEach(function (tag) {
+                _this.filteredTags.push(tag);
+            });
         });
-        this.searchMode = "1";
     };
     TagListComponent.prototype.updateTagList = function (event) {
         var _this = this;
-        if (event.charCode === 32 && parseInt(this.searchMode) === 1) {
+        if (event.charCode === 32) {
             this.filteredTags.splice(0);
             this.tags.forEach(function (tag) {
                 if (tag.tagName === _this.tagFilter.trim()) {
-                    _this.filteredTags.push(tag);
-                }
-            });
-        }
-        else if (event.charCode === 32 && parseInt(this.searchMode) === 2) {
-            this.filteredTags.splice(0);
-            this.tags.forEach(function (tag) {
-                if (tag.creator === _this.tagFilter.trim()) {
                     _this.filteredTags.push(tag);
                 }
             });
@@ -1266,6 +1503,98 @@ var TagListComponent = (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_tag_service__["a" /* TagService */]])
     ], TagListComponent);
     return TagListComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/guards/auth.guard.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthGuard; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AuthGuard = (function () {
+    function AuthGuard(router, authService) {
+        this.router = router;
+        this.authService = authService;
+    }
+    AuthGuard.prototype.canActivate = function (next, state) {
+        var currentUser;
+        this.authService.isLoggedIn().subscribe(function (res) { return currentUser = res; });
+        if (!currentUser) {
+            this.router.navigate(['']);
+            return false;
+        }
+        else {
+            return true;
+        }
+    };
+    AuthGuard = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */]])
+    ], AuthGuard);
+    return AuthGuard;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/guards/quiz-results.guard.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return QuizResultsGuard; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_quiz_form_service__ = __webpack_require__("../../../../../src/app/services/quiz-form.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var QuizResultsGuard = (function () {
+    function QuizResultsGuard(router, qfs) {
+        this.router = router;
+        this.qfs = qfs;
+    }
+    QuizResultsGuard.prototype.canActivate = function (next, state) {
+        if (this.qfs.getQuizTaken()) {
+            return true;
+        }
+        else {
+            this.router.navigate(['']);
+            return false;
+        }
+    };
+    QuizResultsGuard = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_2__services_quiz_form_service__["a" /* QuizFormService */]])
+    ], QuizResultsGuard);
+    return QuizResultsGuard;
 }());
 
 
@@ -1306,7 +1635,7 @@ var AuthService = (function () {
     };
     AuthService.prototype.login = function (user) {
         var _this = this;
-        this.http.get('./assets/TestUser').subscribe(function (res) { return _this.loggedIn.next(res); }, function (error) { return _this.loggedIn.next(null); });
+        this.http.get('./assets/mockuser.json').subscribe(function (res) { return _this.loggedIn.next(res); }, function (error) { return _this.loggedIn.next(null); });
     };
     AuthService.prototype.signup = function (user) {
         var _this = this;
@@ -1317,7 +1646,7 @@ var AuthService = (function () {
     };
     AuthService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */], __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClient */]])
     ], AuthService);
     return AuthService;
 }());
@@ -1352,6 +1681,9 @@ var QuestionService = (function () {
         this.questions = this.http.get('../assets/mockdata.json');
         return this.questions;
     };
+    QuestionService.prototype.postQuestion = function (Q) {
+        return this.http.post('/', Q);
+    };
     QuestionService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
@@ -1381,13 +1713,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var QuizFormService = (function () {
     function QuizFormService() {
+        this.quizTaken = false;
         this.userAnswer = [];
     }
     QuizFormService.prototype.upadte = function (userAnswer) {
         this.userAnswer = userAnswer;
+        this.setQuizTaken(true);
     };
     QuizFormService.prototype.get = function () {
         return this.userAnswer;
+    };
+    QuizFormService.prototype.getQuizTaken = function () {
+        return this.quizTaken;
+    };
+    QuizFormService.prototype.setQuizTaken = function (quizTaken) {
+        this.quizTaken = quizTaken;
     };
     QuizFormService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
@@ -1406,6 +1746,7 @@ var QuizFormService = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TagService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1416,55 +1757,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var TagService = (function () {
-    function TagService() {
+    function TagService(http) {
+        this.http = http;
     }
     TagService.prototype.getTags = function () {
-        return tags;
-    };
-    TagService.prototype.getTagById = function (tagId) {
-        return tags.find(function (tag) { return (tag.tagId === tagId); });
-    };
-    TagService.prototype.getTagsByName = function (tagName) {
-        return tags.filter(function (tag) { return tag.tagName === tagName; });
-    };
-    TagService.prototype.getTagsByCreator = function (creator) {
-        return tags.filter(function (tag) { return tag.creator === creator; });
+        this.tags = this.http.get('../assets/mocktags.json');
+        return this.tags;
     };
     TagService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
     ], TagService);
     return TagService;
 }());
 
-var tags = [
-    {
-        tagId: 1,
-        tagName: 'Java',
-        creator: 'Kei'
-    },
-    {
-        tagId: 2,
-        tagName: 'Hibernate',
-        creator: 'Jack'
-    },
-    {
-        tagId: 3,
-        tagName: 'Angular',
-        creator: 'Tzu'
-    },
-    {
-        tagId: 4,
-        tagName: 'DevOps',
-        creator: 'Danny'
-    },
-    {
-        tagId: 5,
-        tagName: 'SQL',
-        creator: 'Jonathan'
-    }
-];
 
 
 /***/ }),
