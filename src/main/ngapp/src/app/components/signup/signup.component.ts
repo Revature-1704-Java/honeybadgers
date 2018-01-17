@@ -16,6 +16,7 @@ export class SignupComponent implements OnInit {
   form: FormGroup;
   private formSubmitAttempt: boolean;
   isLoggedIn$: Observable<User>;
+  submitFailed: boolean;
 
   constructor(public dialogRef: MatDialogRef<SignupComponent>,
     private fb: FormBuilder, private authService: AuthService) { }
@@ -49,6 +50,7 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitFailed = false;
     if (this.form.valid && (this.form.get('password').value === this.form.get('confirm').value)) {
       this.authService.signup(this.form.value);
     }
@@ -56,6 +58,8 @@ export class SignupComponent implements OnInit {
     this.isLoggedIn$.subscribe(res => {
       if (res) {
         this.dialogRef.close();
+      } else {
+        this.submitFailed = true;
       }
     });
   }
