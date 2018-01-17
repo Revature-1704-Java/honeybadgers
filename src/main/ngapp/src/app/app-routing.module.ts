@@ -46,11 +46,6 @@ const routes: Routes = [
     path: 'results',
     canActivate: [QuizResultsGuard],
     component: QuizResultsComponent
-  },
-  {
-    path: '/addQuestion',
-    canActivate: [AuthGuard],
-    component: AddQformComponent
   }
 ];
 

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthService {
 
-  readonly rootURL = 'http://192.168.61.3:8181';
+  readonly rootURL = 'http://52.14.182.231:8181';
   private loggedIn = new BehaviorSubject<User>(null);
   constructor(private router: Router, private http: HttpClient) { }
 

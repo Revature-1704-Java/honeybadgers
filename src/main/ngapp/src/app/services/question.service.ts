@@ -5,7 +5,7 @@ import { Question } from '../interfaces/question';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class QuestionService {
-  url = 'http://localhost:8181';
+  url = 'http://52.14.182.231:8181';
   private questions= new BehaviorSubject<Question[]>([]);
   constructor(private http: HttpClient) { }
   get questionArray(): Observable<Question[]>{
@@ -21,6 +21,10 @@ export class QuestionService {
 
   postQuestion(Q: Question) {
     return this.http.post(this.url + '/quiz/', Q);
+  }
+
+  getQuestionsByUsername(username: string): Observable<Question[]> {
+    return this.http.get<Question[]>(this.url + '/question/' + username);
   }
 
 }

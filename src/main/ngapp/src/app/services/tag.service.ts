@@ -11,7 +11,7 @@ export class TagService {
 
   getTags(): Observable<Tag[]> {
     // this.tags = this.http.get<Tag[]>('../assets/mocktags.json');
-    this.tags = this.http.get<Tag[]>('http://localhost:8181/tag');
+    this.tags = this.http.get<Tag[]>('http://52.14.182.231:8181/tag');
     return this.tags;
   }
 
