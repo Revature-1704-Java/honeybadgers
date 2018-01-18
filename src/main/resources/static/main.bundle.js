@@ -1079,7 +1079,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/question-list/question-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<span>Questions</span>\n<mat-list class=\"list\">\n  <mat-list-item\n    class=\"item\"\n    *ngFor=\"let a of answers; let i = index;\" \n    (click)=\"onClick(i)\"\n    [ngStyle]=\"{'background-color': i==currentQ?'#FFD740':''}\"\n  ><span>Question {{i+1}}</span> \n  <span *ngIf=\"a.answer==0||a.answer\">Answered</span>\n  </mat-list-item>\n</mat-list>\n"
+module.exports = "<span>Questions</span>\r\n<mat-list class=\"list\">\r\n  <mat-list-item\r\n    class=\"item\"\r\n    *ngFor=\"let a of answers; let i = index;\" \r\n    (click)=\"onClick(i)\"\r\n    [ngStyle]=\"{'background-color': i==currentQ?'#FFD740':''}\"\r\n  ><span>Question {{i+1}}</span> \r\n  <span *ngIf=\"a.answer==0||a.answer\">Answered</span>\r\n  </mat-list-item>\r\n</mat-list>\r\n"
 
 /***/ }),
 
@@ -1157,7 +1157,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/quiz-card/quiz-card.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\" [formGroup]=\"parent\">\n  <div class=\"form-container\" formArrayName=\"answers\">\n    <div class=\"form\" [formGroupName]=\"index\">\n      <div class=\"question\">\n        {{question.question}}\n      </div>\n      <div class=\"answer\" *ngFor=\"let a of question.answers; let i = index\">\n        <input formControlName=\"answer\" type=\"radio\" [value]=\"i\" id=\"{{i}}\"> \n        <label for=\"{{i}}\">{{a.text}}</label>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"card\" [formGroup]=\"parent\">\r\n  <div class=\"form-container\" formArrayName=\"answers\">\r\n    <div class=\"form\" [formGroupName]=\"index\">\r\n      <div class=\"question\">\r\n        {{question.question}}\r\n      </div>\r\n      <div class=\"answer\" *ngFor=\"let a of question.answers; let i = index\">\r\n        <input formControlName=\"answer\" type=\"radio\" [value]=\"i\" id=\"{{i}}\"> \r\n        <label for=\"{{i}}\">{{a.text}}</label>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
