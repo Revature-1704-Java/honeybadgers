@@ -549,42 +549,46 @@ var ChangePasswordComponent = (function () {
         var _this = this;
         this.authService.isLoggedIn().subscribe(function (user) {
             if (user !== null) {
-                _this.correctPassword = user.password;
                 _this.username = user.username;
             }
         });
     };
     ChangePasswordComponent.prototype.updatePassword = function () {
         var _this = this;
-        if (this.password !== this.correctPassword) {
-            this.updatePasswordMessage = "Wrong current password.";
-        }
-        else if (this.newPassword.length < 8) {
+        if (this.newPassword.length < 8) {
             this.updatePasswordMessage = "Password must be at least 8 characters.";
         }
         else if (this.newPassword === this.confirmNewPassword) {
             this.updatePasswordMessage = "";
-            // make asynchronous call here
-            this.http.put("http://52.14.182.231:8181/user/" + this.username, {
-                "password": this.newPassword
-            }, {
+            this.http.put("http://52.14.182.231:8181/user/" + this.username, [
+                {
+                    "username": this.username,
+                    "password": this.password
+                },
+                {
+                    "username": this.username,
+                    "password": this.newPassword
+                }
+            ], {
                 headers: {
                     "Content-Type": "application/json"
                 }
             }).subscribe(function (response) {
-                if (_this.newPassword === response.password) {
-                    _this.password = '';
-                    _this.newPassword = '';
-                    _this.confirmNewPassword = '';
-                    _this.updatePasswordMessage = "Password updated.";
-                    _this.authService.updateUser(response);
-                    _this.authService.isLoggedIn().subscribe(function (user) {
-                        _this.correctPassword = user.password;
-                        _this.username = user.username;
-                    });
+                _this.password = '';
+                _this.newPassword = '';
+                _this.confirmNewPassword = '';
+                if (response === "Current password entered incorrectly") {
+                    _this.updatePasswordMessage = response.toString();
                 }
                 else {
-                    _this.updatePasswordMessage = "Failed to update password.";
+                    var updatedUser = {};
+                    updatedUser.username = response['username'];
+                    updatedUser.id = response['id'];
+                    updatedUser.password = '';
+                    _this.authService.updateUser(updatedUser);
+                    _this.authService.isLoggedIn().subscribe(function (user) {
+                        _this.username = user.username;
+                    });
                 }
             });
         }
@@ -1351,7 +1355,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/quiz-results/quiz-results.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"totalCount\">\n  <h1>Correct Answers: {{ correctCount }}</h1>\n  <h1>Wrong Answers: {{ totalCount - correctCount }}</h1>\n</div>\n<mat-accordion class=\"results-container\">\n  <mat-expansion-panel *ngFor=\"let q of questions; let i = index;\" \n    [ngStyle]=\"{'background-color': correctAnswerCheck(i) ? 'lightgreen' : 'lightcoral'}\">\n    <mat-expansion-panel-header>\n      <mat-panel-title>\n        Question {{i + 1}}\n      </mat-panel-title>\n      <mat-panel-description>\n        {{ q.question }}\n      </mat-panel-description>\n    </mat-expansion-panel-header>\n    <div *ngIf = \"userAnswerExist(i); else cheater\">\n      <p *ngIf=\"correctAnswerCheck(i); else wrong\">Your Answer: {{ correctAnswers[i].text }}</p>\n      <ng-template #wrong>\n        <p>Your Answer: {{questions[i].answers[userAnswers[i].answer].text}}</p>\n        <p>Correct Answer: {{ correctAnswers[i].text }}</p>\n      </ng-template>\n    </div>\n    <ng-template #cheater>\n      <p>You didn't answer this question, why you trying to cheat bruv?</p>\n    </ng-template>\n  </mat-expansion-panel>\n</mat-accordion>"
+module.exports = "<div *ngIf=\"totalCount\">\r\n  <h1>Correct Answers: {{ correctCount }}</h1>\r\n  <h1>Wrong Answers: {{ totalCount - correctCount }}</h1>\r\n</div>\r\n<mat-accordion class=\"results-container\">\r\n  <mat-expansion-panel *ngFor=\"let q of questions; let i = index;\" \r\n    [ngStyle]=\"{'background-color': correctAnswerCheck(i) ? 'lightgreen' : 'lightcoral'}\">\r\n    <mat-expansion-panel-header>\r\n      <mat-panel-title>\r\n        Question {{i + 1}}\r\n      </mat-panel-title>\r\n      <mat-panel-description>\r\n        {{ q.question }}\r\n      </mat-panel-description>\r\n    </mat-expansion-panel-header>\r\n    <div *ngIf = \"userAnswerExist(i); else cheater\">\r\n      <p *ngIf=\"correctAnswerCheck(i); else wrong\">Your Answer: {{ correctAnswers[i].text }}</p>\r\n      <ng-template #wrong>\r\n        <p>Your Answer: {{questions[i].answers[userAnswers[i].answer].text}}</p>\r\n        <p>Correct Answer: {{ correctAnswers[i].text }}</p>\r\n      </ng-template>\r\n    </div>\r\n    <ng-template #cheater>\r\n      <p>You didn't answer this question, why you trying to cheat bruv?</p>\r\n    </ng-template>\r\n  </mat-expansion-panel>\r\n</mat-accordion>"
 
 /***/ }),
 
