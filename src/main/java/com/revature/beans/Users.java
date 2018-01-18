@@ -20,12 +20,10 @@ public class Users {
 	
 	public Users(String username, String password) {
 		this.username = username;
-		this.password = password;
 	}
 	
-	public Users(String username, String password, boolean admin) {
+	public Users(String username, boolean admin) {
 		this.username = username;
-		this.password = password;
 		this.admin = admin;
 	}
 	
@@ -82,6 +80,7 @@ public class Users {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}
@@ -91,7 +90,7 @@ public class Users {
 
 	@Override
 	public String toString() {
-		return "Users [userid=" + id + ", username=" + username + ", password=" + password + "]";
+		return "Users [userid=" + id + ", username=" + username + "]";
 	}
 	
 }

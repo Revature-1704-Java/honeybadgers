@@ -1,9 +1,12 @@
 package com.revature.dao;
 
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import java.util.*;
+
+import com.revature.beans.UserAuth;
 import com.revature.beans.Users;
 import com.revature.util.HibernateUtil;
 
@@ -17,6 +20,22 @@ public class UsersDao {
 		session.save(newUser);
 		tx.commit();
 		session.close();
+	}
+	
+	public UserAuth getUserandPass(String username) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		List<Users> retUserList = session.createQuery("from Users where username = :namevar").
+				setString("namevar", username).list(); 
+    Users retUser;
+    if(retUserList.size() > 0) {
+      retUser = retUserList.get(0);
+    }
+    else {
+      retUser = null;
+    }
+		session.close();
+		UserAuth retUserAuth = new UserAuth(retUser.getUsername(), retUser.getPassword());
+		return retUserAuth;
 	}
 	
 	//returns single user based on username

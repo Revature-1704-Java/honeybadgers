@@ -22,14 +22,14 @@ import org.springframework.http.HttpStatus;
 public class LoginController {
 	
   @PostMapping()
-  public ResponseEntity postUser(@RequestBody Users input) {
-    Users user = input;
+  public ResponseEntity postUser(@RequestBody UserAuth input) {
+    UserAuth user = input;
     UsersDao usersDao = new UsersDao();
     HttpHeaders responseHeaders = new HttpHeaders();
     if(user.getUsername() == null) {
       return new ResponseEntity("user username is null", responseHeaders, HttpStatus.BAD_REQUEST);
     }
-    Users inDb = usersDao.getUser(user.getUsername());
+    UserAuth inDb = usersDao.getUserandPass(user.getUsername());
     if(inDb == null) {
       return new ResponseEntity(inDb, responseHeaders, HttpStatus.UNAUTHORIZED);
     }
