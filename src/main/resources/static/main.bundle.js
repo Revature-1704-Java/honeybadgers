@@ -820,9 +820,10 @@ module.exports = "<h1>Your Answered Questions</h1>\r\n<mat-expansion-panel *ngFo
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PerformanceComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_tag_service__ = __webpack_require__("../../../../../src/app/services/tag.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_question_service__ = __webpack_require__("../../../../../src/app/services/question.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_tag_service__ = __webpack_require__("../../../../../src/app/services/tag.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_question_service__ = __webpack_require__("../../../../../src/app/services/question.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -836,8 +837,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var PerformanceComponent = (function () {
-    function PerformanceComponent(questionService, authService, tagService) {
+    function PerformanceComponent(router, questionService, authService, tagService) {
+        this.router = router;
         this.questionService = questionService;
         this.authService = authService;
         this.tagService = tagService;
@@ -845,40 +848,42 @@ var PerformanceComponent = (function () {
     PerformanceComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.authService.isLoggedIn().subscribe(function (response) {
-            var username = response['username'];
-            _this.questionService.getAnsweredQuestionsByUsername(username).subscribe(function (response) {
-                var answeredQuestions = response;
-                _this.tagQuestions = new Map();
-                _this.tagCorrect = new Map();
-                _this.tagIncorrect = new Map();
-                _this.tagQuestionsKeys = new Array();
-                answeredQuestions.forEach(function (aq) {
-                    var aqTag = aq.qid.tag.tagName;
-                    if (aq.success) {
-                        if (_this.tagCorrect.has(aqTag)) {
-                            _this.tagCorrect.set(aqTag, _this.tagCorrect.get(aqTag) + 1);
+            if (response !== null) {
+                var username = response['username'];
+                _this.questionService.getAnsweredQuestionsByUsername(username).subscribe(function (response) {
+                    var answeredQuestions = response;
+                    _this.tagQuestions = new Map();
+                    _this.tagCorrect = new Map();
+                    _this.tagIncorrect = new Map();
+                    _this.tagQuestionsKeys = new Array();
+                    answeredQuestions.forEach(function (aq) {
+                        var aqTag = aq.qid.tag.tagName;
+                        if (aq.success) {
+                            if (_this.tagCorrect.has(aqTag)) {
+                                _this.tagCorrect.set(aqTag, _this.tagCorrect.get(aqTag) + 1);
+                            }
+                            else {
+                                _this.tagCorrect.set(aqTag, 1);
+                            }
                         }
                         else {
-                            _this.tagCorrect.set(aqTag, 1);
+                            if (_this.tagIncorrect.has(aqTag)) {
+                                _this.tagIncorrect.set(aqTag, _this.tagIncorrect.get(aqTag) + 1);
+                            }
+                            else {
+                                _this.tagIncorrect.set(aqTag, 1);
+                            }
                         }
-                    }
-                    else {
-                        if (_this.tagIncorrect.has(aqTag)) {
-                            _this.tagIncorrect.set(aqTag, _this.tagIncorrect.get(aqTag) + 1);
+                        if (_this.tagQuestions.has(aqTag)) {
+                            _this.tagQuestions.get(aqTag).push(aq);
                         }
                         else {
-                            _this.tagIncorrect.set(aqTag, 1);
+                            _this.tagQuestions.set(aqTag, [aq]);
                         }
-                    }
-                    if (_this.tagQuestions.has(aqTag)) {
-                        _this.tagQuestions.get(aqTag).push(aq);
-                    }
-                    else {
-                        _this.tagQuestions.set(aqTag, [aq]);
-                    }
+                    });
+                    _this.tagQuestionsKeys = Array.from(_this.tagQuestions.keys());
                 });
-                _this.tagQuestionsKeys = Array.from(_this.tagQuestions.keys());
-            });
+            }
         });
     };
     PerformanceComponent = __decorate([
@@ -887,7 +892,7 @@ var PerformanceComponent = (function () {
             template: __webpack_require__("../../../../../src/app/components/performance/performance.component.html"),
             styles: [__webpack_require__("../../../../../src/app/components/performance/performance.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_question_service__["a" /* QuestionService */], __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_1__services_tag_service__["a" /* TagService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_4__services_question_service__["a" /* QuestionService */], __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_2__services_tag_service__["a" /* TagService */]])
     ], PerformanceComponent);
     return PerformanceComponent;
 }());
