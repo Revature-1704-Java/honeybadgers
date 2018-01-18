@@ -15,14 +15,11 @@ import { TagService } from '../../services/tag.service';
   styleUrls: ['./quiz-container.component.css']
 })
 export class QuizContainerComponent implements OnInit, OnDestroy {
-  subscription: Subscription;
-  questions: Question[];
-  quizForm: FormGroup;
-  currentQ = 0;
-  tagName: string;
-  get answers(): FormArray {
-    return <FormArray > this.quizForm.get('answers');
-  }
+  private subscription: Subscription;
+  private questions: Question[];
+  private quizForm: FormGroup;
+  private currentQ = 0;
+  private tagName: string;
   constructor(private route: ActivatedRoute, private qs: QuestionService, private qfs: QuizFormService
     , private fb: FormBuilder, private router: Router) {}
 
@@ -35,14 +32,17 @@ export class QuizContainerComponent implements OnInit, OnDestroy {
     this.subscription = this.qs.questionArray.subscribe(
       response => {
         this.questions = response;
+        this.quizForm.removeControl('answers');
+        this.quizForm.addControl('answers', this.fb.array([]));
         for (let i = 0; i < this.questions.length; i++) {
           this.addAnswers();
         }
-        console.log(response);
       }
     );
   }
-
+  get answers(): FormArray {
+    return this.quizForm.get('answers') as FormArray;
+  }
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

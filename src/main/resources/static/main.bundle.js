@@ -943,7 +943,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/question-list/question-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<span>Questions</span>\r\n<mat-list class=\"list\">\r\n  <mat-list-item\r\n    class=\"item\"\r\n    *ngFor=\"let a of answers; let i = index;\" \r\n    (click)=\"onClick(i)\"\r\n    [ngStyle]=\"{'background-color': i==currentQ?'#FFD740':''}\"\r\n  ><span>Question {{i+1}}</span> \r\n  <span *ngIf=\"a.answer==0||a.answer\">Answered</span>\r\n  </mat-list-item>\r\n</mat-list>\r\n"
+module.exports = "<span>Questions</span>\n<mat-list class=\"list\">\n  <mat-list-item\n    class=\"item\"\n    *ngFor=\"let a of answers; let i = index;\" \n    (click)=\"onClick(i)\"\n    [ngStyle]=\"{'background-color': i==currentQ?'#FFD740':''}\"\n  ><span>Question {{i+1}}</span> \n  <span *ngIf=\"a.answer==0||a.answer\">Answered</span>\n  </mat-list-item>\n</mat-list>\n"
 
 /***/ }),
 
@@ -1021,7 +1021,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/quiz-card/quiz-card.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\" [formGroup]=\"parent\">\r\n  <div class=\"form-container\" formArrayName=\"answers\">\r\n    <div class=\"form\" [formGroupName]=\"index\">\r\n      <div class=\"question\">\r\n        {{question.question}}\r\n      </div>\r\n      <div class=\"answer\" *ngFor=\"let a of question.answers; let i = index\">\r\n        <input formControlName=\"answer\" type=\"radio\" [value]=\"i\" id=\"{{i}}\"> \r\n        <label for=\"{{i}}\">{{a.text}}</label>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"card\" [formGroup]=\"parent\">\n  <div class=\"form-container\" formArrayName=\"answers\">\n    <div class=\"form\" [formGroupName]=\"index\">\n      <div class=\"question\">\n        {{question.question}}\n      </div>\n      <div class=\"answer\" *ngFor=\"let a of question.answers; let i = index\">\n        <input formControlName=\"answer\" type=\"radio\" [value]=\"i\" id=\"{{i}}\"> \n        <label for=\"{{i}}\">{{a.text}}</label>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1134,13 +1134,6 @@ var QuizContainerComponent = (function () {
         this.router = router;
         this.currentQ = 0;
     }
-    Object.defineProperty(QuizContainerComponent.prototype, "answers", {
-        get: function () {
-            return this.quizForm.get('answers');
-        },
-        enumerable: true,
-        configurable: true
-    });
     QuizContainerComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.tagName = this.route.snapshot.params['tagName'];
@@ -1150,12 +1143,20 @@ var QuizContainerComponent = (function () {
         });
         this.subscription = this.qs.questionArray.subscribe(function (response) {
             _this.questions = response;
+            _this.quizForm.removeControl('answers');
+            _this.quizForm.addControl('answers', _this.fb.array([]));
             for (var i = 0; i < _this.questions.length; i++) {
                 _this.addAnswers();
             }
-            console.log(response);
         });
     };
+    Object.defineProperty(QuizContainerComponent.prototype, "answers", {
+        get: function () {
+            return this.quizForm.get('answers');
+        },
+        enumerable: true,
+        configurable: true
+    });
     QuizContainerComponent.prototype.ngOnDestroy = function () {
         this.subscription.unsubscribe();
     };
@@ -1222,7 +1223,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/quiz-results/quiz-results.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"totalCount\">\n  <h1>Correct Answers: {{ correctCount }}</h1>\n  <h1>Wrong Answers: {{ totalCount - correctCount }}</h1>\n</div>\n<mat-accordion class=\"results-container\">\n  <mat-expansion-panel *ngFor=\"let q of questions; let i = index;\" \n    [ngStyle]=\"{'background-color': correctAnswerCheck(i) ? 'lightgreen' : 'lightcoral'}\">\n    <mat-expansion-panel-header>\n      <mat-panel-title>\n        Question {{i + 1}}\n      </mat-panel-title>\n      <mat-panel-description>\n        {{ q.question }}\n      </mat-panel-description>\n    </mat-expansion-panel-header>\n    <div *ngIf = \"userAnswerExist(i); else cheater\">\n      <p *ngIf=\"correctAnswerCheck(i); else wrong\">Your Answer: {{ correctAnswers[i].text }}</p>\n      <ng-template #wrong>\n        <p>Your Answer: {{questions[i].answers[userAnswers[i].answer].text}}</p>\n        <p>Correct Answer: {{ correctAnswers[i].text }}</p>\n      </ng-template>\n    </div>\n    <ng-template #cheater>\n      <p>You didn't answer this question, why you trying to cheat bruv?</p>\n    </ng-template>\n  </mat-expansion-panel>\n</mat-accordion>"
+module.exports = "<div *ngIf=\"totalCount\">\r\n  <h1>Correct Answers: {{ correctCount }}</h1>\r\n  <h1>Wrong Answers: {{ totalCount - correctCount }}</h1>\r\n</div>\r\n<mat-accordion class=\"results-container\">\r\n  <mat-expansion-panel *ngFor=\"let q of questions; let i = index;\" \r\n    [ngStyle]=\"{'background-color': correctAnswerCheck(i) ? 'lightgreen' : 'lightcoral'}\">\r\n    <mat-expansion-panel-header>\r\n      <mat-panel-title>\r\n        Question {{i + 1}}\r\n      </mat-panel-title>\r\n      <mat-panel-description>\r\n        {{ q.question }}\r\n      </mat-panel-description>\r\n    </mat-expansion-panel-header>\r\n    <div *ngIf = \"userAnswerExist(i); else cheater\">\r\n      <p *ngIf=\"correctAnswerCheck(i); else wrong\">Your Answer: {{ correctAnswers[i].text }}</p>\r\n      <ng-template #wrong>\r\n        <p>Your Answer: {{questions[i].answers[userAnswers[i].answer].text}}</p>\r\n        <p>Correct Answer: {{ correctAnswers[i].text }}</p>\r\n      </ng-template>\r\n    </div>\r\n    <ng-template #cheater>\r\n      <p>You didn't answer this question, why you trying to cheat bruv?</p>\r\n    </ng-template>\r\n  </mat-expansion-panel>\r\n</mat-accordion>"
 
 /***/ }),
 
@@ -1813,7 +1814,6 @@ var QuestionService = (function () {
     }
     Object.defineProperty(QuestionService.prototype, "questionArray", {
         get: function () {
-            console.log(this.questions);
             return this.questions.asObservable();
         },
         enumerable: true,
@@ -1866,6 +1866,7 @@ var QuizFormService = (function () {
     }
     QuizFormService.prototype.upadte = function (userAnswer) {
         this.userAnswer = userAnswer;
+        console.log(this.userAnswer);
         this.setQuizTaken(true);
     };
     QuizFormService.prototype.get = function () {
