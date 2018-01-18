@@ -16,13 +16,11 @@ export class PerformanceComponent implements OnInit {
   private user: User;
   public answeredQuestions: AnsweredQuestion[];
   public tagQuestions: Map<string, AnsweredQuestion[]>;
-  public renderComponent: boolean;
   public tagQuestionsKeys: string[];
 
   constructor(private questionService: QuestionService, private authService: AuthService, private tagService: TagService) { }
 
   ngOnInit() {
-    this.renderComponent = false;
     this.authService.isLoggedIn().subscribe((response) => {
       this.user = response;
       this.tagService.getTags().subscribe((response) => {
