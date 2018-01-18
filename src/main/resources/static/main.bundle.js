@@ -197,7 +197,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\r\n<!-- <app-add-qform></app-add-qform> -->\r\n<router-outlet></router-outlet>"
+module.exports = "<app-navbar></app-navbar>\r\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -922,7 +922,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/profile-question-list/profile-question-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>My Questions</h1>\r\n<mat-expansion-panel *ngFor=\"let tq of tagQuestionsKeys\">\r\n  <mat-expansion-panel-header>\r\n    <mat-panel-title>{{ tq }}</mat-panel-title>\r\n  </mat-expansion-panel-header>\r\n  <mat-card *ngFor=\"let q of tagQuestions.get(tq)\">\r\n    <mat-card-content>\r\n      <h3>Question</h3>\r\n      <p>{{ q.question }}</p>\r\n      <h3>Choices</h3>\r\n      <mat-list>\r\n        <mat-list-item *ngFor=\"let a of q.answers\" [ngStyle]=\"{ 'background-color': a.correct ? '#A5D6A7' : '#EF9A9A' }\">{{ a.text }}</mat-list-item>\r\n      </mat-list>\r\n    </mat-card-content>\r\n  </mat-card>\r\n</mat-expansion-panel>\r\n\r\n<!-- <div *ngFor=\"let q of questions\" class=\"question\">\r\n  <p>{{ q.question }}</p>\r\n  <ul>\r\n    <li *ngFor=\"let a of q.answers\">{{ a.text }}</li>\r\n  </ul>\r\n</div> -->"
+module.exports = "<h1>My Questions</h1>\r\n<mat-expansion-panel *ngFor=\"let tq of tagQuestionsKeys\">\r\n  <mat-expansion-panel-header>\r\n    <mat-panel-title>{{ tq }}</mat-panel-title>\r\n  </mat-expansion-panel-header>\r\n  <mat-card *ngFor=\"let q of tagQuestions.get(tq)\">\r\n    <mat-card-content>\r\n      <h3>Question</h3>\r\n      <p>{{ q.question }}</p>\r\n      <h3>Choices</h3>\r\n      <mat-list>\r\n        <mat-list-item *ngFor=\"let a of q.answers\" [ngStyle]=\"{ 'background-color': a.correct ? '#A5D6A7' : '#EF9A9A' }\">{{ a.text }}</mat-list-item>\r\n      </mat-list>\r\n    </mat-card-content>\r\n  </mat-card>\r\n</mat-expansion-panel>"
 
 /***/ }),
 
@@ -969,7 +969,6 @@ var ProfileQuestionListComponent = (function () {
                         }
                     });
                     _this.tagQuestionsKeys = Array.from(_this.tagQuestions.keys());
-                    console.log(_this.tagQuestionsKeys);
                 });
             }
         });
