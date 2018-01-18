@@ -369,7 +369,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/add-qform/add-qform.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"AddQFormContainer\">\r\n  <form class=\"AddForm\" [formGroup]=\"QForm\" (ngSubmit)=\"onSubmit()\">\r\n    <mat-form-field>\r\n      <textarea matInput formControlName=\"question\" placeholder=\"Question\"></textarea>\r\n      <mat-error *ngIf=\"QForm.get('question').invalid\">*Field Required</mat-error>\r\n    </mat-form-field>\r\n    <mat-form-field *ngIf=\"tagList\">\r\n      <mat-select placeholder=\"Tag\" formControlName=\"tag\">\r\n        <mat-option *ngFor=\"let t of tagList\" [value]=\"t\">\r\n          {{t.tagName}}\r\n        </mat-option>\r\n      </mat-select>\r\n      <mat-error *ngIf=\"QForm.get('tag').invalid\">*Field Required</mat-error>\r\n    </mat-form-field>\r\n    <div class=\"AFcontainer\" formArrayName=\"answers\">\r\n      <mat-error class=\"ArrayErr\" *ngIf=\"answers.invalid && (answers.touched||submitAttempted)\">{{getAnswersArrayErrorMessage()}}</mat-error>\r\n      <div class=\"AnswerFields\" *ngFor=\"let a of answers.controls; let i=index\" [formGroupName]=\"i\">\r\n        <mat-form-field class=\"Ans\">\r\n          <textarea matInput formControlName=\"text\" placeholder=\"Answer {{i+1}}\"></textarea>\r\n          <mat-error *ngIf=\"a.get('text').invalid && (a.get('text').touched||submitAttempted)\">*Field Required</mat-error>\r\n        </mat-form-field>\r\n        <div class=\"SideControl\">\r\n          <mat-slide-toggle formControlName=\"correct\">Correct Answer</mat-slide-toggle>\r\n        </div>\r\n        <div *ngIf=\"answers.length>2\" class=\"SideControl\">\r\n          <button mat-icon-button color=\"primary\" (click)=\"deleteAnswer(i)\">\r\n            <mat-icon>close</mat-icon>\r\n          </button>\r\n        </div>\r\n      </div>\r\n      <span *ngIf=\"answers.length<7\">\r\n        <button (click)=\"addAnswers($event)\" mat-mini-fab color=\"primary\">+</button>\r\n        Add Answer\r\n      </span>\r\n      <span *ngIf=\"answers.length>=7\">Maximum Allowed Choices Reached!</span>\r\n    </div>\r\n    <div class=\"BottomControl\">\r\n        <button mat-raised-button color=\"primary\" type=\"submit\">Submit</button>\r\n    </div>\r\n  </form>\r\n</div>\r\n"
+module.exports = "<div class=\"AddQFormContainer\">\r\n  <form class=\"AddForm\" [formGroup]=\"QForm\" (ngSubmit)=\"onSubmit()\">\r\n    <mat-form-field>\r\n      <textarea matInput formControlName=\"question\" placeholder=\"Question\"></textarea>\r\n      <mat-error *ngIf=\"QForm.get('question').invalid\">*Field Required</mat-error>\r\n    </mat-form-field>\r\n    <div>\r\n        <mat-slide-toggle formControlName=\"useExisting\" (change)=\"clearTag()\">Use Existing Tag</mat-slide-toggle>\r\n    </div>\r\n    <mat-form-field *ngIf=\"tagList\">\r\n      <mat-select *ngIf=\"QForm.get('useExisting').value\" placeholder=\"Tag\" formControlName=\"tag\">\r\n        <mat-option *ngFor=\"let t of tagList\" [value]=\"t.tagName\">\r\n          {{t.tagName}}\r\n        </mat-option>\r\n      </mat-select>\r\n      <input *ngIf=\"QForm.get('useExisting').value===false\" matInput placeholder=\"Tag\" formControlName=\"tag\"/>\r\n      <mat-error *ngIf=\"QForm.get('tag').invalid\">*Field Required</mat-error>\r\n    </mat-form-field>\r\n    <div class=\"AFcontainer\" formArrayName=\"answers\">\r\n      <mat-error class=\"ArrayErr\" *ngIf=\"answers.invalid && (answers.touched||submitAttempted)\">{{getAnswersArrayErrorMessage()}}</mat-error>\r\n      <div class=\"AnswerFields\" *ngFor=\"let a of answers.controls; let i=index\" [formGroupName]=\"i\">\r\n        <mat-form-field class=\"Ans\">\r\n          <textarea matInput formControlName=\"text\" placeholder=\"Answer {{i+1}}\"></textarea>\r\n          <mat-error *ngIf=\"a.get('text').invalid && (a.get('text').touched||submitAttempted)\">*Field Required</mat-error>\r\n        </mat-form-field>\r\n        <div class=\"SideControl\">\r\n          <mat-slide-toggle formControlName=\"correct\">Correct Answer</mat-slide-toggle>\r\n        </div>\r\n        <div *ngIf=\"answers.length>2\" class=\"SideControl\">\r\n          <button mat-icon-button color=\"primary\" (click)=\"deleteAnswer(i)\">\r\n            <mat-icon>close</mat-icon>\r\n          </button>\r\n        </div>\r\n      </div>\r\n      <span *ngIf=\"answers.length<7\">\r\n        <button (click)=\"addAnswers($event)\" mat-mini-fab color=\"primary\">+</button>\r\n        Add Answer\r\n      </span>\r\n      <span *ngIf=\"answers.length>=7\">Maximum Allowed Choices Reached!</span>\r\n    </div>\r\n    <div class=\"BottomControl\">\r\n        <button mat-raised-button color=\"primary\" type=\"submit\">Submit</button>\r\n    </div>\r\n  </form>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -419,6 +419,7 @@ var AddQformComponent = (function () {
         });
         this.QForm = this.fb.group({
             question: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms___["k" /* Validators */].required],
+            useExisting: [false],
             tag: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms___["k" /* Validators */].required],
             answers: this.fb.array([], __WEBPACK_IMPORTED_MODULE_6__customValidator__["a" /* CustomValidator */].onlyOneCorrectAnswer)
         });
@@ -447,6 +448,9 @@ var AddQformComponent = (function () {
     AddQformComponent.prototype.deleteAnswer = function (i) {
         this.answers.removeAt(i);
     };
+    AddQformComponent.prototype.clearTag = function () {
+        this.QForm.get('tag').reset();
+    };
     AddQformComponent.prototype.getAnswersArrayErrorMessage = function () {
         if (this.QForm.get('answers').hasError('moreThanOne')) {
             return 'Only One Correct Answer Allowed';
@@ -463,7 +467,7 @@ var AddQformComponent = (function () {
             this.User.isLoggedIn().subscribe(function (res) {
                 _this.Question2Submit = {
                     q_id: 0,
-                    tag: _this.QForm.get('tag').value,
+                    tag: { tagId: null, tagName: _this.QForm.get('tag').value },
                     user: res,
                     question: _this.QForm.get('question').value,
                     answers: _this.QForm.get('answers').value
@@ -1071,7 +1075,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/question-list/question-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<span>Questions</span>\r\n<mat-list class=\"list\">\r\n  <mat-list-item\r\n    class=\"item\"\r\n    *ngFor=\"let a of answers; let i = index;\" \r\n    (click)=\"onClick(i)\"\r\n    [ngStyle]=\"{'background-color': i==currentQ?'#FFD740':''}\"\r\n  ><span>Question {{i+1}}</span> \r\n  <span *ngIf=\"a.answer==0||a.answer\">Answered</span>\r\n  </mat-list-item>\r\n</mat-list>\r\n"
+module.exports = "<span>Questions</span>\n<mat-list class=\"list\">\n  <mat-list-item\n    class=\"item\"\n    *ngFor=\"let a of answers; let i = index;\" \n    (click)=\"onClick(i)\"\n    [ngStyle]=\"{'background-color': i==currentQ?'#FFD740':''}\"\n  ><span>Question {{i+1}}</span> \n  <span *ngIf=\"a.answer==0||a.answer\">Answered</span>\n  </mat-list-item>\n</mat-list>\n"
 
 /***/ }),
 
@@ -1149,7 +1153,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/quiz-card/quiz-card.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\" [formGroup]=\"parent\">\r\n  <div class=\"form-container\" formArrayName=\"answers\">\r\n    <div class=\"form\" [formGroupName]=\"index\">\r\n      <div class=\"question\">\r\n        {{question.question}}\r\n      </div>\r\n      <div class=\"answer\" *ngFor=\"let a of question.answers; let i = index\">\r\n        <input formControlName=\"answer\" type=\"radio\" [value]=\"i\" id=\"{{i}}\"> \r\n        <label for=\"{{i}}\">{{a.text}}</label>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"card\" [formGroup]=\"parent\">\n  <div class=\"form-container\" formArrayName=\"answers\">\n    <div class=\"form\" [formGroupName]=\"index\">\n      <div class=\"question\">\n        {{question.question}}\n      </div>\n      <div class=\"answer\" *ngFor=\"let a of question.answers; let i = index\">\n        <input formControlName=\"answer\" type=\"radio\" [value]=\"i\" id=\"{{i}}\"> \n        <label for=\"{{i}}\">{{a.text}}</label>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1351,7 +1355,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/quiz-results/quiz-results.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"totalCount\">\n  <h1>Correct Answers: {{ correctCount }}</h1>\n  <h1>Wrong Answers: {{ totalCount - correctCount }}</h1>\n</div>\n<mat-accordion class=\"results-container\">\n  <mat-expansion-panel *ngFor=\"let q of questions; let i = index;\" \n    [ngStyle]=\"{'background-color': correctAnswerCheck(i) ? 'lightgreen' : 'lightcoral'}\">\n    <mat-expansion-panel-header>\n      <mat-panel-title>\n        Question {{i + 1}}\n      </mat-panel-title>\n      <mat-panel-description>\n        {{ q.question }}\n      </mat-panel-description>\n    </mat-expansion-panel-header>\n    <div *ngIf = \"userAnswerExist(i); else cheater\">\n      <p *ngIf=\"correctAnswerCheck(i); else wrong\">Your Answer: {{ correctAnswers[i].text }}</p>\n      <ng-template #wrong>\n        <p>Your Answer: {{questions[i].answers[userAnswers[i].answer].text}}</p>\n        <p>Correct Answer: {{ correctAnswers[i].text }}</p>\n      </ng-template>\n    </div>\n    <ng-template #cheater>\n      <p>You didn't answer this question, why you trying to cheat bruv?</p>\n    </ng-template>\n  </mat-expansion-panel>\n</mat-accordion>"
+module.exports = "<div *ngIf=\"totalCount\">\r\n  <h1>Correct Answers: {{ correctCount }}</h1>\r\n  <h1>Wrong Answers: {{ totalCount - correctCount }}</h1>\r\n</div>\r\n<mat-accordion class=\"results-container\">\r\n  <mat-expansion-panel *ngFor=\"let q of questions; let i = index;\" \r\n    [ngStyle]=\"{'background-color': correctAnswerCheck(i) ? 'lightgreen' : 'lightcoral'}\">\r\n    <mat-expansion-panel-header>\r\n      <mat-panel-title>\r\n        Question {{i + 1}}\r\n      </mat-panel-title>\r\n      <mat-panel-description>\r\n        {{ q.question }}\r\n      </mat-panel-description>\r\n    </mat-expansion-panel-header>\r\n    <div *ngIf = \"userAnswerExist(i); else cheater\">\r\n      <p *ngIf=\"correctAnswerCheck(i); else wrong\">Your Answer: {{ correctAnswers[i].text }}</p>\r\n      <ng-template #wrong>\r\n        <p>Your Answer: {{questions[i].answers[userAnswers[i].answer].text}}</p>\r\n        <p>Correct Answer: {{ correctAnswers[i].text }}</p>\r\n      </ng-template>\r\n    </div>\r\n    <ng-template #cheater>\r\n      <p>You didn't answer this question, why you trying to cheat bruv?</p>\r\n    </ng-template>\r\n  </mat-expansion-panel>\r\n</mat-accordion>"
 
 /***/ }),
 
