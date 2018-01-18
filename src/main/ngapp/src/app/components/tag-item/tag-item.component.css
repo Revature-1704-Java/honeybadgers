@@ -1,0 +1,16 @@
+mat-card{
+    background-color: #673AB7;
+    text-align: center;
+}
+mat-card:hover{
+    margin-bottom: 2em;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+    font-size: 1.6em;
+}
+a:hover{
+    color: #FFD740;
+}

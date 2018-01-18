@@ -1,4 +1,4 @@
-<mat-grid-list cols="4" rowHeight="100px">
+<mat-grid-list cols="4" rowHeight="100px" gutterSize="1em">
   <mat-grid-tile></mat-grid-tile>
   <mat-grid-tile colspan="2">
     <form>
@@ -8,7 +8,7 @@
     </form>
   </mat-grid-tile>
   <mat-grid-tile></mat-grid-tile>
-  <mat-grid-tile *ngFor="let tag of filteredTags" rowspan="3">
+  <mat-grid-tile class="" *ngFor="let tag of filteredTags" rowspan="3">
     <app-tag-item [tag]="tag"></app-tag-item>
   </mat-grid-tile>
 </mat-grid-list>

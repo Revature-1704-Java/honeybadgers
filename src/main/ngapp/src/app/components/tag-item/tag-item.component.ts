@@ -9,10 +9,14 @@ import { Tag } from '../../interfaces/tag';
 })
 export class TagItemComponent implements OnInit {
   @Input() tag: Tag;
-
+  random: number;
   constructor() { }
 
   ngOnInit() {
+    this.random = this.getRandom();
+  }
+  getRandom(): number {
+    return Math.floor(Math.random() * (6 - 1) + 1);
   }
 
 }
