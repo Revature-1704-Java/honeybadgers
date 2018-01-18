@@ -59,6 +59,7 @@ export class AddQformComponent implements OnInit {
     });
     this.QForm = this.fb.group({
       question: ['', Validators.required],
+      useExisting:[false],
       tag: ['', Validators.required],
       answers: this.fb.array([], CustomValidator.onlyOneCorrectAnswer)
     });
@@ -83,6 +84,9 @@ export class AddQformComponent implements OnInit {
   deleteAnswer(i: number): void {
     this.answers.removeAt(i);
   }
+  clearTag() {
+    this.QForm.get('tag').reset();
+  }
   getAnswersArrayErrorMessage(): string {
     if (this.QForm.get('answers').hasError('moreThanOne')) {
       return 'Only One Correct Answer Allowed';
@@ -97,7 +101,7 @@ export class AddQformComponent implements OnInit {
       this.User.isLoggedIn().subscribe(res => {
         this.Question2Submit = {
           q_id: 0,
-          tag: this.QForm.get('tag').value,
+          tag: {tagId: null, tagName: this.QForm.get('tag').value},
           user: res,
           question: this.QForm.get('question').value,
           answers: this.QForm.get('answers').value
