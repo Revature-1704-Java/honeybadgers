@@ -16,6 +16,8 @@ export class PerformanceComponent implements OnInit {
   private user: User;
   public answeredQuestions: AnsweredQuestion[];
   public tagQuestions: Map<string, AnsweredQuestion[]>;
+  public tagCorrect: Map<string, number>;
+  public tagIncorrect: Map<string, number>;
   public tagQuestionsKeys: string[];
 
   constructor(private questionService: QuestionService, private authService: AuthService, private tagService: TagService) { }
@@ -28,8 +30,25 @@ export class PerformanceComponent implements OnInit {
         this.questionService.getAnsweredQuestionsByUsername(this.user.username).subscribe((response) => {
           this.answeredQuestions = response;
           this.tagQuestions = new Map<string, AnsweredQuestion[]>();
+          this.tagCorrect = new Map<string, number>();
+          this.tagIncorrect = new Map<string, number>();
+          this.tagQuestionsKeys = new Array<string>();
           this.answeredQuestions.forEach((aq) => {
             let aqTag = aq.qid.tag.tagName;
+
+            if(aq.success) {
+              if(this.tagCorrect.has(aqTag)) {
+                this.tagCorrect.set(aqTag, this.tagCorrect.get(aqTag) + 1);
+              } else {
+                this.tagCorrect.set(aqTag, 1);
+              }
+            } else {
+              if(this.tagIncorrect.has(aqTag)) {
+                this.tagIncorrect.set(aqTag, this.tagIncorrect.get(aqTag) + 1);
+              } else {
+                this.tagIncorrect.set(aqTag, 1);
+              }
+            }
             if(this.tagQuestions.has(aqTag)) {
               this.tagQuestions.get(aqTag).push(aq);
             } else {

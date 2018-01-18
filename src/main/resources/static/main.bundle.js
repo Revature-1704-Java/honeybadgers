@@ -810,7 +810,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/performance/performance.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Your Answered Questions</h1>\n<mat-expansion-panel *ngFor=\"let tq of tagQuestionsKeys\">\n  <mat-expansion-panel-header>\n    <mat-panel-title>{{ tq }}</mat-panel-title>\n  </mat-expansion-panel-header>\n  <mat-card *ngFor=\"let aq of tagQuestions.get(tq)\" [ngStyle]=\"{ 'background-color': aq.success ? '#A5D6A7' : '#EF9A9A' }\">\n    <mat-card-content>\n      <p>{{ aq.qid.question }}</p>\n      <p>{{ aq.success ? 'Correct' : 'Incorrect' }}</p>\n    </mat-card-content>\n  </mat-card>\n</mat-expansion-panel>"
+module.exports = "<h1>Your Answered Questions</h1>\n<mat-expansion-panel *ngFor=\"let tq of tagQuestionsKeys\">\n  <mat-expansion-panel-header>\n    <mat-panel-title>\n      <h2>{{ tq }}</h2>\n    </mat-panel-title>\n  </mat-expansion-panel-header>\n  <h3>Performance</h3>\n  <mat-progress-bar mode=\"determinate\" value=\"{{ (tagCorrect.get(tq) / (tagCorrect.get(tq) + tagIncorrect.get(tq))) * 100 }}\"></mat-progress-bar>\n  <h3>Questions Answered for {{ tq }}</h3>\n  <mat-card *ngFor=\"let aq of tagQuestions.get(tq)\" [ngStyle]=\"{ 'background-color': aq.success ? '#A5D6A7' : '#EF9A9A' }\">\n    <mat-card-content>\n      <p>{{ aq.qid.question }}</p>\n      <p>{{ aq.success ? 'Correct' : 'Incorrect' }}</p>\n    </mat-card-content>\n  </mat-card>\n</mat-expansion-panel>"
 
 /***/ }),
 
@@ -851,8 +851,27 @@ var PerformanceComponent = (function () {
                 _this.questionService.getAnsweredQuestionsByUsername(_this.user.username).subscribe(function (response) {
                     _this.answeredQuestions = response;
                     _this.tagQuestions = new Map();
+                    _this.tagCorrect = new Map();
+                    _this.tagIncorrect = new Map();
+                    _this.tagQuestionsKeys = new Array();
                     _this.answeredQuestions.forEach(function (aq) {
                         var aqTag = aq.qid.tag.tagName;
+                        if (aq.success) {
+                            if (_this.tagCorrect.has(aqTag)) {
+                                _this.tagCorrect.set(aqTag, _this.tagCorrect.get(aqTag) + 1);
+                            }
+                            else {
+                                _this.tagCorrect.set(aqTag, 1);
+                            }
+                        }
+                        else {
+                            if (_this.tagIncorrect.has(aqTag)) {
+                                _this.tagIncorrect.set(aqTag, _this.tagIncorrect.get(aqTag) + 1);
+                            }
+                            else {
+                                _this.tagIncorrect.set(aqTag, 1);
+                            }
+                        }
                         if (_this.tagQuestions.has(aqTag)) {
                             _this.tagQuestions.get(aqTag).push(aq);
                         }
