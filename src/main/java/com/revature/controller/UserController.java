@@ -39,8 +39,8 @@ public class UserController {
     UsersDao usersDao = new UsersDao();
     Users dbUser = usersDao.getUser(user.getUsername());
     HttpHeaders responseHeaders = new HttpHeaders();
-    if(dbUser == null) {
-      return new ResponseEntity(dbUser, responseHeaders, HttpStatus.CONFLICT);
+    if(dbUser != null) {
+      return new ResponseEntity(null, responseHeaders, HttpStatus.CONFLICT);
     }
     usersDao.saveUser(user);
 
