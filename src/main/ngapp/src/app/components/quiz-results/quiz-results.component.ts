@@ -35,11 +35,12 @@ export class QuizResultsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.qfs.setQuizTaken(false); 
-    this.auth.isLoggedIn().subscribe(res => {
-      if (res){
+    this.qfs.setQuizTaken(false);
+     
+    this.auth.isLoggedIn().subscribe(user => {
+      if (user){
         this.getResults();
-        this.http.post(`http://52.14.182.231:8181/answeredQuestion?username=${res.username}`, this.results).subscribe(res => console.log(res));
+        this.http.post(`http://52.14.182.231:8181/user/${user.username}/answeredQuestions`, this.results).subscribe();
       }
     });
   }
@@ -73,7 +74,7 @@ export class QuizResultsComponent implements OnInit, OnDestroy {
        succeed = this.questions[index].answers[userAnswer].correct;
       }
 
-      return { qid: question, succeed };
+      return { qid: question, success: succeed };
     });
   }
 
