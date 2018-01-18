@@ -33,7 +33,10 @@ public class LoginController {
     if(inDb == null) {
       return new ResponseEntity(inDb, responseHeaders, HttpStatus.UNAUTHORIZED);
     }
-    return new ResponseEntity(inDb, responseHeaders, HttpStatus.ACCEPTED);
+    if(inDb.getPassword().equals(input.getPassword())) {
+      return new ResponseEntity(inDb, responseHeaders, HttpStatus.ACCEPTED);
+    }
+    return new ResponseEntity(null, responseHeaders, HttpStatus.UNAUTHORIZED);
   }
 
 }
