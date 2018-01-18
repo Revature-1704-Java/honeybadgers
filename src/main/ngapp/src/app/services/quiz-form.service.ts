@@ -8,7 +8,6 @@ export class QuizFormService {
   constructor() { }
   upadte(userAnswer: QuizAnswer[]): void {
     this.userAnswer = userAnswer;
-    console.log(this.userAnswer);
     this.setQuizTaken(true);
   }
   get(): QuizAnswer[] {
