@@ -1,0 +1,12 @@
+<h1>Your Answered Questions</h1>
+<mat-expansion-panel *ngFor="let tq of tagQuestionsKeys">
+  <mat-expansion-panel-header>
+    <mat-panel-title>{{ tq }}</mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-card *ngFor="let aq of tagQuestions.get(tq)" [ngStyle]="{ 'background-color': aq.success ? '#A5D6A7' : '#EF9A9A' }">
+    <mat-card-content>
+      <p>{{ aq.qid.question }}</p>
+      <p>{{ aq.success ? 'Correct' : 'Incorrect' }}</p>
+    </mat-card-content>
+  </mat-card>
+</mat-expansion-panel>

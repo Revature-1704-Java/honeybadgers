@@ -9,6 +9,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { QuizContainerComponent } from './components/quiz-container/quiz-container.component';
 import { QuizResultsGuard } from './guards/quiz-results.guard';
 import { AddQformComponent } from './components/add-qform/add-qform.component';
+import { PerformanceComponent } from './components/performance/performance.component';
 
 const routes: Routes = [
   {
@@ -22,11 +23,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: TagListComponent
+        component: PerformanceComponent
       },
       {
-        path: 'tag-filter',
-        component: TagListComponent
+        path: 'performance',
+        component: PerformanceComponent
       },
       {
         path: 'questions',
