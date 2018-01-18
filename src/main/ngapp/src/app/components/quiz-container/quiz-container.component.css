@@ -7,7 +7,6 @@
   margin-top: 1em;
   text-align: center;
   height: 100vh;
-  
 }
 
 .content {
@@ -47,5 +46,7 @@
 .list-container {
   grid-column:1/2;
   display: block;
+  max-height: 480;
+  overflow-y: auto;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
