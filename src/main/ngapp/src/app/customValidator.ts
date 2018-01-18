@@ -13,12 +13,6 @@ export class CustomValidator {
         }
         return null;
     }
-
-    static  passwordMatchValidator(g: FormGroup) {
-        console.log('runs', g);
-        return g.get('password').value === g.get('confirm').value
-           ? null : {'mismatch': true};
-     }
 }
 
 
