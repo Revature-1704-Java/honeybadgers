@@ -34,7 +34,8 @@ public class LoginController {
       return new ResponseEntity(inDb, responseHeaders, HttpStatus.UNAUTHORIZED);
     }
     if(inDb.getPassword().equals(input.getPassword())) {
-      return new ResponseEntity(inDb, responseHeaders, HttpStatus.ACCEPTED);
+    	  Users retUser = usersDao.getUser(user.getUsername());
+      return new ResponseEntity(retUser, responseHeaders, HttpStatus.ACCEPTED);
     }
     return new ResponseEntity(null, responseHeaders, HttpStatus.UNAUTHORIZED);
   }
