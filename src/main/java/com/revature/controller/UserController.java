@@ -34,15 +34,16 @@ public class UserController {
   }
 
   @PostMapping()
-  public ResponseEntity postUser(@RequestBody Users input) {
-    Users user = input;
+  public ResponseEntity postUser(@RequestBody UserAuth input) {
+    UserAuth user = input;
     UsersDao usersDao = new UsersDao();
     Users dbUser = usersDao.getUser(user.getUsername());
     HttpHeaders responseHeaders = new HttpHeaders();
     if(dbUser != null) {
       return new ResponseEntity(null, responseHeaders, HttpStatus.CONFLICT);
     }
-    usersDao.saveUser(user);
+    Users saveUser = new Users(user.getUsername(), user.getPassword());
+    usersDao.saveUser(saveUser);
 
     dbUser = usersDao.getUser(user.getUsername());
     if(dbUser == null) {

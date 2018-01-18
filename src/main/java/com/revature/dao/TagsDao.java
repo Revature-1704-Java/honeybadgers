@@ -33,7 +33,7 @@ public class TagsDao {
 	
 	public List<Tags> getAllTags(){
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		List<Tags> tags = session.createQuery("from Tags").list();
+		List<Tags> tags = session.createQuery("from Tags order by tag asc").list();
 		session.close();
 		return tags;
 	}
