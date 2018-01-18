@@ -15,9 +15,12 @@ export class TagListComponent implements OnInit {
   constructor(private tagService: TagService) { }
 
   ngOnInit() {
-    // this.tags = this.tagService.getTags();
     this.tagService.getTags().subscribe((response) => {
-      this.tags = response;
+      this.tags = response.sort((a, b) => {
+        if(a.tagName.toLowerCase() < b.tagName.toLowerCase()) return -1;
+        else if(a.tagName.toLowerCase() > b.tagName.toLowerCase()) return 1;
+        else return 0;
+      });
       this.filteredTags = [];
       this.tags.forEach((tag) => {
         this.filteredTags.push(tag);
@@ -46,21 +49,4 @@ export class TagListComponent implements OnInit {
       }
     }
   }
-
-  // public updateTagList(event):void {
-  //   if(event.charCode === 32) {
-  //     this.filteredTags.splice(0);
-  //     this.tags.forEach((tag) => {
-  //       if(tag.tagName === this.tagFilter.trim()) {
-  //         this.filteredTags.push(tag);
-  //       }
-  //     });
-  //   } else if(this.tagFilter !== undefined && this.tagFilter.length === 0) {
-  //     this.filteredTags.splice(0);
-  //     this.tags.forEach((tag) => {
-  //       this.filteredTags.push(tag);
-  //     });
-  //   }
-  // }
-
 }

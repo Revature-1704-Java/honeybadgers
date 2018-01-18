@@ -1682,9 +1682,15 @@ var TagListComponent = (function () {
     }
     TagListComponent.prototype.ngOnInit = function () {
         var _this = this;
-        // this.tags = this.tagService.getTags();
         this.tagService.getTags().subscribe(function (response) {
-            _this.tags = response;
+            _this.tags = response.sort(function (a, b) {
+                if (a.tagName.toLowerCase() < b.tagName.toLowerCase())
+                    return -1;
+                else if (a.tagName.toLowerCase() > b.tagName.toLowerCase())
+                    return 1;
+                else
+                    return 0;
+            });
             _this.filteredTags = [];
             _this.tags.forEach(function (tag) {
                 _this.filteredTags.push(tag);
@@ -2041,7 +2047,6 @@ var TagService = (function () {
         this.url = 'http://52.14.182.231:8181';
     }
     TagService.prototype.getTags = function () {
-        // this.tags = this.http.get<Tag[]>('../assets/mocktags.json');
         this.tags = this.http.get(this.url + '/tag');
         return this.tags;
     };
