@@ -943,7 +943,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/question-list/question-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<span>Questions</span>\n<mat-list class=\"list\">\n  <mat-list-item\n    class=\"item\"\n    *ngFor=\"let a of answers; let i = index;\" \n    (click)=\"onClick(i)\"\n    [ngStyle]=\"{'background-color': i==currentQ?'#FFD740':''}\"\n  ><span>Question {{i+1}}</span> \n  <span *ngIf=\"a.answer==0||a.answer\">Answered</span>\n  </mat-list-item>\n</mat-list>\n"
+module.exports = "<span>Questions</span>\r\n<mat-list class=\"list\">\r\n  <mat-list-item\r\n    class=\"item\"\r\n    *ngFor=\"let a of answers; let i = index;\" \r\n    (click)=\"onClick(i)\"\r\n    [ngStyle]=\"{'background-color': i==currentQ?'#FFD740':''}\"\r\n  ><span>Question {{i+1}}</span> \r\n  <span *ngIf=\"a.answer==0||a.answer\">Answered</span>\r\n  </mat-list-item>\r\n</mat-list>\r\n"
 
 /***/ }),
 
@@ -1021,7 +1021,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/quiz-card/quiz-card.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\" [formGroup]=\"parent\">\n  <div class=\"form-container\" formArrayName=\"answers\">\n    <div class=\"form\" [formGroupName]=\"index\">\n      <div class=\"question\">\n        {{question.question}}\n      </div>\n      <div class=\"answer\" *ngFor=\"let a of question.answers; let i = index\">\n        <input formControlName=\"answer\" type=\"radio\" [value]=\"i\" id=\"{{i}}\"> \n        <label for=\"{{i}}\">{{a.text}}</label>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"card\" [formGroup]=\"parent\">\r\n  <div class=\"form-container\" formArrayName=\"answers\">\r\n    <div class=\"form\" [formGroupName]=\"index\">\r\n      <div class=\"question\">\r\n        {{question.question}}\r\n      </div>\r\n      <div class=\"answer\" *ngFor=\"let a of question.answers; let i = index\">\r\n        <input formControlName=\"answer\" type=\"radio\" [value]=\"i\" id=\"{{i}}\"> \r\n        <label for=\"{{i}}\">{{a.text}}</label>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1222,7 +1222,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/quiz-results/quiz-results.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Correct Answers: {{ correctCount }}</h1>\r\n<h1>Wrong Answers: {{ totalCount - correctCount }}</h1>\r\n<mat-accordion class=\"results-container\">\r\n  <mat-expansion-panel *ngFor=\"let q of questions; let i = index;\" \r\n    [ngStyle]=\"{'background-color': correctAnswerCheck(i) ? 'lightgreen' : 'lightcoral'}\">\r\n    <mat-expansion-panel-header>\r\n      <mat-panel-title>\r\n        Question {{i + 1}}\r\n      </mat-panel-title>\r\n      <mat-panel-description>\r\n        {{ q.question }}\r\n      </mat-panel-description>\r\n    </mat-expansion-panel-header>\r\n    <div *ngIf = \"userAnswerExist(i); else cheater\">\r\n      <p *ngIf=\"correctAnswerCheck(i); else wrong\">Your Answer: {{ correctAnswers[i].text }}</p>\r\n      <ng-template #wrong>\r\n        <p>Your Answer: {{questions[i].answers[userAnswers[i].answer].text}}</p>\r\n        <p>Correct Answer: {{ correctAnswers[i].text }}</p>\r\n      </ng-template>\r\n    </div>\r\n    <ng-template #cheater>\r\n      <p>You didn't answer this question, why you trying to cheat bruv?</p>\r\n    </ng-template>\r\n  </mat-expansion-panel>\r\n</mat-accordion>"
+module.exports = "<div *ngIf=\"totalCount\">\n  <h1>Correct Answers: {{ correctCount }}</h1>\n  <h1>Wrong Answers: {{ totalCount - correctCount }}</h1>\n</div>\n<mat-accordion class=\"results-container\">\n  <mat-expansion-panel *ngFor=\"let q of questions; let i = index;\" \n    [ngStyle]=\"{'background-color': correctAnswerCheck(i) ? 'lightgreen' : 'lightcoral'}\">\n    <mat-expansion-panel-header>\n      <mat-panel-title>\n        Question {{i + 1}}\n      </mat-panel-title>\n      <mat-panel-description>\n        {{ q.question }}\n      </mat-panel-description>\n    </mat-expansion-panel-header>\n    <div *ngIf = \"userAnswerExist(i); else cheater\">\n      <p *ngIf=\"correctAnswerCheck(i); else wrong\">Your Answer: {{ correctAnswers[i].text }}</p>\n      <ng-template #wrong>\n        <p>Your Answer: {{questions[i].answers[userAnswers[i].answer].text}}</p>\n        <p>Correct Answer: {{ correctAnswers[i].text }}</p>\n      </ng-template>\n    </div>\n    <ng-template #cheater>\n      <p>You didn't answer this question, why you trying to cheat bruv?</p>\n    </ng-template>\n  </mat-expansion-panel>\n</mat-accordion>"
 
 /***/ }),
 
@@ -1234,6 +1234,8 @@ module.exports = "<h1>Correct Answers: {{ correctCount }}</h1>\r\n<h1>Wrong Answ
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_quiz_form_service__ = __webpack_require__("../../../../../src/app/services/quiz-form.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_question_service__ = __webpack_require__("../../../../../src/app/services/question.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1246,25 +1248,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var QuizResultsComponent = (function () {
-    function QuizResultsComponent(qs, qfs) {
+    function QuizResultsComponent(qs, qfs, http, auth) {
         this.qs = qs;
         this.qfs = qfs;
+        this.http = http;
+        this.auth = auth;
         this.totalCount = 0;
         this.correctCount = 0;
+        this.results = [];
     }
     QuizResultsComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.results = [];
         this.qs.questionArray.subscribe(function (res) {
             _this.questions = res;
-            console.log(res);
             _this.userAnswers = _this.qfs.get();
-            console.log(_this.userAnswers);
             _this.correctAnswers = _this.findCorrect();
         });
     };
     QuizResultsComponent.prototype.ngOnDestroy = function () {
+        var _this = this;
         this.qfs.setQuizTaken(false);
+        this.auth.isLoggedIn().subscribe(function (res) {
+            if (res) {
+                _this.getResults();
+                _this.http.post("http://52.14.182.231:8181/answeredQuestion?username=" + res.username, _this.results).subscribe(function (res) { return console.log(res); });
+            }
+        });
     };
     QuizResultsComponent.prototype.findCorrect = function () {
         var answers = [];
@@ -1273,14 +1286,26 @@ var QuizResultsComponent = (function () {
             for (var j = 0; j < this.questions[i].answers.length; j++) {
                 var answer = this.questions[i].answers[j];
                 if (answer.correct) {
-                    answers.push(answer);
-                    if (this.userAnswers[i].answer == j)
-                        this.correctCount++;
+                    answers.push(answer); //push onto answer array
+                    var userCorrect = (this.userAnswers[i].answer == j);
+                    if (userCorrect)
+                        this.correctCount++; //increment correct Count
                     break;
                 }
             }
         }
         return answers;
+    };
+    QuizResultsComponent.prototype.getResults = function () {
+        var _this = this;
+        this.results = this.questions.map(function (question, index) {
+            var succeed = false;
+            var userAnswer = _this.userAnswers[index].answer;
+            if (userAnswer != null) {
+                succeed = _this.questions[index].answers[userAnswer].correct;
+            }
+            return { qid: question, succeed: succeed };
+        });
     };
     QuizResultsComponent.prototype.correctAnswerCheck = function (index) {
         if (this.userAnswerExist(index)) {
@@ -1300,7 +1325,8 @@ var QuizResultsComponent = (function () {
             template: __webpack_require__("../../../../../src/app/components/quiz-results/quiz-results.component.html"),
             styles: [__webpack_require__("../../../../../src/app/components/quiz-results/quiz-results.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_question_service__["a" /* QuestionService */], __WEBPACK_IMPORTED_MODULE_1__services_quiz_form_service__["a" /* QuizFormService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_question_service__["a" /* QuestionService */], __WEBPACK_IMPORTED_MODULE_1__services_quiz_form_service__["a" /* QuizFormService */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_4__services_auth_service__["a" /* AuthService */]])
     ], QuizResultsComponent);
     return QuizResultsComponent;
 }());
@@ -1343,7 +1369,6 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__customValidator__ = __webpack_require__("../../../../../src/app/customValidator.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1353,7 +1378,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 
@@ -1369,7 +1393,7 @@ var SignupComponent = (function () {
             username: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["k" /* Validators */].required],
             password: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["k" /* Validators */].required],
             confirm: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["k" /* Validators */].required]
-        }, { validator: __WEBPACK_IMPORTED_MODULE_4__customValidator__["a" /* CustomValidator */].passwordMatchValidator });
+        }, { validator: this.passwordMatchValidator });
         this.isLoggedIn$ = this.authService.isLoggedIn();
     };
     SignupComponent.prototype.passwordMatchValidator = function (g) {
@@ -1391,8 +1415,8 @@ var SignupComponent = (function () {
         if (this.form.valid && (this.form.get('password').value === this.form.get('confirm').value)) {
             this.authService.signup(this.form.value);
         }
-        this.isLoggedIn$.subscribe(function (res) {
-            if (res) {
+        this.isLoggedIn$.subscribe(function (user) {
+            if (user) {
                 _this.dialogRef.close();
             }
             else {
@@ -1604,11 +1628,6 @@ var CustomValidator = (function () {
             return { noCorrect: true };
         }
         return null;
-    };
-    CustomValidator.passwordMatchValidator = function (g) {
-        console.log('runs', g);
-        return g.get('password').value === g.get('confirm').value
-            ? null : { 'mismatch': true };
     };
     return CustomValidator;
 }());

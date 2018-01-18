@@ -28,7 +28,7 @@ export class SignupComponent implements OnInit{
       username: ['', Validators.required],
       password: ['', Validators.required],
       confirm: ['', Validators.required]
-    }, {validator: CustomValidator.passwordMatchValidator})
+    }, {validator: this.passwordMatchValidator})
 
     this.isLoggedIn$ = this.authService.isLoggedIn();
   }
@@ -56,8 +56,8 @@ export class SignupComponent implements OnInit{
       this.authService.signup(this.form.value);
     }
     
-    this.isLoggedIn$.subscribe(res => {
-      if (res) {
+    this.isLoggedIn$.subscribe(user => {
+      if (user) {
         this.dialogRef.close();
       } else {
         this.submitFailed = true;
