@@ -52,17 +52,22 @@ public class UserController {
   }
   //@CrossOrigin(origins = "http://localhost:8181")
   @RequestMapping(value="/{username}", method=RequestMethod.PUT)
-  public ResponseEntity updateUser(@RequestBody Users input, @PathVariable String username) {
-    Users user = input;
+  public ResponseEntity updateUser(@RequestBody List<UserAuth> input, @PathVariable String username) {
+    List<UserAuth> listUser = input;
     UsersDao usersDao = new UsersDao();
-    Users currentUser = usersDao.getUser(username);
+    UserAuth currentUser = usersDao.getUserandPass(username);
     HttpHeaders responseHeaders = new HttpHeaders();
     if(currentUser == null) {
       return new ResponseEntity("Resource not found", responseHeaders, HttpStatus.NOT_FOUND);
     }
-    currentUser.setPassword(input.getPassword());    
-    usersDao.updateUser(currentUser);
-    return new ResponseEntity(currentUser, responseHeaders, HttpStatus.OK);
+    else if(listUser.get(0).getPassword() !=currentUser.getPassword()) {
+    		return new ResponseEntity("Current password entered incorrectly", responseHeaders, HttpStatus.UNAUTHORIZED);
+    } else {
+    		currentUser.setPassword(input.get(1).getPassword());
+    		Users updatedUser = new Users(currentUser.getUsername(), currentUser.getPassword());
+    		usersDao.updateUser(updatedUser);
+    		return new ResponseEntity(currentUser, responseHeaders, HttpStatus.OK);
+    }
   }
 
   @RequestMapping(value="/{username}/answeredQuestions", method=RequestMethod.POST)
