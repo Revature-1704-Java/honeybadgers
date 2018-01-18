@@ -37,9 +37,18 @@ public class UserController {
   public ResponseEntity postUser(@RequestBody Users input) {
     Users user = input;
     UsersDao usersDao = new UsersDao();
-    usersDao.saveUser(user);
+    Users dbUser = usersDao.getUser(user.getUsername());
     HttpHeaders responseHeaders = new HttpHeaders();
-    return new ResponseEntity("User created", responseHeaders, HttpStatus.ACCEPTED);
+    if(dbUser == null) {
+      return new ResponseEntity(dbUser, responseHeaders, HttpStatus.CONFLICT);
+    }
+    usersDao.saveUser(user);
+
+    dbUser = usersDao.getUser(user.getUsername());
+    if(dbUser == null) {
+      return new ResponseEntity(dbUser, responseHeaders, HttpStatus.CONFLICT);
+    }
+    return new ResponseEntity(dbUser, responseHeaders, HttpStatus.ACCEPTED);
   }
   //@CrossOrigin(origins = "http://localhost:8181")
   @RequestMapping(value="/{username}", method=RequestMethod.PUT)
