@@ -33,4 +33,23 @@ public class AnsweredQuestionsDao {
 		session.close();
 		return aedq;		
 	}
+	
+	public AnsweredQuestions getAedQWithUserandQuestion(Users user, Questions quest) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		List<AnsweredQuestions> listAedQ = session.createQuery("from AnsweredQuestions where userid =:uid and qid =:qid").
+				setInteger("uid", user.getId()).setInteger("qid", quest.getQ_id()).list();
+		if(listAedQ == null) {
+			return null;
+		}
+		session.close();
+		return listAedQ.get(0);
+	}
+	
+	public void updateAnsweredQuestion(AnsweredQuestions aedQ) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		session.update(aedQ);
+		tx.commit();
+		session.close();
+	}
 }

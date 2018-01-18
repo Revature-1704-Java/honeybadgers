@@ -77,7 +77,13 @@ public class UserController {
     }
     for(AnsweredQuestions aq : answeredQuestions) {
       aq.setId(user);
-      answeredQuestionsDao.saveAnsweredQuestion(aq);
+      if(answeredQuestionsDao.getAedQWithUserandQuestion(user, aq.getQid())== null) {
+    	  	answeredQuestionsDao.saveAnsweredQuestion(aq);
+      } else {
+    	  	AnsweredQuestions updateAQ = answeredQuestionsDao.getAedQWithUserandQuestion(user, aq.getQid());
+    	  	updateAQ.setSuccess(aq.isSuccess());
+    	  	answeredQuestionsDao.updateAnsweredQuestion(updateAQ);    	  	
+      }
     }
 
     if(answeredQuestions == null) {
