@@ -20,6 +20,7 @@ public class Users {
 	
 	public Users(String username, String password) {
 		this.username = username;
+		this.password = password;
 	}
 	
 	public Users(String username, boolean admin) {
@@ -90,7 +91,7 @@ public class Users {
 
 	@Override
 	public String toString() {
-		return "Users [userid=" + id + ", username=" + username + "]";
+		return "Users [userid=" + id + ", username=" + username + ", password=" + password + "]";
 	}
 	
 }
