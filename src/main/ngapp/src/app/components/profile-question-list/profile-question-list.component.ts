@@ -32,10 +32,8 @@ export class ProfileQuestionListComponent implements OnInit {
             }
           });
           this.tagQuestionsKeys = Array.from(this.tagQuestions.keys());
-          console.log(this.tagQuestionsKeys);
         });
       }
     });
   }
-
 }
