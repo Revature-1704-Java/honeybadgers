@@ -5,7 +5,7 @@
       <mat-error *ngIf="QForm.get('question').invalid">*Field Required</mat-error>
     </mat-form-field>
     <div>
-        <mat-slide-toggle formControlName="useExisting">Use Existing Tag</mat-slide-toggle>
+        <mat-slide-toggle formControlName="useExisting" (change)="clearTag()">Use Existing Tag</mat-slide-toggle>
     </div>
     <mat-form-field *ngIf="tagList">
       <mat-select *ngIf="QForm.get('useExisting').value" placeholder="Tag" formControlName="tag">

@@ -82,6 +82,9 @@ export class AddQformComponent implements OnInit {
   deleteAnswer(i: number): void {
     this.answers.removeAt(i);
   }
+  clearTag() {
+    this.QForm.get('tag').reset();
+  }
   getAnswersArrayErrorMessage(): string {
     if (this.QForm.get('answers').hasError('moreThanOne')) {
       return 'Only One Correct Answer Allowed';
