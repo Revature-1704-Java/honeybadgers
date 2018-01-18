@@ -28,6 +28,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { QuizResultsGuard } from './guards/quiz-results.guard';
 
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { PerformanceComponent } from './components/performance/performance.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     ProfileComponent,
     ProfileQuestionListComponent,
     AddQformComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    PerformanceComponent
   ],
   imports: [
     MatButtonModule,

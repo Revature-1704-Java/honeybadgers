@@ -1,15 +1,16 @@
-<mat-card *ngFor="let q of questions">
-  <mat-card-content>
-    <p>{{ q.question }}</p>
-    <mat-list>
-      <mat-list-item *ngFor="let a of q.answers">{{ a.text }}</mat-list-item>
-    </mat-list>
-  </mat-card-content>
-</mat-card>
-
-<!-- <div *ngFor="let q of questions" class="question">
-  <p>{{ q.question }}</p>
-  <ul>
-    <li *ngFor="let a of q.answers">{{ a.text }}</li>
-  </ul>
-</div> -->
+<h1>My Questions</h1>
+<mat-expansion-panel *ngFor="let tq of tagQuestionsKeys">
+  <mat-expansion-panel-header>
+    <mat-panel-title>{{ tq }}</mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-card *ngFor="let q of tagQuestions.get(tq)">
+    <mat-card-content>
+      <h3>Question</h3>
+      <p>{{ q.question }}</p>
+      <h3>Choices</h3>
+      <mat-list>
+        <mat-list-item *ngFor="let a of q.answers" [ngStyle]="{ 'background-color': a.correct ? '#A5D6A7' : '#EF9A9A' }">{{ a.text }}</mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</mat-expansion-panel>
