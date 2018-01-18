@@ -797,7 +797,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 // module
-exports.push([module.i, "* {\n  font-family: 'Roboto', sans-serif;\n}", ""]);
+exports.push([module.i, "* {\r\n  font-family: 'Roboto', sans-serif;\r\n}", ""]);
 
 // exports
 
@@ -810,7 +810,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/performance/performance.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Your Answered Questions</h1>\n<mat-expansion-panel *ngFor=\"let tq of tagQuestionsKeys\">\n  <mat-expansion-panel-header>\n    <mat-panel-title>\n      <h2>{{ tq }}</h2>\n    </mat-panel-title>\n  </mat-expansion-panel-header>\n  <h3>Performance</h3>\n  <mat-progress-bar mode=\"determinate\" value=\"{{ (tagCorrect.get(tq) / (tagCorrect.get(tq) + tagIncorrect.get(tq))) * 100 }}\"></mat-progress-bar>\n  <h3>Questions Answered for {{ tq }}</h3>\n  <mat-card *ngFor=\"let aq of tagQuestions.get(tq)\" [ngStyle]=\"{ 'background-color': aq.success ? '#A5D6A7' : '#EF9A9A' }\">\n    <mat-card-content>\n      <p>{{ aq.qid.question }}</p>\n      <p>{{ aq.success ? 'Correct' : 'Incorrect' }}</p>\n    </mat-card-content>\n  </mat-card>\n</mat-expansion-panel>"
+module.exports = "<h1>Your Answered Questions</h1>\r\n<mat-expansion-panel *ngFor=\"let tq of tagQuestionsKeys\">\r\n  <mat-expansion-panel-header>\r\n    <mat-panel-title>\r\n      <h2>{{ tq }}</h2>\r\n    </mat-panel-title>\r\n  </mat-expansion-panel-header>\r\n  <h3>Performance</h3>\r\n  <mat-progress-bar mode=\"determinate\" value=\"{{ (tagCorrect.get(tq) / (tagCorrect.get(tq) + tagIncorrect.get(tq))) * 100 }}\"></mat-progress-bar>\r\n  <h3>Questions Answered for {{ tq }}</h3>\r\n  <mat-card *ngFor=\"let aq of tagQuestions.get(tq)\" [ngStyle]=\"{ 'background-color': aq.success ? '#A5D6A7' : '#EF9A9A' }\">\r\n    <mat-card-content>\r\n      <p>{{ aq.qid.question }}</p>\r\n      <p>{{ aq.success ? 'Correct' : 'Incorrect' }}</p>\r\n    </mat-card-content>\r\n  </mat-card>\r\n</mat-expansion-panel>"
 
 /***/ }),
 
@@ -845,42 +845,39 @@ var PerformanceComponent = (function () {
     PerformanceComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.authService.isLoggedIn().subscribe(function (response) {
-            _this.user = response;
-            _this.tagService.getTags().subscribe(function (response) {
-                _this.tags = response;
-                _this.questionService.getAnsweredQuestionsByUsername(_this.user.username).subscribe(function (response) {
-                    _this.answeredQuestions = response;
-                    _this.tagQuestions = new Map();
-                    _this.tagCorrect = new Map();
-                    _this.tagIncorrect = new Map();
-                    _this.tagQuestionsKeys = new Array();
-                    _this.answeredQuestions.forEach(function (aq) {
-                        var aqTag = aq.qid.tag.tagName;
-                        if (aq.success) {
-                            if (_this.tagCorrect.has(aqTag)) {
-                                _this.tagCorrect.set(aqTag, _this.tagCorrect.get(aqTag) + 1);
-                            }
-                            else {
-                                _this.tagCorrect.set(aqTag, 1);
-                            }
+            var username = response['username'];
+            _this.questionService.getAnsweredQuestionsByUsername(username).subscribe(function (response) {
+                var answeredQuestions = response;
+                _this.tagQuestions = new Map();
+                _this.tagCorrect = new Map();
+                _this.tagIncorrect = new Map();
+                _this.tagQuestionsKeys = new Array();
+                answeredQuestions.forEach(function (aq) {
+                    var aqTag = aq.qid.tag.tagName;
+                    if (aq.success) {
+                        if (_this.tagCorrect.has(aqTag)) {
+                            _this.tagCorrect.set(aqTag, _this.tagCorrect.get(aqTag) + 1);
                         }
                         else {
-                            if (_this.tagIncorrect.has(aqTag)) {
-                                _this.tagIncorrect.set(aqTag, _this.tagIncorrect.get(aqTag) + 1);
-                            }
-                            else {
-                                _this.tagIncorrect.set(aqTag, 1);
-                            }
+                            _this.tagCorrect.set(aqTag, 1);
                         }
-                        if (_this.tagQuestions.has(aqTag)) {
-                            _this.tagQuestions.get(aqTag).push(aq);
+                    }
+                    else {
+                        if (_this.tagIncorrect.has(aqTag)) {
+                            _this.tagIncorrect.set(aqTag, _this.tagIncorrect.get(aqTag) + 1);
                         }
                         else {
-                            _this.tagQuestions.set(aqTag, [aq]);
+                            _this.tagIncorrect.set(aqTag, 1);
                         }
-                    });
-                    _this.tagQuestionsKeys = Array.from(_this.tagQuestions.keys());
+                    }
+                    if (_this.tagQuestions.has(aqTag)) {
+                        _this.tagQuestions.get(aqTag).push(aq);
+                    }
+                    else {
+                        _this.tagQuestions.set(aqTag, [aq]);
+                    }
                 });
+                _this.tagQuestionsKeys = Array.from(_this.tagQuestions.keys());
             });
         });
     };
@@ -920,7 +917,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/profile-question-list/profile-question-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>My Questions</h1>\r\n<mat-card *ngFor=\"let q of questions\">\r\n  <mat-card-content>\r\n    <h3>Question</h3>\r\n    <p>{{ q.question }}</p>\r\n    <h3>Choices</h3>\r\n    <mat-list>\r\n      <mat-list-item *ngFor=\"let a of q.answers\" [ngStyle]=\"{ 'background-color': a.correct ? '#A5D6A7' : '#EF9A9A' }\">{{ a.text }}</mat-list-item>\r\n    </mat-list>\r\n  </mat-card-content>\r\n</mat-card>\r\n\r\n<!-- <div *ngFor=\"let q of questions\" class=\"question\">\r\n  <p>{{ q.question }}</p>\r\n  <ul>\r\n    <li *ngFor=\"let a of q.answers\">{{ a.text }}</li>\r\n  </ul>\r\n</div> -->"
+module.exports = "<h1>My Questions</h1>\r\n<mat-expansion-panel *ngFor=\"let tq of tagQuestionsKeys\">\r\n  <mat-expansion-panel-header>\r\n    <mat-panel-title>{{ tq }}</mat-panel-title>\r\n  </mat-expansion-panel-header>\r\n  <mat-card *ngFor=\"let q of tagQuestions.get(tq)\">\r\n    <mat-card-content>\r\n      <h3>Question</h3>\r\n      <p>{{ q.question }}</p>\r\n      <h3>Choices</h3>\r\n      <mat-list>\r\n        <mat-list-item *ngFor=\"let a of q.answers\" [ngStyle]=\"{ 'background-color': a.correct ? '#A5D6A7' : '#EF9A9A' }\">{{ a.text }}</mat-list-item>\r\n      </mat-list>\r\n    </mat-card-content>\r\n  </mat-card>\r\n</mat-expansion-panel>\r\n\r\n<!-- <div *ngFor=\"let q of questions\" class=\"question\">\r\n  <p>{{ q.question }}</p>\r\n  <ul>\r\n    <li *ngFor=\"let a of q.answers\">{{ a.text }}</li>\r\n  </ul>\r\n</div> -->"
 
 /***/ }),
 
@@ -955,7 +952,19 @@ var ProfileQuestionListComponent = (function () {
             if (user !== null) {
                 _this.username = user.username;
                 _this.questionService.getQuestionsByUsername(_this.username).subscribe(function (response) {
-                    _this.questions = response;
+                    var questions = response;
+                    _this.tagQuestions = new Map();
+                    questions.forEach(function (question) {
+                        var tagName = question.tag.tagName;
+                        if (_this.tagQuestions.has(tagName)) {
+                            _this.tagQuestions.get(tagName).push(question);
+                        }
+                        else {
+                            _this.tagQuestions.set(tagName, [question]);
+                        }
+                    });
+                    _this.tagQuestionsKeys = Array.from(_this.tagQuestions.keys());
+                    console.log(_this.tagQuestionsKeys);
                 });
             }
         });

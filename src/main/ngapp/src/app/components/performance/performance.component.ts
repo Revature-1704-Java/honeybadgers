@@ -12,9 +12,6 @@ import { QuestionService } from '../../services/question.service';
   styleUrls: ['./performance.component.css']
 })
 export class PerformanceComponent implements OnInit {
-  private tags: Tag[];
-  private user: User;
-  public answeredQuestions: AnsweredQuestion[];
   public tagQuestions: Map<string, AnsweredQuestion[]>;
   public tagCorrect: Map<string, number>;
   public tagIncorrect: Map<string, number>;
@@ -24,39 +21,36 @@ export class PerformanceComponent implements OnInit {
 
   ngOnInit() {
     this.authService.isLoggedIn().subscribe((response) => {
-      this.user = response;
-      this.tagService.getTags().subscribe((response) => {
-        this.tags = response;
-        this.questionService.getAnsweredQuestionsByUsername(this.user.username).subscribe((response) => {
-          this.answeredQuestions = response;
-          this.tagQuestions = new Map<string, AnsweredQuestion[]>();
-          this.tagCorrect = new Map<string, number>();
-          this.tagIncorrect = new Map<string, number>();
-          this.tagQuestionsKeys = new Array<string>();
-          this.answeredQuestions.forEach((aq) => {
-            let aqTag = aq.qid.tag.tagName;
+      let username = response['username'];
+      this.questionService.getAnsweredQuestionsByUsername(username).subscribe((response) => {
+        let answeredQuestions = response;
+        this.tagQuestions = new Map<string, AnsweredQuestion[]>();
+        this.tagCorrect = new Map<string, number>();
+        this.tagIncorrect = new Map<string, number>();
+        this.tagQuestionsKeys = new Array<string>();
+        answeredQuestions.forEach((aq) => {
+          let aqTag = aq.qid.tag.tagName;
 
-            if(aq.success) {
-              if(this.tagCorrect.has(aqTag)) {
-                this.tagCorrect.set(aqTag, this.tagCorrect.get(aqTag) + 1);
-              } else {
-                this.tagCorrect.set(aqTag, 1);
-              }
+          if(aq.success) {
+            if(this.tagCorrect.has(aqTag)) {
+              this.tagCorrect.set(aqTag, this.tagCorrect.get(aqTag) + 1);
             } else {
-              if(this.tagIncorrect.has(aqTag)) {
-                this.tagIncorrect.set(aqTag, this.tagIncorrect.get(aqTag) + 1);
-              } else {
-                this.tagIncorrect.set(aqTag, 1);
-              }
+              this.tagCorrect.set(aqTag, 1);
             }
-            if(this.tagQuestions.has(aqTag)) {
-              this.tagQuestions.get(aqTag).push(aq);
+          } else {
+            if(this.tagIncorrect.has(aqTag)) {
+              this.tagIncorrect.set(aqTag, this.tagIncorrect.get(aqTag) + 1);
             } else {
-              this.tagQuestions.set(aqTag, [ aq ]);
+              this.tagIncorrect.set(aqTag, 1);
             }
-          });
-          this.tagQuestionsKeys = Array.from(this.tagQuestions.keys());
+          }
+          if(this.tagQuestions.has(aqTag)) {
+            this.tagQuestions.get(aqTag).push(aq);
+          } else {
+            this.tagQuestions.set(aqTag, [ aq ]);
+          }
         });
+        this.tagQuestionsKeys = Array.from(this.tagQuestions.keys());
       });
     });
   }
