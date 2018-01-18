@@ -2,6 +2,7 @@ package com.revature.application.controller;
 
 import com.revature.dao.*;
 import com.revature.beans.*;
+import com.revature.service.*;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,39 +54,63 @@ public class QuestionController {
     Questions question = input;
     Users user = question.getUser(); //User associated with the question
     UsersDao usersDao = new UsersDao();
+    TagsDao tagsDao = new TagsDao();
+    QuestionsDao questionsDao = new QuestionsDao();
     HttpHeaders responseHeaders = new HttpHeaders();
 
     Users dbUser = usersDao.getUser(user.getUsername());
-
     if(dbUser == null) {
       return new ResponseEntity(null, responseHeaders, HttpStatus.FORBIDDEN);
     }
 
-
-    System.out.println(input);
     Tags tag = question.getTag();
     if(tag == null) {
       return new ResponseEntity(null, responseHeaders, HttpStatus.BAD_REQUEST);
     }
-    TagsDao tagsDao = new TagsDao();
-    QuestionsDao questionsDao = new QuestionsDao();
+
+    Questions dbQuestion = questionsDao.getQuestion(question.getQuestion());
+    if(dbQuestion != null) {
+      return new ResponseEntity(null , responseHeaders, HttpStatus.CONFLICT);
+    }
+
+    ProfanityFilterService pfs = new ProfanityFilterService();
+    if(pfs.isProfane(tag.getTagName())) {
+      return new ResponseEntity(null, responseHeaders, HttpStatus.BAD_REQUEST);
+    }
+
+    String[] terms = question.getQuestion().split("\\s+");
+    for(int i = 0; i < terms.length; i++) {
+      if(pfs.isProfane(terms[i])) {
+        return new ResponseEntity(null, responseHeaders, HttpStatus.BAD_REQUEST);
+      }
+    }
+
     if(tagsDao.getTagByString(tag.getTagName()) == null) {
     		tagsDao.saveTag(tag);
     } else {
     		tag = tagsDao.getTagByString(tag.getTagName());
     }
     question.setTag(tag);
+
     List<Responses> responses = question.getAnswers();
     for(Responses response : responses) {
+      terms = response.getText().split("\\s+");
+      for(int i = 0; i < terms.length; i++) {
+        if(pfs.isProfane(terms[i])) {
+          return new ResponseEntity(null, responseHeaders, HttpStatus.BAD_REQUEST);
+        }
+      }
       response.setQid(question);
     }
+
+
     question.setAnswers(responses);
     question.setUser(dbUser);
 
     
 
     questionsDao.saveQuestion(question);
-    Questions dbQuestion = questionsDao.getQuestion(question.getQuestion());
+    dbQuestion = questionsDao.getQuestion(question.getQuestion());
 
     return new ResponseEntity(dbQuestion, responseHeaders, HttpStatus.ACCEPTED);
   }
