@@ -38,7 +38,7 @@ public class AnsweredQuestionsDao {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<AnsweredQuestions> listAedQ = session.createQuery("from AnsweredQuestions where userid =:uid and qid =:qid").
 				setInteger("uid", user.getId()).setInteger("qid", quest.getQ_id()).list();
-		if(listAedQ == null) {
+		if(listAedQ.size() == 0) {
 			return null;
 		}
 		session.close();
