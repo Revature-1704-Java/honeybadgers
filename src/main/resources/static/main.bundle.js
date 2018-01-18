@@ -563,37 +563,21 @@ var ChangePasswordComponent = (function () {
             this.updatePasswordMessage = "Password must be at least 8 characters.";
         }
         else if (this.newPassword === this.confirmNewPassword) {
+            var oldUser = { "username": this.username, "password": this.password.trim() };
+            var newUser = { "username": this.username, "password": this.newPassword.trim() };
             this.updatePasswordMessage = "";
-            this.http.put("http://52.14.182.231:8181/user/" + this.username, [
-                {
-                    "username": this.username,
-                    "password": this.password
-                },
-                {
-                    "username": this.username,
-                    "password": this.newPassword
-                }
-            ], {
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }).subscribe(function (response) {
+            this.authService.changeUserPassword(this.username, oldUser, newUser).subscribe(function (response) {
+                _this.authService.updateUser(response);
+                _this.authService.isLoggedIn().subscribe(function (user) {
+                    if (user !== null)
+                        _this.username = user.username;
+                });
                 _this.password = '';
                 _this.newPassword = '';
                 _this.confirmNewPassword = '';
-                if (response === "Current password entered incorrectly") {
-                    _this.updatePasswordMessage = response.toString();
-                }
-                else {
-                    var updatedUser = {};
-                    updatedUser.username = response['username'];
-                    updatedUser.id = response['id'];
-                    updatedUser.password = '';
-                    _this.authService.updateUser(updatedUser);
-                    _this.authService.isLoggedIn().subscribe(function (user) {
-                        _this.username = user.username;
-                    });
-                }
+                _this.updatePasswordMessage = "Password updated.";
+            }, function (error) {
+                _this.updatePasswordMessage = error.error;
             });
         }
         else {
@@ -1910,6 +1894,12 @@ var AuthService = (function () {
     };
     AuthService.prototype.updateUser = function (newUser) {
         this.loggedIn.next(newUser);
+    };
+    AuthService.prototype.changeUserPassword = function (username, oldUser, newUser) {
+        return this.http.put(this.rootURL + '/user/' + username, [
+            oldUser,
+            newUser
+        ]);
     };
     AuthService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),

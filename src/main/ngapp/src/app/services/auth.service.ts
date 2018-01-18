@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { UserAuth } from '../interfaces/user-auth';
 
 @Injectable()
 export class AuthService {
@@ -30,5 +31,14 @@ export class AuthService {
 
   updateUser(newUser: User): void {
     this.loggedIn.next(newUser);
+  }
+
+  changeUserPassword(username: string, oldUser: UserAuth, newUser: UserAuth) {
+    return this.http.put<User>(this.rootURL + '/user/' + username,
+      [
+        oldUser,
+        newUser
+      ]
+    );
   }
 }
