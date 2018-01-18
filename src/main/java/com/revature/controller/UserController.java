@@ -60,13 +60,15 @@ public class UserController {
     if(currentUser == null) {
       return new ResponseEntity("Resource not found", responseHeaders, HttpStatus.NOT_FOUND);
     }
-    else if(listUser.get(0).getPassword() !=currentUser.getPassword()) {
-    		return new ResponseEntity("Current password entered incorrectly", responseHeaders, HttpStatus.UNAUTHORIZED);
+    else if(listUser.get(0).getPassword().equals(currentUser.getPassword())) {
+    	currentUser.setPassword(input.get(1).getPassword());
+		Users updatedUser = usersDao.getUser(username);
+		updatedUser.setPassword(listUser.get(1).getPassword());
+		usersDao.updateUser(updatedUser);
+		return new ResponseEntity(currentUser, responseHeaders, HttpStatus.OK);
     } else {
-    		currentUser.setPassword(input.get(1).getPassword());
-    		Users updatedUser = new Users(currentUser.getUsername(), currentUser.getPassword());
-    		usersDao.updateUser(updatedUser);
-    		return new ResponseEntity(currentUser, responseHeaders, HttpStatus.OK);
+		return new ResponseEntity("current password entered incorrectly", responseHeaders, HttpStatus.UNAUTHORIZED);
+
     }
   }
 
