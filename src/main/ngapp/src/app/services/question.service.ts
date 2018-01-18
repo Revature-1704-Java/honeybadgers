@@ -9,7 +9,6 @@ export class QuestionService {
   private questions= new BehaviorSubject<Question[]>([]);
   constructor(private http: HttpClient) { }
   get questionArray(): Observable<Question[]>{
-    console.log(this.questions);
     return this.questions.asObservable();
   }
   getQuestions(tagname= 'newTag'): void {

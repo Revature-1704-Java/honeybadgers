@@ -17,7 +17,6 @@ export class QuizFormService {
   getQuizTaken(): boolean {
     return this.quizTaken;
   }
-  
   setQuizTaken(quizTaken: boolean) {
     this.quizTaken = quizTaken;
   }
