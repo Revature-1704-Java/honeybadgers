@@ -4,12 +4,16 @@
       <textarea matInput formControlName="question" placeholder="Question"></textarea>
       <mat-error *ngIf="QForm.get('question').invalid">*Field Required</mat-error>
     </mat-form-field>
+    <div>
+        <mat-slide-toggle formControlName="useExisting" (change)="clearTag()">Use Existing Tag</mat-slide-toggle>
+    </div>
     <mat-form-field *ngIf="tagList">
-      <mat-select placeholder="Tag" formControlName="tag">
-        <mat-option *ngFor="let t of tagList" [value]="t">
+      <mat-select *ngIf="QForm.get('useExisting').value" placeholder="Tag" formControlName="tag">
+        <mat-option *ngFor="let t of tagList" [value]="t.tagName">
           {{t.tagName}}
         </mat-option>
       </mat-select>
+      <input *ngIf="QForm.get('useExisting').value===false" matInput placeholder="Tag" formControlName="tag"/>
       <mat-error *ngIf="QForm.get('tag').invalid">*Field Required</mat-error>
     </mat-form-field>
     <div class="AFcontainer" formArrayName="answers">
