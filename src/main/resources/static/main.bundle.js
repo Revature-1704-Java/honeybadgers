@@ -1343,7 +1343,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/quiz-results/quiz-results.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"totalCount\">\n  <h1>Correct Answers: {{ correctCount }}</h1>\n  <h1>Wrong Answers: {{ totalCount - correctCount }}</h1>\n</div>\n<mat-accordion class=\"results-container\">\n  <mat-expansion-panel *ngFor=\"let q of questions; let i = index;\" \n    [ngStyle]=\"{'background-color': correctAnswerCheck(i) ? 'lightgreen' : 'lightcoral'}\">\n    <mat-expansion-panel-header>\n      <mat-panel-title>\n        Question {{i + 1}}\n      </mat-panel-title>\n      <mat-panel-description>\n        {{ q.question }}\n      </mat-panel-description>\n    </mat-expansion-panel-header>\n    <div *ngIf = \"userAnswerExist(i); else cheater\">\n      <p *ngIf=\"correctAnswerCheck(i); else wrong\">Your Answer: {{ correctAnswers[i].text }}</p>\n      <ng-template #wrong>\n        <p>Your Answer: {{questions[i].answers[userAnswers[i].answer].text}}</p>\n        <p>Correct Answer: {{ correctAnswers[i].text }}</p>\n      </ng-template>\n    </div>\n    <ng-template #cheater>\n      <p>You didn't answer this question, why you trying to cheat bruv?</p>\n    </ng-template>\n  </mat-expansion-panel>\n</mat-accordion>"
+module.exports = "<div *ngIf=\"totalCount\">\r\n  <h1>Correct Answers: {{ correctCount }}</h1>\r\n  <h1>Wrong Answers: {{ totalCount - correctCount }}</h1>\r\n</div>\r\n<mat-accordion class=\"results-container\">\r\n  <mat-expansion-panel *ngFor=\"let q of questions; let i = index;\" \r\n    [ngStyle]=\"{'background-color': correctAnswerCheck(i) ? 'lightgreen' : 'lightcoral'}\">\r\n    <mat-expansion-panel-header>\r\n      <mat-panel-title>\r\n        Question {{i + 1}}\r\n      </mat-panel-title>\r\n      <mat-panel-description>\r\n        {{ q.question }}\r\n      </mat-panel-description>\r\n    </mat-expansion-panel-header>\r\n    <div *ngIf = \"userAnswerExist(i); else cheater\">\r\n      <p *ngIf=\"correctAnswerCheck(i); else wrong\">Your Answer: {{ correctAnswers[i].text }}</p>\r\n      <ng-template #wrong>\r\n        <p>Your Answer: {{questions[i].answers[userAnswers[i].answer].text}}</p>\r\n        <p>Correct Answer: {{ correctAnswers[i].text }}</p>\r\n      </ng-template>\r\n    </div>\r\n    <ng-template #cheater>\r\n      <p>You didn't answer this question, why you trying to cheat bruv?</p>\r\n    </ng-template>\r\n  </mat-expansion-panel>\r\n</mat-accordion>"
 
 /***/ }),
 
@@ -1684,9 +1684,15 @@ var TagListComponent = (function () {
     }
     TagListComponent.prototype.ngOnInit = function () {
         var _this = this;
-        // this.tags = this.tagService.getTags();
         this.tagService.getTags().subscribe(function (response) {
-            _this.tags = response;
+            _this.tags = response.sort(function (a, b) {
+                if (a.tagName.toLowerCase() < b.tagName.toLowerCase())
+                    return -1;
+                else if (a.tagName.toLowerCase() > b.tagName.toLowerCase())
+                    return 1;
+                else
+                    return 0;
+            });
             _this.filteredTags = [];
             _this.tags.forEach(function (tag) {
                 _this.filteredTags.push(tag);
@@ -2043,7 +2049,6 @@ var TagService = (function () {
         this.url = 'http://52.14.182.231:8181';
     }
     TagService.prototype.getTags = function () {
-        // this.tags = this.http.get<Tag[]>('../assets/mocktags.json');
         this.tags = this.http.get(this.url + '/tag');
         return this.tags;
     };
