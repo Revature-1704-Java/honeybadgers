@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700');
 
 .scorecard-container{
     width:100%;
@@ -9,4 +9,53 @@
 .scorecard{
     flex:1 1 auto;
     text-align: center;
+}
+
+.scorecard div{
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 5em;
+    font-weight: 800;
+    font-stretch: extra-expanded;
+}
+.right{
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    color: #FFD740;
+    background-image: url("../../../assets/wrong.jpg");
+    background-size: contain;
+    height:150px;
+    width:150px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:30px;
+    justify-content: center;
+}
+.wrong{
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    color: #FFD740;
+    background-image: url("../../../assets/correct.jpg");
+    background-size: contain;
+    height:150px;
+    width:150px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:30px;
+    justify-content: center;
+}
+
+mat-expansion-panel-header{
+    font-weight: 600;
+}
+
+mat-expansion-panel{
+    background-color: #ECEFF1;
+}
+
+mat-expansion-panel-content {
+    text-align: center
 }
