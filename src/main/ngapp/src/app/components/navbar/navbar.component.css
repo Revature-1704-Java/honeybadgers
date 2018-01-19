@@ -2,5 +2,27 @@
     flex: 1 1 auto;
 }
 mat-toolbar {
+    height: 75px;
     box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.16), 0 3px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+mat-toolbar span{
+    margin-left: 1em;
+    height: 65px;
+}
+
+mat-toolbar :nth-child(1){
+    margin-bottom: .2em;
+}
+
+mat-toolbar :nth-child(1) img{
+    background-color: white;
+    border-radius: 25%;
+    border-left: 3px solid rgba(39, 38, 38, 0.87);
+    border-top: 2px solid rgba(39, 38, 38, 0.87);
+}
+
+mat-toolbar :nth-child(2){
+    padding-top:2em;
+    font-weight: bolder;
 }

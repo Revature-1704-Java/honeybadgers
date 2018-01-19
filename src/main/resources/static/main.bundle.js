@@ -225,7 +225,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".static{\r\n    position: fixed;\r\n    top:0;\r\n    left:0;\r\n    width:100%;\r\n    z-index: 2;\r\n}\r\n\r\n.place-holder{\r\n    width: 100%;\r\n    height: 4em;\r\n}", ""]);
+exports.push([module.i, ".static{\r\n    position: fixed;\r\n    top:0;\r\n    left:0;\r\n    width:100%;\r\n    z-index: 2;\r\n}\r\n\r\n.place-holder{\r\n    width: 100%;\r\n    height: 4.3em;\r\n}", ""]);
 
 // exports
 
@@ -565,7 +565,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/change-password/change-password.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Change your password</h3>\r\n<form>\r\n  <mat-form-field>\r\n    <input matInput [(ngModel)]=\"password\" type=\"password\" id=\"currentPassword\" name=\"currentPassword\" placeholder=\"Current Password\" />\r\n  </mat-form-field><br />\r\n  <mat-form-field>\r\n    <input matInput [(ngModel)]=\"newPassword\" type=\"password\" id=\"newPassword\" name=\"newPassword\" placeholder=\"New Password\" />\r\n  </mat-form-field><br />\r\n  <mat-form-field>\r\n      <input matInput [(ngModel)]=\"confirmNewPassword\" type=\"password\" id=\"confirmNewPassword\" name=\"confirmNewPassword\" placeholder=\"Confirm Password\" />\r\n  </mat-form-field><br />\r\n  <button mat-button (click)=\"updatePassword()\">Submit</button>\r\n</form>\r\n<span *ngIf=\"updatePasswordMessage\">{{ updatePasswordMessage }}</span>"
+module.exports = "<h3>Change your password</h3>\r\n<form>\r\n  <mat-form-field>\r\n    <input matInput [(ngModel)]=\"password\" type=\"password\" id=\"currentPassword\" name=\"currentPassword\" placeholder=\"Current Password\" />\r\n  </mat-form-field><br />\r\n  <mat-form-field>\r\n    <input matInput [(ngModel)]=\"newPassword\" type=\"password\" id=\"newPassword\" name=\"newPassword\" placeholder=\"New Password\" />\r\n  </mat-form-field><br />\r\n  <mat-form-field>\r\n      <input matInput [(ngModel)]=\"confirmNewPassword\" type=\"password\" id=\"confirmNewPassword\" name=\"confirmNewPassword\" placeholder=\"Confirm Password\" />\r\n  </mat-form-field><br />\r\n  <button mat-raised-button (click)=\"updatePassword()\" color =\"primary\">Submit</button>\r\n</form>\r\n<span *ngIf=\"updatePasswordMessage\">{{ updatePasswordMessage }}</span>"
 
 /***/ }),
 
@@ -748,7 +748,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".fill-remaining-space {\r\n    -webkit-box-flex: 1;\r\n        -ms-flex: 1 1 auto;\r\n            flex: 1 1 auto;\r\n}\r\nmat-toolbar {\r\n    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.16), 0 3px 10px 0 rgba(0, 0, 0, 0.12);\r\n}", ""]);
+exports.push([module.i, ".fill-remaining-space {\r\n    -webkit-box-flex: 1;\r\n        -ms-flex: 1 1 auto;\r\n            flex: 1 1 auto;\r\n}\r\nmat-toolbar {\r\n    height: 75px;\r\n    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.16), 0 3px 10px 0 rgba(0, 0, 0, 0.12);\r\n}\r\n\r\nmat-toolbar span{\r\n    margin-left: 1em;\r\n    height: 65px;\r\n}\r\n\r\nmat-toolbar :nth-child(1){\r\n    margin-bottom: .2em;\r\n}\r\n\r\nmat-toolbar :nth-child(1) img{\r\n    background-color: white;\r\n    border-radius: 25%;\r\n    border-left: 3px solid rgba(39, 38, 38, 0.87);\r\n    border-top: 2px solid rgba(39, 38, 38, 0.87);\r\n}\r\n\r\nmat-toolbar :nth-child(2){\r\n    padding-top:2em;\r\n    font-weight: bolder;\r\n}", ""]);
 
 // exports
 
@@ -761,7 +761,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"primary\">\r\n  <span>\r\n    <img src=\"/assets/honeybadger_logo.svg\" width=\"100px\">\r\n  </span>\r\n  <span>\r\n    QuizItUp\r\n  </span>\r\n  <span class=\"fill-remaining-space\"></span>\r\n  <button mat-button routerLink=\"/\">Home</button>\r\n  <button mat-button *ngIf=\"isLoggedIn$ | async\" routerLink=\"/profile\">Profile</button>\r\n  <button mat-button *ngIf=\"isLoggedIn$ | async\" routerLink=\"/addQuestion\">Add Question</button>\r\n  <button mat-button *ngIf=\"isLoggedIn$ | async; else login\" (click)=\"onLogout()\">Log out</button>\r\n  <ng-template #login>\r\n    <button mat-button (click)=\"onLogin()\">Log in</button>\r\n    <button mat-button (click)=\"signUp()\">Sign Up</button>\r\n  </ng-template>\r\n</mat-toolbar>"
+module.exports = "<mat-toolbar color=\"primary\">\r\n  <span>\r\n    <img src=\"/assets/honeybadger_logo.svg\" width=\"85px\">\r\n  </span>\r\n  <span>\r\n    QuizItUp\r\n  </span>\r\n  <span class=\"fill-remaining-space\"></span>\r\n  <button mat-button routerLink=\"/\">Home</button>\r\n  <button mat-button *ngIf=\"isLoggedIn$ | async\" routerLink=\"/profile\">Profile</button>\r\n  <button mat-button *ngIf=\"isLoggedIn$ | async\" routerLink=\"/addQuestion\">Add Question</button>\r\n  <button mat-button *ngIf=\"isLoggedIn$ | async; else login\" (click)=\"onLogout()\">Log out</button>\r\n  <ng-template #login>\r\n    <button mat-button (click)=\"onLogin()\">Log in</button>\r\n    <button mat-button (click)=\"signUp()\">Sign Up</button>\r\n  </ng-template>\r\n</mat-toolbar>"
 
 /***/ }),
 
@@ -1111,7 +1111,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/question-list/question-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<span>Questions</span>\n<mat-list class=\"list\">\n  <div class=\"item\" \n  *ngFor=\"let a of answers; let i = index;\" \n  [ngStyle]=\"{'background-color': i==currentQ?'#FFD740':''}\">\n    <mat-list-item (click)=\"onClick(i)\" >\n      <div>Question {{i+1}}</div>\n    </mat-list-item>\n    <div class=\"idx\" [ngStyle]=\"{'background-color': a.answer==0||a.answer?'#8BC34A':'#F44336'}\">\n      \n    </div>\n  </div>\n</mat-list>\n"
+module.exports = "<span>Questions</span>\n<mat-list class=\"list\">\n  <div class=\"item\" \n  *ngFor=\"let a of answers; let i = index;\" \n  [ngStyle]=\"{'background-color': i==currentQ?'#FFD740':''}\"\n  (click)=\"onClick(i)\">\n    <mat-list-item >\n      <div>Question {{i+1}}</div>\n    </mat-list-item>\n    <div class=\"idx\" [ngStyle]=\"{'background-color': a.answer==0||a.answer?'#673AB7':'#D1C4E9'}\">\n      \n    </div>\n  </div>\n</mat-list>\n"
 
 /***/ }),
 
@@ -1373,12 +1373,13 @@ var QuizContainerComponent = (function () {
 /***/ "../../../../../src/app/components/quiz-results/quiz-results.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
+var escape = __webpack_require__("../../../../css-loader/lib/url/escape.js");
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
-exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
+exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700);", ""]);
 
 // module
-exports.push([module.i, ".scorecard-container{\r\n    width:100%;\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-pack: center;\r\n        -ms-flex-pack: center;\r\n            justify-content: center;\r\n}\r\n\r\n.scorecard{\r\n    -webkit-box-flex:1;\r\n        -ms-flex:1 1 auto;\r\n            flex:1 1 auto;\r\n    text-align: center;\r\n}", ""]);
+exports.push([module.i, ".scorecard-container{\r\n    width:100%;\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-pack: center;\r\n        -ms-flex-pack: center;\r\n            justify-content: center;\r\n}\r\n\r\n.scorecard{\r\n    -webkit-box-flex:1;\r\n        -ms-flex:1 1 auto;\r\n            flex:1 1 auto;\r\n    text-align: center;\r\n}\r\n\r\n.scorecard div{\r\n    font-family: 'Noto Sans', sans-serif;\r\n    font-size: 5em;\r\n    font-weight: 800;\r\n    font-stretch: extra-expanded;\r\n}\r\n.right{\r\n    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);\r\n    border-radius: 20px;\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: column;\r\n            flex-direction: column;\r\n    color: #FFD740;\r\n    background-image: url(" + escape(__webpack_require__("../../../../../src/assets/wrong.jpg")) + ");\r\n    background-size: contain;\r\n    height:150px;\r\n    width:150px;\r\n    margin-left:auto;\r\n    margin-right:auto;\r\n    margin-bottom:30px;\r\n    -webkit-box-pack: center;\r\n        -ms-flex-pack: center;\r\n            justify-content: center;\r\n}\r\n.wrong{\r\n    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: column;\r\n            flex-direction: column;\r\n    border-radius: 20px;\r\n    color: #FFD740;\r\n    background-image: url(" + escape(__webpack_require__("../../../../../src/assets/correct.jpg")) + ");\r\n    background-size: contain;\r\n    height:150px;\r\n    width:150px;\r\n    margin-left:auto;\r\n    margin-right:auto;\r\n    margin-bottom:30px;\r\n    -webkit-box-pack: center;\r\n        -ms-flex-pack: center;\r\n            justify-content: center;\r\n}\r\n\r\nmat-expansion-panel-header{\r\n    font-weight: 600;\r\n}\r\n\r\nmat-expansion-panel{\r\n    background-color: #ECEFF1;\r\n}\r\n\r\nmat-expansion-panel-content {\r\n    text-align: center\r\n}", ""]);
 
 // exports
 
@@ -1391,7 +1392,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/quiz-results/quiz-results.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"totalCount\">\r\n  <div class=\"scorecard-container\">\r\n    <div class=\"scorecard\"><h1>Correct Answers: {{ correctCount }}</h1></div>\r\n    <div class=\"scorecard\"><h1>Wrong Answers: {{ totalCount - correctCount }}</h1></div>\r\n  </div>\r\n</div>\r\n<mat-accordion class=\"results-container\">\r\n  <mat-expansion-panel *ngFor=\"let q of questions; let i = index;\" \r\n    [ngStyle]=\"{'background-color': correctAnswerCheck(i) ? 'lightgreen' : 'lightcoral'}\">\r\n    <mat-expansion-panel-header>\r\n      <mat-panel-title>\r\n        Question {{i + 1}}\r\n      </mat-panel-title>\r\n      <mat-panel-description>\r\n        {{ q.question }}\r\n      </mat-panel-description>\r\n    </mat-expansion-panel-header>\r\n    <div *ngIf = \"userAnswerExist(i); else cheater\">\r\n      <p *ngIf=\"correctAnswerCheck(i); else wrong\">Your Answer: {{ correctAnswers[i].text }}</p>\r\n      <ng-template #wrong>\r\n        <p>Your Answer: {{questions[i].answers[userAnswers[i].answer].text}}</p>\r\n        <p>Correct Answer: {{ correctAnswers[i].text }}</p>\r\n      </ng-template>\r\n    </div>\r\n    <ng-template #cheater>\r\n      <p>You didn't answer this question, why you trying to cheat bruv?</p>\r\n    </ng-template>\r\n  </mat-expansion-panel>\r\n</mat-accordion>"
+module.exports = "<div *ngIf=\"totalCount\">\r\n  <div class=\"scorecard-container\">\r\n    <div class=\"scorecard\">\r\n      <h1>Correct Answers</h1>\r\n      <div class=\"wrong\">{{ correctCount }}</div>\r\n    </div>\r\n    <div class=\"scorecard\">\r\n      <h1>Wrong Answers</h1>\r\n      <div class=\"right\">{{ totalCount - correctCount }}</div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<mat-accordion class=\"results-container\">\r\n  <mat-expansion-panel *ngFor=\"let q of questions; let i = index;\" >\r\n    <mat-expansion-panel-header [ngStyle]=\"{'background-color': correctAnswerCheck(i) ? 'lightgreen' : 'lightcoral'}\">\r\n      <mat-panel-title>\r\n        Question {{i + 1}}\r\n      </mat-panel-title>\r\n      <mat-panel-description>\r\n        {{ q.question }}\r\n      </mat-panel-description>\r\n    </mat-expansion-panel-header>\r\n    <div *ngIf = \"userAnswerExist(i); else cheater\">\r\n      <p *ngIf=\"correctAnswerCheck(i); else wrong\">Your Answer: {{ correctAnswers[i].text }}</p>\r\n      <ng-template #wrong>\r\n        <p>Your Answer: {{questions[i].answers[userAnswers[i].answer].text}}</p>\r\n        <p>Correct Answer: {{ correctAnswers[i].text }}</p>\r\n      </ng-template>\r\n    </div>\r\n    <ng-template #cheater>\r\n      <p>You didn't answer this question, why you trying to cheat bruv?</p>\r\n    </ng-template>\r\n  </mat-expansion-panel>\r\n</mat-accordion>"
 
 /***/ }),
 
@@ -2112,6 +2113,20 @@ var TagService = (function () {
 }());
 
 
+
+/***/ }),
+
+/***/ "../../../../../src/assets/correct.jpg":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "correct.c35dc68b80a403887819.jpg";
+
+/***/ }),
+
+/***/ "../../../../../src/assets/wrong.jpg":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "wrong.4321406ced6563cd1e9f.jpg";
 
 /***/ }),
 

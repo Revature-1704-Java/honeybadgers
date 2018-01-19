@@ -1,13 +1,18 @@
 <div *ngIf="totalCount">
   <div class="scorecard-container">
-    <div class="scorecard"><h1>Correct Answers: {{ correctCount }}</h1></div>
-    <div class="scorecard"><h1>Wrong Answers: {{ totalCount - correctCount }}</h1></div>
+    <div class="scorecard">
+      <h1>Correct Answers</h1>
+      <div class="wrong">{{ correctCount }}</div>
+    </div>
+    <div class="scorecard">
+      <h1>Wrong Answers</h1>
+      <div class="right">{{ totalCount - correctCount }}</div>
+    </div>
   </div>
 </div>
 <mat-accordion class="results-container">
-  <mat-expansion-panel *ngFor="let q of questions; let i = index;" 
-    [ngStyle]="{'background-color': correctAnswerCheck(i) ? 'lightgreen' : 'lightcoral'}">
-    <mat-expansion-panel-header>
+  <mat-expansion-panel *ngFor="let q of questions; let i = index;" >
+    <mat-expansion-panel-header [ngStyle]="{'background-color': correctAnswerCheck(i) ? 'lightgreen' : 'lightcoral'}">
       <mat-panel-title>
         Question {{i + 1}}
       </mat-panel-title>
