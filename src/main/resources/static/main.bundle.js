@@ -225,7 +225,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".static{\r\n    position: fixed;\r\n    top:0;\r\n    left:0;\r\n    width:100%;\r\n    z-index: 2;\r\n}\r\n\r\n.place-holder{\r\n    width: 100%;\r\n    height: 4.3em;\r\n}", ""]);
+exports.push([module.i, ".static{\r\n    position: fixed;\r\n    top:0;\r\n    left:0;\r\n    width:100%;\r\n    z-index: 5;\r\n}\r\n\r\n.place-holder{\r\n    width: 100%;\r\n    height: 4.3em;\r\n}", ""]);
 
 // exports
 
@@ -1251,7 +1251,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 // module
-exports.push([module.i, ".quiz-container {\r\n  display: -ms-grid;\r\n  display: grid;\r\n  -ms-grid-rows: 3fr 2fr;\r\n      grid-template-rows: 3fr 2fr;\r\n  font-family: 'Roboto', sans-serif;\r\n  color: #212121;\r\n  margin-top: 1em;\r\n  text-align: center;\r\n  height: 100vh;\r\n}\r\n\r\n.content {\r\n  display: grid;\r\n  grid-template-columns: 1fr 3fr;\r\n  grid-column-gap: .5em;\r\n  grid-row: 1/2;\r\n  /* autoprefixer: off */\r\n}\r\n.bottombar {\r\n  grid-row: 2/3;\r\n  grid-column-gap: .5em;\r\n  display: grid;\r\n  grid-template-columns: 1fr 3fr;\r\n  align-items: baseline;\r\n  margin-top: 1em;\r\n  /* autoprefixer: off */\r\n}\r\n.bottombar-right{\r\n    grid-column: 2/3;\r\n    -ms-grid-columns: (1fr)[3];\r\n        grid-template-columns: repeat(3, 1fr);\r\n    display: -ms-grid;\r\n    display: grid;\r\n    background-color:#ECEFF1;\r\n    padding-top:1em;\r\n    padding-bottom:1em;\r\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\r\n}\r\n\r\n.card-container {\r\n  grid-column: 2/3;\r\n  display: block;\r\n}\r\n.button{\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-pack: center;\r\n      -ms-flex-pack: center;\r\n          justify-content: center;\r\n}\r\n.list-container {\r\n  grid-column:1/2;\r\n  display: block;\r\n  max-height: 480;\r\n  overflow-y: auto;\r\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\r\n}\r\n", ""]);
+exports.push([module.i, ".quiz-container {\r\n  display: -ms-grid;\r\n  display: grid;\r\n  -ms-grid-rows: 3fr 2fr;\r\n      grid-template-rows: 3fr 2fr;\r\n  font-family: 'Roboto', sans-serif;\r\n  color: #212121;\r\n  margin-top: 1em;\r\n  text-align: center;\r\n  height: 100vh;\r\n}\r\n\r\n.content {\r\n  display: grid;\r\n  grid-template-columns: 1fr 3fr;\r\n  grid-column-gap: .5em;\r\n  grid-row: 1/2;\r\n  /* autoprefixer: off */\r\n}\r\n.bottombar {\r\n  grid-row: 2/3;\r\n  grid-column-gap: .5em;\r\n  display: grid;\r\n  grid-template-columns: 1fr 3fr;\r\n  align-items: baseline;\r\n  margin-top: 1em;\r\n  /* autoprefixer: off */\r\n}\r\n.bottombar-right{\r\n    grid-column: 2/3;\r\n    -ms-grid-columns: (1fr)[3];\r\n        grid-template-columns: repeat(3, 1fr);\r\n    display: -ms-grid;\r\n    display: grid;\r\n    background-color:#ECEFF1;\r\n    padding-top:1em;\r\n    padding-bottom:1em;\r\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\r\n}\r\n.card-container {\r\n  grid-column: 2/3;\r\n  display: block;\r\n}\r\n.button{\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-pack: center;\r\n      -ms-flex-pack: center;\r\n          justify-content: center;\r\n}\r\n.list-container {\r\n  grid-column:1/2;\r\n  display: block;\r\n  max-height: 480;\r\n  overflow-y: auto;\r\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\r\n}\r\n.loading{\r\n  position: absolute;\r\n  top:65px;\r\n  left: 0;\r\n  width:100%;\r\n  background-color: #FDEC8E;\r\n  height: 100vh;\r\n  z-index: 2;\r\n}\r\n.loading img{\r\n  margin-left: 40%;\r\n  margin-top:15%;\r\n}\r\n", ""]);
 
 // exports
 
@@ -1264,7 +1264,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/quiz-container/quiz-container.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"quiz-container\">\r\n  <div class=\"content\">\r\n    <div class=\"list-container\">\r\n      <app-question-list *ngIf=\"questions.length>0\" [answers]=\"quizForm.get('answers').value\" [(currentQ)]=\"currentQ\"></app-question-list>\r\n    </div>\r\n    <div class=\"card-container\" *ngIf=\"questions.length>0\">\r\n      <app-quiz-card [parent]=\"quizForm\" [question]=\"questions[currentQ]\" [index]=\"currentQ\">\r\n      </app-quiz-card>\r\n    </div>\r\n  </div>\r\n  <div class=\"bottombar\">\r\n    <div class=\"bottombar-right\">\r\n      <div class=\"button\">\r\n        <button mat-raised-button color=\"primary\" [disabled]=\"!(questions && currentQ > 0)\" (click)=\"prevQ($event)\">Previous</button>\r\n      </div>\r\n      <div class=\"button\">\r\n        <button mat-raised-button color=\"primary\" (click)=\"onSubmit()\">Submit</button>\r\n      </div>\r\n      <div class=\"button\">\r\n        <button mat-raised-button color=\"primary\" [disabled]=\" questions && currentQ == questions.length-1\" (click)=\"nextQ($event)\">\r\n            Next\r\n        </button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"loading\" *ngIf=\"!loading\">\r\n    <h2>Loading...</h2>\r\n    <img src=\"assets/badgerLoad.gif\">\r\n</div>\r\n<div class=\"quiz-container\">\r\n  <div class=\"content\">\r\n    <div class=\"list-container\">\r\n      <app-question-list *ngIf=\"questions.length>0\" [answers]=\"quizForm.get('answers').value\" [(currentQ)]=\"currentQ\"></app-question-list>\r\n    </div>\r\n    <div class=\"card-container\" *ngIf=\"questions.length>0\">\r\n      <app-quiz-card [parent]=\"quizForm\" [question]=\"questions[currentQ]\" [index]=\"currentQ\">\r\n      </app-quiz-card>\r\n    </div>\r\n  </div>\r\n  <div class=\"bottombar\">\r\n    <div class=\"bottombar-right\">\r\n      <div class=\"button\">\r\n        <button mat-raised-button color=\"primary\" [disabled]=\"!(questions && currentQ > 0)\" (click)=\"prevQ($event)\">Previous</button>\r\n      </div>\r\n      <div class=\"button\">\r\n        <button mat-raised-button color=\"primary\" (click)=\"onSubmit()\">Submit</button>\r\n      </div>\r\n      <div class=\"button\">\r\n        <button mat-raised-button color=\"primary\" [disabled]=\" questions && currentQ == questions.length-1\" (click)=\"nextQ($event)\">\r\n            Next\r\n        </button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1301,6 +1301,7 @@ var QuizContainerComponent = (function () {
         this.fb = fb;
         this.router = router;
         this.currentQ = 0;
+        this.loading = false;
     }
     QuizContainerComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1316,6 +1317,7 @@ var QuizContainerComponent = (function () {
             for (var i = 0; i < _this.questions.length; i++) {
                 _this.addAnswers();
             }
+            setTimeout(function () { _this.loading = true; }, 2500);
         });
     };
     Object.defineProperty(QuizContainerComponent.prototype, "answers", {
@@ -1338,6 +1340,7 @@ var QuizContainerComponent = (function () {
         this.currentQ++;
     };
     QuizContainerComponent.prototype.prevQ = function (event) {
+        console.log(this.loading);
         event.stopPropagation();
         this.currentQ--;
     };

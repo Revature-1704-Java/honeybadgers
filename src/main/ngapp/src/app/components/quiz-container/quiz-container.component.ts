@@ -22,6 +22,7 @@ export class QuizContainerComponent implements OnInit, OnDestroy {
   private quizForm: FormGroup;
   private currentQ = 0;
   private tagName: string;
+  private loading= false;
   constructor(private route: ActivatedRoute, private qs: QuestionService, private qfs: QuizFormService
     , private fb: FormBuilder, private router: Router) {}
 
@@ -39,6 +40,7 @@ export class QuizContainerComponent implements OnInit, OnDestroy {
         for (let i = 0; i < this.questions.length; i++) {
           this.addAnswers();
         }
+        setTimeout(() => { this.loading = true; }, 2500);
       }
     );
   }
@@ -54,12 +56,12 @@ export class QuizContainerComponent implements OnInit, OnDestroy {
       answer: null
     }));
   }
-
   nextQ(event) {
     event.stopPropagation();
     this.currentQ++;
   }
   prevQ(event) {
+    console.log(this.loading);
     event.stopPropagation();
     this.currentQ--;
   }
