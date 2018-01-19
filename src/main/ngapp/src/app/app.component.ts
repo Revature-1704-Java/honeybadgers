@@ -9,7 +9,6 @@ import { slideRightAnimation } from './animation';
 })
 export class AppComponent {
   getRouteAnimation(outlet) {
-    console.log(outlet, outlet.activatedRouteData);
     return outlet.activatedRouteData['page'] || 'one';
   }
 }

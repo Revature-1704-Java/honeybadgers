@@ -1,11 +1,13 @@
 <span>Questions</span>
 <mat-list class="list">
-  <mat-list-item
-    class="item"
-    *ngFor="let a of answers; let i = index;" 
-    (click)="onClick(i)"
-    [ngStyle]="{'background-color': i==currentQ?'#FFD740':''}"
-  ><span>Question {{i+1}}</span> 
-  <span *ngIf="a.answer==0||a.answer">Answered</span>
-  </mat-list-item>
+  <div class="item" 
+  *ngFor="let a of answers; let i = index;" 
+  [ngStyle]="{'background-color': i==currentQ?'#FFD740':''}">
+    <mat-list-item (click)="onClick(i)" >
+      <div>Question {{i+1}}</div>
+    </mat-list-item>
+    <div class="idx" [ngStyle]="{'background-color': a.answer==0||a.answer?'#8BC34A':'#F44336'}">
+      
+    </div>
+  </div>
 </mat-list>
