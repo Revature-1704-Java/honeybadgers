@@ -1,6 +1,8 @@
 <div *ngIf="totalCount">
-  <h1>Correct Answers: {{ correctCount }}</h1>
-  <h1>Wrong Answers: {{ totalCount - correctCount }}</h1>
+  <div class="scorecard-container">
+    <div class="scorecard"><h1>Correct Answers: {{ correctCount }}</h1></div>
+    <div class="scorecard"><h1>Wrong Answers: {{ totalCount - correctCount }}</h1></div>
+  </div>
 </div>
 <mat-accordion class="results-container">
   <mat-expansion-panel *ngFor="let q of questions; let i = index;" 

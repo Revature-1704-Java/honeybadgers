@@ -8,11 +8,13 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { TagService } from '../../services/tag.service';
+import { fadeInAnimation } from '../../animation';
+
 
 @Component({
   selector: 'app-quiz-container',
   templateUrl: './quiz-container.component.html',
-  styleUrls: ['./quiz-container.component.css']
+  styleUrls: ['./quiz-container.component.css'],
 })
 export class QuizContainerComponent implements OnInit, OnDestroy {
   private subscription: Subscription;

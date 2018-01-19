@@ -14,12 +14,14 @@ import { PerformanceComponent } from './components/performance/performance.compo
 const routes: Routes = [
   {
     path: '',
-    component: TagListComponent
+    component: TagListComponent,
+    data: { page: 'one' }
   },
   {
     path: 'profile',
     canActivate: [AuthGuard],
     component: ProfileComponent,
+    data: { page: 'two' },
     children: [
       {
         path: '',
@@ -40,18 +42,21 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'quiz/:tagName', 
-    component: QuizContainerComponent
+    path: 'quiz/:tagName',
+    component: QuizContainerComponent,
+    data: { page: 'three' }
   },
   {
     path: 'results',
     canActivate: [QuizResultsGuard],
-    component: QuizResultsComponent
+    component: QuizResultsComponent,
+    data: { page: 'four' }
   },
   {
     path: 'addQuestion',
     canActivate: [AuthGuard],
-    component: AddQformComponent
+    component: AddQformComponent,
+    data: { page: 'five' }
   }
 ];
 

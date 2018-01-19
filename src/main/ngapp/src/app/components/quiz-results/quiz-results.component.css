@@ -1,1 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.scorecard-container{
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+
+.scorecard{
+    flex:1 1 auto;
+    text-align: center;
+}

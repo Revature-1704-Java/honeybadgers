@@ -53,7 +53,9 @@ export class AddQformComponent implements OnInit {
   submitAttempted = false;
   ngOnInit() {
     this.ts.getTags().subscribe(res => {
-      this.tagList = res;
+      this.tagList = res.sort((a, b) => {
+        return a.tagName > b.tagName ? 1 : -1;
+      });
     });
     this.QForm = this.fb.group({
       question: ['', Validators.required],

@@ -17,6 +17,42 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 
 /***/ }),
 
+/***/ "../../../../../src/app/animation.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export fadeInAnimation */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return slideRightAnimation; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_animations__ = __webpack_require__("../../../animations/esm5/animations.js");
+
+var fadeInAnimation = Object(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["l" /* trigger */])('fadeInAnimation', [
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["k" /* transition */])(':enter', [
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["j" /* style */])({ opacity: 0 }),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["e" /* animate */])('1s', Object(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["j" /* style */])({ opacity: 1 }))
+    ]),
+]);
+var slideRightAnimation = Object(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["l" /* trigger */])('slideInRight', [
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["k" /* transition */])('* <=> *', [
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["g" /* query */])(':enter', Object(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["j" /* style */])({
+            position: 'fixed',
+            width: '100%',
+            transform: 'translateX(-100%)'
+        }), { optional: true }),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["g" /* query */])(':leave', Object(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["e" /* animate */])('500ms ease', Object(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["j" /* style */])({
+            position: 'fixed',
+            width: '100%',
+            transform: 'translateX(100%)'
+        })), { optional: true }),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["g" /* query */])(':enter', Object(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["e" /* animate */])('500ms ease', Object(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["j" /* style */])({
+            opacity: 1,
+            transform: 'translateX(0%)'
+        })), { optional: true }),
+    ])
+]);
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/app-material.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -120,12 +156,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var routes = [
     {
         path: '',
-        component: __WEBPACK_IMPORTED_MODULE_2__components_tag_list_tag_list_component__["a" /* TagListComponent */]
+        component: __WEBPACK_IMPORTED_MODULE_2__components_tag_list_tag_list_component__["a" /* TagListComponent */],
+        data: { page: 'one' }
     },
     {
         path: 'profile',
         canActivate: [__WEBPACK_IMPORTED_MODULE_7__guards_auth_guard__["a" /* AuthGuard */]],
         component: __WEBPACK_IMPORTED_MODULE_3__components_profile_profile_component__["a" /* ProfileComponent */],
+        data: { page: 'two' },
         children: [
             {
                 path: '',
@@ -147,17 +185,20 @@ var routes = [
     },
     {
         path: 'quiz/:tagName',
-        component: __WEBPACK_IMPORTED_MODULE_8__components_quiz_container_quiz_container_component__["a" /* QuizContainerComponent */]
+        component: __WEBPACK_IMPORTED_MODULE_8__components_quiz_container_quiz_container_component__["a" /* QuizContainerComponent */],
+        data: { page: 'three' }
     },
     {
         path: 'results',
         canActivate: [__WEBPACK_IMPORTED_MODULE_9__guards_quiz_results_guard__["a" /* QuizResultsGuard */]],
-        component: __WEBPACK_IMPORTED_MODULE_4__components_quiz_results_quiz_results_component__["a" /* QuizResultsComponent */]
+        component: __WEBPACK_IMPORTED_MODULE_4__components_quiz_results_quiz_results_component__["a" /* QuizResultsComponent */],
+        data: { page: 'four' }
     },
     {
         path: 'addQuestion',
         canActivate: [__WEBPACK_IMPORTED_MODULE_7__guards_auth_guard__["a" /* AuthGuard */]],
-        component: __WEBPACK_IMPORTED_MODULE_10__components_add_qform_add_qform_component__["a" /* AddQformComponent */]
+        component: __WEBPACK_IMPORTED_MODULE_10__components_add_qform_add_qform_component__["a" /* AddQformComponent */],
+        data: { page: 'five' }
     }
 ];
 var AppRoutingModule = (function () {
@@ -184,7 +225,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".static{\r\n    position: fixed;\r\n    top:0;\r\n    left:0;\r\n    width:100%;\r\n    z-index: 2;\r\n}\r\n\r\n.place-holder{\r\n    width: 100%;\r\n    height: 4em;\r\n}", ""]);
 
 // exports
 
@@ -197,7 +238,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\r\n<router-outlet></router-outlet>"
+module.exports = "<app-navbar class=\"static\"></app-navbar>\r\n<div class=\"place-holder\">.</div>\r\n<div [@slideInRight]=\"getRouteAnimation(route)\">\r\n        <router-outlet #route=\"outlet\"></router-outlet>\r\n</div>"
 
 /***/ }),
 
@@ -207,6 +248,7 @@ module.exports = "<app-navbar></app-navbar>\r\n<router-outlet></router-outlet>"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__animation__ = __webpack_require__("../../../../../src/app/animation.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -214,15 +256,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 
+
 var AppComponent = (function () {
     function AppComponent() {
-        this.title = 'app';
     }
+    AppComponent.prototype.getRouteAnimation = function (outlet) {
+        return outlet.activatedRouteData['page'] || 'one';
+    };
     AppComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-root',
             template: __webpack_require__("../../../../../src/app/app.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/app.component.css")]
+            styles: [__webpack_require__("../../../../../src/app/app.component.css")],
+            animations: [__WEBPACK_IMPORTED_MODULE_1__animation__["a" /* slideRightAnimation */]]
         })
     ], AppComponent);
     return AppComponent;
@@ -415,7 +461,9 @@ var AddQformComponent = (function () {
     AddQformComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.ts.getTags().subscribe(function (res) {
-            _this.tagList = res;
+            _this.tagList = res.sort(function (a, b) {
+                return a.tagName > b.tagName ? 1 : -1;
+            });
         });
         this.QForm = this.fb.group({
             question: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms___["k" /* Validators */].required],
@@ -692,14 +740,7 @@ var LoginComponent = (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/app/components/navbar/navbar.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<mat-toolbar color=\"primary\">\r\n  <span>\r\n    QuizItUp\r\n  </span>\r\n  <span class=\"fill-remaining-space\"></span>\r\n  <button mat-button routerLink=\"/\">Home</button>\r\n  <button mat-button *ngIf=\"isLoggedIn$ | async\" routerLink=\"/profile\">Profile</button>\r\n  <button mat-button *ngIf=\"isLoggedIn$ | async\" routerLink=\"/addQuestion\">Add Question</button>\r\n  <button mat-button *ngIf=\"isLoggedIn$ | async; else login\" (click)=\"onLogout()\">Log out</button>\r\n  <ng-template #login>\r\n    <button mat-button (click)=\"onLogin()\">Log in</button>\r\n    <button mat-button (click)=\"signUp()\">Sign Up</button>\r\n  </ng-template>\r\n</mat-toolbar>"
-
-/***/ }),
-
-/***/ "../../../../../src/app/components/navbar/navbar.component.scss":
+/***/ "../../../../../src/app/components/navbar/navbar.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -707,13 +748,20 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".fill-remaining-space {\n  -webkit-box-flex: 1;\n      -ms-flex: 1 1 auto;\n          flex: 1 1 auto; }\n", ""]);
+exports.push([module.i, ".fill-remaining-space {\r\n    -webkit-box-flex: 1;\r\n        -ms-flex: 1 1 auto;\r\n            flex: 1 1 auto;\r\n}\r\nmat-toolbar {\r\n    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.16), 0 3px 10px 0 rgba(0, 0, 0, 0.12);\r\n}", ""]);
 
 // exports
 
 
 /*** EXPORTS FROM exports-loader ***/
 module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/navbar/navbar.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<mat-toolbar color=\"primary\">\r\n  <span>\r\n    <img src=\"/assets/honeybadger_logo.svg\" width=\"100px\">\r\n  </span>\r\n  <span>\r\n    QuizItUp\r\n  </span>\r\n  <span class=\"fill-remaining-space\"></span>\r\n  <button mat-button routerLink=\"/\">Home</button>\r\n  <button mat-button *ngIf=\"isLoggedIn$ | async\" routerLink=\"/profile\">Profile</button>\r\n  <button mat-button *ngIf=\"isLoggedIn$ | async\" routerLink=\"/addQuestion\">Add Question</button>\r\n  <button mat-button *ngIf=\"isLoggedIn$ | async; else login\" (click)=\"onLogout()\">Log out</button>\r\n  <ng-template #login>\r\n    <button mat-button (click)=\"onLogin()\">Log in</button>\r\n    <button mat-button (click)=\"signUp()\">Sign Up</button>\r\n  </ng-template>\r\n</mat-toolbar>"
 
 /***/ }),
 
@@ -770,7 +818,7 @@ var NavbarComponent = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-navbar',
             template: __webpack_require__("../../../../../src/app/components/navbar/navbar.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/components/navbar/navbar.component.scss")]
+            styles: [__webpack_require__("../../../../../src/app/components/navbar/navbar.component.css")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__angular_material__["h" /* MatDialog */], __WEBPACK_IMPORTED_MODULE_4__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */]])
     ], NavbarComponent);
@@ -988,7 +1036,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 // module
-exports.push([module.i, "* {\r\n  font-family: 'Roboto', sans-serif;\r\n}\r\n\r\nmat-sidenav-container {\r\n  height: 100vh;\r\n}\r\n\r\na {\r\n  text-decoration: none;\r\n  color: black;\r\n}", ""]);
+exports.push([module.i, "* {\r\n  font-family: 'Roboto', sans-serif;\r\n}\r\n\r\nmat-sidenav-container {\r\n  height: 100vh;\r\n}\r\n\r\n.side{\r\n  width:200px;\r\n  box-shadow: 1px 2px 5px 0 rgba(0, 0, 0, 0.16);\r\n}\r\n\r\na {\r\n  text-decoration: none;\r\n  color: black;\r\n}\r\n\r\nmat-sidenav-content{\r\n  padding-left: 1em;\r\n}", ""]);
 
 // exports
 
@@ -1001,7 +1049,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-sidenav-container>\r\n  <mat-sidenav #sidenav [(opened)]=\"opened\" mode=\"side\">\r\n    <button mat-button [routerLink]=\"['performance']\">Performance</button><br />\r\n    <button mat-button [routerLink]=\"['questions']\">My Questions</button><br />\r\n    <button mat-button [routerLink]=\"['settings']\">Settings</button><br />\r\n  </mat-sidenav>\r\n  <mat-sidenav-content>\r\n    <router-outlet></router-outlet>\r\n  </mat-sidenav-content>>\r\n</mat-sidenav-container>"
+module.exports = "<mat-sidenav-container>\r\n  <mat-sidenav class=\"side\" #sidenav [(opened)]=\"opened\" mode=\"side\">\r\n    <button mat-button [routerLink]=\"['performance']\">Performance</button><br />\r\n    <button mat-button [routerLink]=\"['questions']\">My Questions</button><br />\r\n    <button mat-button [routerLink]=\"['settings']\">Settings</button><br />\r\n  </mat-sidenav>\r\n  <mat-sidenav-content>\r\n    <router-outlet></router-outlet>\r\n  </mat-sidenav-content>>\r\n</mat-sidenav-container>"
 
 /***/ }),
 
@@ -1050,7 +1098,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".list{\r\n    overflow-y: auto;\r\n}\r\n.list::-webkit-scrollbar-track\r\n{\r\n\t-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);\r\n\tbackground-color: #F5F5F5;\r\n}\r\n\r\n.list::-webkit-scrollbar\r\n{\r\n\twidth: 10px;\r\n\tbackground-color: #F5F5F5;\r\n}\r\n\r\n.list::-webkit-scrollbar-thumb\r\n{\r\n\tbackground-color: #673AB7;\r\n\tborder: 2px solid #555555;\r\n}\r\n.item{\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -ms-flexbox;\r\n\tdisplay: flex;\r\n\t-webkit-box-pack: justify;\r\n\t    -ms-flex-pack: justify;\r\n\t        justify-content: space-between;\r\n    border-bottom: 1px solid #F2F2F2;\r\n    border-left: 1px solid #F2F2F2;\r\n}\r\n\r\n.item span{\r\n    margin-left: 1.5em;\r\n    margin-right: 1.5em;\r\n}", ""]);
+exports.push([module.i, ".list{\r\n    overflow-y: auto;\r\n}\r\n.list::-webkit-scrollbar-track\r\n{\r\n\t-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);\r\n\tbackground-color: #F5F5F5;\r\n}\r\n\r\n.list::-webkit-scrollbar\r\n{\r\n\twidth: 10px;\r\n\tbackground-color: #F5F5F5;\r\n}\r\n\r\n.list::-webkit-scrollbar-thumb\r\n{\r\n\tbackground-color: #673AB7;\r\n\tborder: 2px solid #555555;\r\n}\r\n\r\n.item{\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -ms-flexbox;\r\n\tdisplay: flex;\r\n\t-webkit-box-pack: justify;\r\n\t    -ms-flex-pack: justify;\r\n\t        justify-content: space-between;\r\n    border-bottom: 1px solid #F2F2F2;\r\n    border-left: 1px solid #F2F2F2;\r\n}\r\n\r\n.item .idx{\r\n\twidth:10px;\r\n}", ""]);
 
 // exports
 
@@ -1063,7 +1111,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/question-list/question-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<span>Questions</span>\r\n<mat-list class=\"list\">\r\n  <mat-list-item\r\n    class=\"item\"\r\n    *ngFor=\"let a of answers; let i = index;\" \r\n    (click)=\"onClick(i)\"\r\n    [ngStyle]=\"{'background-color': i==currentQ?'#FFD740':''}\"\r\n  ><span>Question {{i+1}}</span> \r\n  <span *ngIf=\"a.answer==0||a.answer\">Answered</span>\r\n  </mat-list-item>\r\n</mat-list>\r\n"
+module.exports = "<span>Questions</span>\n<mat-list class=\"list\">\n  <div class=\"item\" \n  *ngFor=\"let a of answers; let i = index;\" \n  [ngStyle]=\"{'background-color': i==currentQ?'#FFD740':''}\">\n    <mat-list-item (click)=\"onClick(i)\" >\n      <div>Question {{i+1}}</div>\n    </mat-list-item>\n    <div class=\"idx\" [ngStyle]=\"{'background-color': a.answer==0||a.answer?'#8BC34A':'#F44336'}\">\n      \n    </div>\n  </div>\n</mat-list>\n"
 
 /***/ }),
 
@@ -1141,7 +1189,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/quiz-card/quiz-card.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\" [formGroup]=\"parent\">\r\n  <div class=\"form-container\" formArrayName=\"answers\">\r\n    <div class=\"form\" [formGroupName]=\"index\">\r\n      <div class=\"question\">\r\n        {{question.question}}\r\n      </div>\r\n      <div class=\"answer\" *ngFor=\"let a of question.answers; let i = index\">\r\n        <input formControlName=\"answer\" type=\"radio\" [value]=\"i\" id=\"{{i}}\"> \r\n        <label for=\"{{i}}\">{{a.text}}</label>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"card\" [formGroup]=\"parent\">\n  <div class=\"form-container\" formArrayName=\"answers\">\n    <div class=\"form\" [formGroupName]=\"index\">\n      <div class=\"question\">\n        {{question.question}}\n      </div>\n      <div class=\"answer\" *ngFor=\"let a of question.answers; let i = index\">\n        <input formControlName=\"answer\" type=\"radio\" [value]=\"i\" id=\"{{i}}\"> \n        <label for=\"{{i}}\">{{a.text}}</label>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1184,7 +1232,7 @@ var QuizCardComponent = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-quiz-card',
             template: __webpack_require__("../../../../../src/app/components/quiz-card/quiz-card.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/components/quiz-card/quiz-card.component.css")]
+            styles: [__webpack_require__("../../../../../src/app/components/quiz-card/quiz-card.component.css")],
         }),
         __metadata("design:paramtypes", [])
     ], QuizCardComponent);
@@ -1203,7 +1251,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 // module
-exports.push([module.i, ".quiz-container {\r\n  display: -ms-grid;\r\n  display: grid;\r\n  -ms-grid-rows: 3fr 2fr;\r\n      grid-template-rows: 3fr 2fr;\r\n  font-family: 'Roboto', sans-serif;\r\n  color: #212121;\r\n  margin-top: 1em;\r\n  text-align: center;\r\n  height: 100vh;\r\n}\r\n\r\n.content {\r\n  display: grid;\r\n  grid-template-columns: 1fr 3fr;\r\n  grid-column-gap: .5em;\r\n  grid-row: 1/2;\r\n  /* autoprefixer: off */\r\n}\r\n.bottombar {\r\n  grid-row: 2/3;\r\n<<<<<<< HEAD\r\n=======\r\n  grid-column-gap: .5em;\r\n>>>>>>> b0ad7c422f71d7670a2c1356fdf89e70dbbe5b53\r\n  display: grid;\r\n  grid-template-columns: 1fr 3fr;\r\n  align-items: baseline;\r\n  margin-top: 1em;\r\n  /* autoprefixer: off */\r\n}\r\n.bottombar-right{\r\n    grid-column: 2/3;\r\n    -ms-grid-columns: (1fr)[3];\r\n        grid-template-columns: repeat(3, 1fr);\r\n    display: -ms-grid;\r\n    display: grid;\r\n    background-color:#ECEFF1;\r\n    padding-top:1em;\r\n    padding-bottom:1em;\r\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\r\n}\r\n\r\n.card-container {\r\n  grid-column: 2/3;\r\n  display: block;\r\n}\r\n.button{\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-pack: center;\r\n      -ms-flex-pack: center;\r\n          justify-content: center;\r\n}\r\n.list-container {\r\n  grid-column:1/2;\r\n  display: block;\r\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\r\n}\r\n", ""]);
+exports.push([module.i, ".quiz-container {\r\n  display: -ms-grid;\r\n  display: grid;\r\n  -ms-grid-rows: 3fr 2fr;\r\n      grid-template-rows: 3fr 2fr;\r\n  font-family: 'Roboto', sans-serif;\r\n  color: #212121;\r\n  margin-top: 1em;\r\n  text-align: center;\r\n  height: 100vh;\r\n}\r\n\r\n.content {\r\n  display: grid;\r\n  grid-template-columns: 1fr 3fr;\r\n  grid-column-gap: .5em;\r\n  grid-row: 1/2;\r\n  /* autoprefixer: off */\r\n}\r\n.bottombar {\r\n  grid-row: 2/3;\r\n  grid-column-gap: .5em;\r\n  display: grid;\r\n  grid-template-columns: 1fr 3fr;\r\n  align-items: baseline;\r\n  margin-top: 1em;\r\n  /* autoprefixer: off */\r\n}\r\n.bottombar-right{\r\n    grid-column: 2/3;\r\n    -ms-grid-columns: (1fr)[3];\r\n        grid-template-columns: repeat(3, 1fr);\r\n    display: -ms-grid;\r\n    display: grid;\r\n    background-color:#ECEFF1;\r\n    padding-top:1em;\r\n    padding-bottom:1em;\r\n    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\r\n}\r\n\r\n.card-container {\r\n  grid-column: 2/3;\r\n  display: block;\r\n}\r\n.button{\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-pack: center;\r\n      -ms-flex-pack: center;\r\n          justify-content: center;\r\n}\r\n.list-container {\r\n  grid-column:1/2;\r\n  display: block;\r\n  max-height: 480;\r\n  overflow-y: auto;\r\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\r\n}\r\n", ""]);
 
 // exports
 
@@ -1310,7 +1358,7 @@ var QuizContainerComponent = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-quiz-container',
             template: __webpack_require__("../../../../../src/app/components/quiz-container/quiz-container.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/components/quiz-container/quiz-container.component.css")]
+            styles: [__webpack_require__("../../../../../src/app/components/quiz-container/quiz-container.component.css")],
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_1__services_question_service__["a" /* QuestionService */], __WEBPACK_IMPORTED_MODULE_2__services_quiz_form_service__["a" /* QuizFormService */],
             __WEBPACK_IMPORTED_MODULE_3__angular_forms__["b" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */]])
@@ -1330,7 +1378,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 // module
-exports.push([module.i, "\r\n", ""]);
+exports.push([module.i, ".scorecard-container{\r\n    width:100%;\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-pack: center;\r\n        -ms-flex-pack: center;\r\n            justify-content: center;\r\n}\r\n\r\n.scorecard{\r\n    -webkit-box-flex:1;\r\n        -ms-flex:1 1 auto;\r\n            flex:1 1 auto;\r\n    text-align: center;\r\n}", ""]);
 
 // exports
 
@@ -1343,7 +1391,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/quiz-results/quiz-results.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"totalCount\">\r\n  <h1>Correct Answers: {{ correctCount }}</h1>\r\n  <h1>Wrong Answers: {{ totalCount - correctCount }}</h1>\r\n</div>\r\n<mat-accordion class=\"results-container\">\r\n  <mat-expansion-panel *ngFor=\"let q of questions; let i = index;\" \r\n    [ngStyle]=\"{'background-color': correctAnswerCheck(i) ? 'lightgreen' : 'lightcoral'}\">\r\n    <mat-expansion-panel-header>\r\n      <mat-panel-title>\r\n        Question {{i + 1}}\r\n      </mat-panel-title>\r\n      <mat-panel-description>\r\n        {{ q.question }}\r\n      </mat-panel-description>\r\n    </mat-expansion-panel-header>\r\n    <div *ngIf = \"userAnswerExist(i); else cheater\">\r\n      <p *ngIf=\"correctAnswerCheck(i); else wrong\">Your Answer: {{ correctAnswers[i].text }}</p>\r\n      <ng-template #wrong>\r\n        <p>Your Answer: {{questions[i].answers[userAnswers[i].answer].text}}</p>\r\n        <p>Correct Answer: {{ correctAnswers[i].text }}</p>\r\n      </ng-template>\r\n    </div>\r\n    <ng-template #cheater>\r\n      <p>You didn't answer this question, why you trying to cheat bruv?</p>\r\n    </ng-template>\r\n  </mat-expansion-panel>\r\n</mat-accordion>"
+module.exports = "<div *ngIf=\"totalCount\">\r\n  <div class=\"scorecard-container\">\r\n    <div class=\"scorecard\"><h1>Correct Answers: {{ correctCount }}</h1></div>\r\n    <div class=\"scorecard\"><h1>Wrong Answers: {{ totalCount - correctCount }}</h1></div>\r\n  </div>\r\n</div>\r\n<mat-accordion class=\"results-container\">\r\n  <mat-expansion-panel *ngFor=\"let q of questions; let i = index;\" \r\n    [ngStyle]=\"{'background-color': correctAnswerCheck(i) ? 'lightgreen' : 'lightcoral'}\">\r\n    <mat-expansion-panel-header>\r\n      <mat-panel-title>\r\n        Question {{i + 1}}\r\n      </mat-panel-title>\r\n      <mat-panel-description>\r\n        {{ q.question }}\r\n      </mat-panel-description>\r\n    </mat-expansion-panel-header>\r\n    <div *ngIf = \"userAnswerExist(i); else cheater\">\r\n      <p *ngIf=\"correctAnswerCheck(i); else wrong\">Your Answer: {{ correctAnswers[i].text }}</p>\r\n      <ng-template #wrong>\r\n        <p>Your Answer: {{questions[i].answers[userAnswers[i].answer].text}}</p>\r\n        <p>Correct Answer: {{ correctAnswers[i].text }}</p>\r\n      </ng-template>\r\n    </div>\r\n    <ng-template #cheater>\r\n      <p>You didn't answer this question, why you trying to cheat bruv?</p>\r\n    </ng-template>\r\n  </mat-expansion-panel>\r\n</mat-accordion>"
 
 /***/ }),
 
@@ -1577,7 +1625,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "mat-card{\r\n    background-color: #673AB7;\r\n    text-align: center;\r\n}\r\nmat-card:hover{\r\n    margin-bottom: 2em;\r\n}\r\n\r\na{\r\n    color: white;\r\n    text-decoration: none;\r\n    font-size: 1.6em;\r\n}\r\na:hover{\r\n    color: #FFD740;\r\n}", ""]);
 
 // exports
 
@@ -1590,7 +1638,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/tag-item/tag-item.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-card class=\"tag-item-card\">\r\n  <img mat-card-image src=\"http://placehold.it/320x150\" />\r\n<mat-card-header>\r\n  <mat-card-title><a [routerLink]=\"[ '/quiz', tag.tagName ]\">{{ tag.tagName }}</a></mat-card-title>\r\n</mat-card-header>\r\n</mat-card>"
+module.exports = "<mat-card class=\"card\">\r\n  <img mat-card-image src=\"/assets/Hb-{{random}}.png\" />\r\n<mat-card-header>\r\n  <mat-card-title>\r\n    <a [routerLink]=\"[ '/quiz', tag.tagName ]\">{{ tag.tagName }}</a>\r\n  </mat-card-title>\r\n</mat-card-header>\r\n</mat-card>"
 
 /***/ }),
 
@@ -1615,6 +1663,10 @@ var TagItemComponent = (function () {
     function TagItemComponent() {
     }
     TagItemComponent.prototype.ngOnInit = function () {
+        this.random = this.getRandom();
+    };
+    TagItemComponent.prototype.getRandom = function () {
+        return Math.floor(Math.random() * (6 - 1) + 1);
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
@@ -1656,7 +1708,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/tag-list/tag-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-grid-list cols=\"4\" rowHeight=\"100px\">\r\n  <mat-grid-tile></mat-grid-tile>\r\n  <mat-grid-tile colspan=\"2\">\r\n    <form>\r\n      <mat-form-field>\r\n        <input matInput [(ngModel)]=\"tagFilter\" placeholder=\"Filter Quizzes\" type=\"text\" id=\"tag-filter\" name=\"tag-filter\" (keyup)=\"updateTagList($event)\" />\r\n      </mat-form-field>\r\n    </form>\r\n  </mat-grid-tile>\r\n  <mat-grid-tile></mat-grid-tile>\r\n  <mat-grid-tile *ngFor=\"let tag of filteredTags\" rowspan=\"3\">\r\n    <app-tag-item [tag]=\"tag\"></app-tag-item>\r\n  </mat-grid-tile>\r\n</mat-grid-list>"
+module.exports = "<mat-grid-list cols=\"4\" rowHeight=\"100px\" gutterSize=\"1em\">\r\n  <mat-grid-tile></mat-grid-tile>\r\n  <mat-grid-tile colspan=\"2\">\r\n    <form>\r\n      <mat-form-field>\r\n        <input matInput [(ngModel)]=\"tagFilter\" placeholder=\"Filter Quizzes\" type=\"text\" id=\"tag-filter\" name=\"tag-filter\" (keyup)=\"updateTagList($event)\" />\r\n      </mat-form-field>\r\n    </form>\r\n  </mat-grid-tile>\r\n  <mat-grid-tile></mat-grid-tile>\r\n  <mat-grid-tile class=\"\" *ngFor=\"let tag of filteredTags\" rowspan=\"3\">\r\n    <app-tag-item [tag]=\"tag\"></app-tag-item>\r\n  </mat-grid-tile>\r\n</mat-grid-list>"
 
 /***/ }),
 

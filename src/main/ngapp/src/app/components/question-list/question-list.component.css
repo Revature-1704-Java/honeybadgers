@@ -18,6 +18,7 @@
 	background-color: #673AB7;
 	border: 2px solid #555555;
 }
+
 .item{
 	display: flex;
 	justify-content: space-between;
@@ -25,7 +26,6 @@
     border-left: 1px solid #F2F2F2;
 }
 
-.item span{
-    margin-left: 1.5em;
-    margin-right: 1.5em;
+.item .idx{
+	width:10px;
 }
